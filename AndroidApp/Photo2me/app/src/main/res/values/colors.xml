@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="gray">#9b9797</color>
+    <color name="laranjaOficial">#F58634</color>
+    <color name="laranjaClaro">#FAC69E</color>
+    <color name="laranjaSemiEscuro">#C2580A</color>
+    <color name="laranjaEscuro">#793706</color>
+    <color name="colorPrimary">#F58634</color>
+    <color name="colorPrimaryDark">#793706</color>
+    <color name="colorAccent">#FAC69E</color>
 </resources>
