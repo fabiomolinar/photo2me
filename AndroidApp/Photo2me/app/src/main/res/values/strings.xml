@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="logo">Logo</string>
     <string name="bem_vindo">Bem Vindo!</string>
+    <string name="eu_aceito">Eu aceito</string>
+    <string name="necessario_aceitar_termos">Para utilizar o app, primeiro é necessário aceitar os termos descritos abaixo.</string>
 </resources>
