@@ -20,5 +20,8 @@
     <style name="SplashBackground" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
+    <style name="SplashBackgroundInvertido" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background_invertido</item>
+    </style>
 
 </resources>
