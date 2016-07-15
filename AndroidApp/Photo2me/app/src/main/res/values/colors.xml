@@ -8,4 +8,5 @@
     <color name="colorPrimaryDark">#793706</color>
     <color name="colorAccent">#FAC69E</color>
     <color name="branco">#FFFFFF</color>
+    <color name="preto">#000000</color>
 </resources>

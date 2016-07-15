@@ -5,4 +5,20 @@
     <string name="bem_vindo">Bem Vindo!</string>
     <string name="eu_aceito">Eu aceito</string>
     <string name="necessario_aceitar_termos">Para utilizar o app, primeiro é necessário aceitar os termos descritos abaixo.</string>
+    <string name="termos">
+        <![CDATA[
+            <h1>Título</h1>
+        <p>Aqui irá o parágrafo falando dos termos de uso e etc.</p>
+        <h2>Sub Título</h2>
+        <p>Aqui vai mais um parágrafo falando de um monte de coisa.</p>
+        <h2>Sub Título 2</h2>
+        <p>E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir!</p>
+        <h2>Sub Título 2</h2>
+        <p>E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir!</p>
+        <h2>Sub Título 2</h2>
+        <p>E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir!</p>
+        <h2>Sub Título 2</h2>
+        <p>E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir!</p>
+        ]]>
+    </string>
 </resources>

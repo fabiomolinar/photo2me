@@ -2,7 +2,10 @@ package com.photo2me.photo2me;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 public class TermsActivity extends AppCompatActivity {
 
@@ -11,7 +14,8 @@ public class TermsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms);
 
-        WebView webview = (WebView) findViewById(R.id.webView);
-        webview.loadUrl("file:///android_res/raw/terms.html");
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(Html.fromHtml(getString(R.string.termos)));
+        textView.setMovementMethod(new ScrollingMovementMethod());
     }
 }
