@@ -7,8 +7,18 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.photo2me.photo2me.SplashActivity"
-    android:background="@drawable/radial_background">
+    tools:context="com.photo2me.photo2me.SplashActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/bem_vindo"
+        android:id="@+id/txtBemVindo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:textSize="45sp"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -18,4 +28,6 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/logo"
         android:contentDescription="@string/logo" />
+
+
 </RelativeLayout>
