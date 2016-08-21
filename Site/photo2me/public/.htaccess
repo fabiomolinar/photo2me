@@ -1,3 +1,10 @@
+#Código abaixo libera o acesso da pasta ao público
+#
+Require all granted
+Satisfy Any
+
+#Abaixo o padrão do laravel
+#
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
