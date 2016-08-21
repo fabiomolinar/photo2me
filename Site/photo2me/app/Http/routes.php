@@ -17,3 +17,6 @@ Route::get('/', function () {
 Route::get('enviar', function () {
     return view('enviar');
 });
+
+//API
+Route::post('dadosFesta',['as' => 'dadosFesta', 'uses' => 'FestaController@dadosFesta']);

@@ -1,3 +1,4 @@
-<form class="" action="dadosFesta" method="post">
+{{-- Enviar foto para o servidor --}}
+<form class="" action="receberFoto" method="post">
 
 </form>
