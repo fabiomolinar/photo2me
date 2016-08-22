@@ -25,7 +25,8 @@ class FestaController extends Controller
             'message' => Lang::get('messages.evento-encontrado',[],$lingua),
             'data_inicio' => $festa->data_inicio,
             'data_fim' => $festa->data_fim,
-            'apelido' => $festa->apelido
+            'apelido' => $festa->apelido,
+            'timezone' => $festa->timezone
           ]);
         } else {
           return response()->json([
