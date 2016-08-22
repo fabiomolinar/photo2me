@@ -1,9 +1,9 @@
 #O código abaixo habilita senha e password na pasta e sub-pastas
 #
-AuthType Basic
-AuthName "Password Protected Area"
-AuthUserFile /home/optykopo/photo/.htpasswd
-Require valid-user
+#AuthType Basic
+#AuthName "Password Protected Area"
+#AuthUserFile /home/optykopo/photo/.htpasswd
+#Require valid-user
 
 #O código abaixo impede que o conteúdo das pastas seja listado
 #

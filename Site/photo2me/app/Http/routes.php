@@ -20,3 +20,4 @@ Route::get('enviar', function () {
 
 //API
 Route::post('dadosFesta',['as' => 'dadosFesta', 'uses' => 'FestaController@dadosFesta']);
+Route::post('receberFoto',['as' => 'receberFoto', 'uses' => 'FotoController@receberFoto']);
