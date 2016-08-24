@@ -20,12 +20,17 @@ class FestaController extends Controller
       if ($request->has('apelido')) {
         $festa = Festa::where('apelido',$request->input('apelido'))->first();
         if ($festa) {
+          $idUsuario = $festa->num_convidados;
+          $festa->num_convidados = $festa->num_convidados + 1;
+          $festa->save();
+          $idUsuarioFesta = $festa->id . '-' . $idUsuario;
           return response()->json([
             'mensagem' => Lang::get('messages.evento-encontrado',[],$lingua),
             'data_inicio' => $festa->data_inicio,
             'data_fim' => $festa->data_fim,
             'apelido' => $festa->apelido,
-            'timezone' => $festa->timezone
+            'timezone' => $festa->timezone,
+            'idUsuarioFesta' => $idUsuarioFesta
           ]);
         } else {
           return response()->json([

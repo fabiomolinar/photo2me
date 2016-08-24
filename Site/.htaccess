@@ -1,18 +1,25 @@
-#O código abaixo habilita senha e password na pasta e sub-pastas
+#Habilitando usuário e password na pasta e sub-pastas
 #
 #AuthType Basic
 #AuthName "Password Protected Area"
 #AuthUserFile /home/optykopo/photo/.htpasswd
 #Require valid-user
 
-#O código abaixo impede que o conteúdo das pastas seja listado
+#Impedindo que o conteúdo das pastas seja listado
 #
 Options -Indexes
 
-#O código abaixo modifica o DocumentRoot para que um acesso ao subdomain seja redirecionado para a pasta public do laravel
+#Modificando o DocumentRoot para que um acesso ao subdomain seja redirecionado para a pasta public do laravel
 #
 RewriteEngine on
 RewriteCond %{HTTP_HOST} ^photo.optykopoczno.pl$ [NC,OR]
 RewriteCond %{HTTP_HOST} ^www.photo.optykopoczno.pl$
 RewriteCond %{REQUEST_URI} !home/optykopo/photo/photo2me/public/
 RewriteRule (.*) /home/optykopo/photo/photo2me/public/$1 [L]
+
+#Modificando as configurações do php para que seja possível fazer upload de imagens maiores
+#
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_input_time 300
+php_value max_execution_time 300

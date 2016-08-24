@@ -6,5 +6,7 @@
   <br>
   Apelido:
   <input type="text" name="apelido" value="">
+  idUsuarioFesta
+  <input type="text" name="idUsuarioFesta" value="">
   <input type="submit" value="Upload Image" name="submit">
 </form>
