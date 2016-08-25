@@ -12,6 +12,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/main_chamada"
+        android:textAlignment="center"
+        android:textColor="@color/laranjaSemiEscuro"
+        android:id="@+id/txtChamada"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="56dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etxIdentificador"
+        android:hint="@string/identificador"
+        android:layout_marginTop="73dp"
+        android:layout_below="@+id/txtChamada"
+        android:layout_centerHorizontal="true"
+        style="@style/EditTextLaranja"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buscar"
+        android:id="@+id/btnBuscar"
+        android:layout_below="@+id/etxIdentificador"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        style="@style/BotaoLaranja"
+        android:onClick="buscarFestaClick"/>
 
 </RelativeLayout>

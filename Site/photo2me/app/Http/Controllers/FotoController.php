@@ -32,6 +32,7 @@ class FotoController extends Controller
           //Verificar se o arquivo é uma imagem
           $imagem = $request->file('imagem');
           $extensao = $imagem->getClientOriginalExtension();
+          //Verificar se o arquivo é de fato uma imagem
           if (strpos(image_type_to_mime_type(exif_imagetype($imagem)),'image') !== false) {
             //Salvar foto no storage
             $nomeImagem = $idUsuarioFesta . '_' . date("Y-m-d H-i") . '.' . $extensao;

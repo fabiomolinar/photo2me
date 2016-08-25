@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Photo2me</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configurações</string>
     <string name="logo">Logo</string>
     <string name="bem_vindo">Bem Vindo!</string>
     <string name="eu_aceito">Eu aceito</string>
     <string name="necessario_aceitar_termos">Para utilizar o app, primeiro é necessário aceitar os termos descritos abaixo.</string>
     <string name="termos">
         <![CDATA[
-            <h1>Título</h1>
+        <h1>Título</h1>
         <p>Aqui irá o parágrafo falando dos termos de uso e etc.</p>
         <h2>Sub Título</h2>
         <p>Aqui vai mais um parágrafo falando de um monte de coisa.</p>
@@ -21,4 +21,13 @@
         <p>E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir! E mais um título falando de um moooooonte de coisa. E repetidas vezes para eu ver como ficará na tela, visto que o texto é grande. Vamos começar a repetir!</p>
         ]]>
     </string>
+    <string name="main_chamada">Bem vindo a mais um evento!\n\nNos diga abaixo qual o identificador da festa para que você possa começar a capturar momentos!</string>
+    <string name="identificador">identificador</string>
+    <string name="buscar">buscar</string>
+
+    <string name="site">www.photo2me.com</string>
+    <string name="api_dados_festa">/dadosFesta</string>
+    <string name="api_receber_foto">/receberFoto</string>
+    <string name="precisa_estar_conectado">Você precisa estar conectado à internet</string>
+    <string name="problema_com_conexao">Ops, temos um problema com a conexão</string>
 </resources>

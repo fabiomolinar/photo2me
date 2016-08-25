@@ -24,4 +24,19 @@
         <item name="android:windowBackground">@drawable/splash_background_invertido</item>
     </style>
 
+    <style name="EditTextLaranja">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:backgroundTint">@color/laranjaOficial</item>
+        <item name="android:textColor">@color/laranjaOficial</item>
+        <item name="android:textColorHint">@color/laranjaOficial</item>
+    </style>
+
+    <style name="BotaoLaranja">
+        <item name="android:background">@color/laranjaOficial</item>
+        <item name="android:textColor">@color/branco</item>
+        <item name="android:paddingLeft">13dp</item>
+        <item name="android:paddingRight">13dp</item>
+    </style>
+
 </resources>
