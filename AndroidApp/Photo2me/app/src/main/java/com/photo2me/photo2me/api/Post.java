@@ -1,20 +1,12 @@
 package com.photo2me.photo2me.api;
 
-import android.content.pm.ActivityInfo;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.photo2me.photo2me.MainActivity;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -42,6 +34,7 @@ public class Post {
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.i(Post.class.getName(),"onFailure: " + e.getMessage());
+
             }
 
             @Override
