@@ -14,12 +14,19 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.photo2me.photo2me.api.Post;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Date;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private EditText identificador;
@@ -88,24 +95,59 @@ public class MainActivity extends AppCompatActivity {
             String apelido = identificador.getText().toString();
             Log.i(MainActivity.class.getName(),"apelido: " + apelido);
             //Pegar dados da festa através da API
+            OkHttpClient client = new OkHttpClient();
+            RequestBody formBody = new FormBody.Builder()
+                    .add("apelido",apelido)
+                    .build();
+            String url = getResources().getString(R.string.URL_BASE) + getResources().getString(R.string.API_DADOS_FESTA);
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(formBody)
+                    .build();
             try {
-                //Fazendo POST request de forma asincrona
-                Post post = new Post();
-                String resposta = post.pegarFesta(apelido);
-            } catch (Exception e) {
-                Log.i(MainActivity.class.getName(),"exceção: " + e.getMessage());
-                Log.i(MainActivity.class.getName(),"exceção: " + e.toString());
-                msgErroConexao();
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.i(MainActivity.class.getName(),"on Failure: " + e.getMessage());
+                        //Jogando a mensagem para o Looper
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                msgErroConexao(getResources().getString(R.string.problema_com_conexao));
+                            }
+                        });
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        final String responseString = response.body().string();
+                        Log.i(MainActivity.class.getName(),"onResponse: " + responseString);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    JSONObject json = new JSONObject(responseString);
+                                    Log.i(MainActivity.class.getName(),json.getString("mensagem"));
+                                } catch (Exception e) {
+                                    Log.i(MainActivity.class.getName(),"erro com JSON: " + e.getMessage());
+                                    e.printStackTrace();
+                                    msgErroConexao(getResources().getString(R.string.problema_com_conexao));
+                                }
+                            }
+                        });
+                    }
+                });
+            } catch (Exception e){
+                Log.i(MainActivity.class.getName(),"post não funcionou");
+                msgErroConexao(getResources().getString(R.string.problema_com_conexao));
             }
+
         }
     }
 
-    public void msgErroConexao(){
+    public void msgErroConexao(String mensagem){
         //Mostrando mensagem de erro para o usuário
-        String text;
         Toast toast;
-        text = getResources().getString(R.string.problema_com_conexao);
-        toast = Toast.makeText(this,text,Toast.LENGTH_LONG);
+        toast = Toast.makeText(this,mensagem,Toast.LENGTH_LONG);
         toast.show();
     }
 

@@ -29,4 +29,8 @@
     <string name="problema_com_conexao">Ops, temos um problema com a conexão</string>
     <string name="comecar">Começar</string>
     <string name="bem_vindo_a">Bem vindo a:</string>
+
+
+    <string name="URL_BASE">http://photo.optykopoczno.pl/</string>
+    <string name="API_DADOS_FESTA">dadosFesta</string>
 </resources>
