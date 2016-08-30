@@ -1,11 +1,10 @@
 package com.photo2me.photo2me;
 
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,16 +14,15 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import com.photo2me.photo2me.api.Post;
+
+import java.io.IOException;
+import java.util.Date;
+
+import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity {
     private EditText identificador;
-    private HttpURLConnection conexao;
-    private URL url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,36 +85,27 @@ public class MainActivity extends AppCompatActivity {
             toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
             toast.show();
         } else {
-            String site = getResources().getString(R.string.site);
-            String apiLink = getResources().getString(R.string.api_dados_festa);
-            Log.i(MainActivity.class.getName(),"link da api: " + site + apiLink);
             String apelido = identificador.getText().toString();
             Log.i(MainActivity.class.getName(),"apelido: " + apelido);
             //Pegar dados da festa através da API
             try {
-                url = new URL("http",site,80,apiLink);
-                conexao = (HttpURLConnection) url.openConnection();
-                //Para fazer upload de um body
-                conexao.setDoOutput(true);
-                conexao.setDoInput(true);
-                conexao.setRequestProperty("Content-Type", "form-data");
-                conexao.setRequestProperty("Accept", "application/json");
-                conexao.setRequestMethod("POST");
-                //Criando body do post
-                String data = "apelido=" + apelido;
-                byte[] dataEmBytes = data.getBytes("UTF-8");
-                OutputStream os = conexao.getOutputStream();
-                os.write(dataEmBytes);
-                os.close();
+                //Fazendo POST request de forma asincrona
+                Post post = new Post();
+                String resposta = post.pegarFesta(apelido);
             } catch (Exception e) {
-                text = getResources().getString(R.string.problema_com_conexao);
-                toast = Toast.makeText(this,text,Toast.LENGTH_LONG);
-                toast.show();
-                return;
+                Log.i(MainActivity.class.getName(),"exceção: " + e.getMessage());
+                Log.i(MainActivity.class.getName(),"exceção: " + e.toString());
+                msgErroConexao();
             }
-
-
         }
+    }
 
+    public void msgErroConexao(){
+        //Mostrando mensagem de erro para o usuário
+        String text;
+        Toast toast;
+        text = getResources().getString(R.string.problema_com_conexao);
+        toast = Toast.makeText(this,text,Toast.LENGTH_LONG);
+        toast.show();
     }
 }

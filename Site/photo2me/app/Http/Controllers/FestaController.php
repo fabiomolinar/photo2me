@@ -26,9 +26,10 @@ class FestaController extends Controller
           $idUsuarioFesta = $festa->id . '-' . $idUsuario;
           return response()->json([
             'mensagem' => Lang::get('messages.evento-encontrado',[],$lingua),
-            'data_inicio' => $festa->data_inicio,
-            'data_fim' => $festa->data_fim,
+            'dataInicio' => $festa->data_inicio,
+            'dataFim' => $festa->data_fim,
             'apelido' => $festa->apelido,
+            'nomeFesta' => $festa->nome_festa,
             'timezone' => $festa->timezone,
             'idUsuarioFesta' => $idUsuarioFesta
           ]);

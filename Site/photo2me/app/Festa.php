@@ -13,6 +13,7 @@ class Festa extends Model
 
     protected $fillable = [
       'apelido',
+      'nome_festa',
       'user_id',
       'data_inicio',
       'data_fim',

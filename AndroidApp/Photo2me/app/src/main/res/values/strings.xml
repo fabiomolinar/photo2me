@@ -25,9 +25,8 @@
     <string name="identificador">identificador</string>
     <string name="buscar">buscar</string>
 
-    <string name="site">www.photo2me.com</string>
-    <string name="api_dados_festa">/dadosFesta</string>
-    <string name="api_receber_foto">/receberFoto</string>
     <string name="precisa_estar_conectado">Você precisa estar conectado à internet</string>
     <string name="problema_com_conexao">Ops, temos um problema com a conexão</string>
+    <string name="comecar">Começar</string>
+    <string name="bem_vindo_a">Bem vindo a:</string>
 </resources>
