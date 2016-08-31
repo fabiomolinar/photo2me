@@ -37,7 +37,8 @@ public class FestaDbAdapter{
     public FestaDbAdapter(Context context){
         this.context = context;
     }
-
+    
+    //Métodos para manipular o banco de dados
     public FestaDbAdapter open() throws android.database.SQLException{
         festaDbHelper = new FestaDbHelper(context);
         sqlDB = festaDbHelper.getWritableDatabase();
