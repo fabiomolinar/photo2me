@@ -1,10 +1,9 @@
 package com.photo2me.photo2me;
 
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,11 +13,9 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -30,6 +27,11 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private EditText identificador;
+    public static final String FESTA_NOME_EXTRA = "com.photo2me.photo2me.Nome da festa";
+    public static final String FESTA_DATA_INICIO_EXTRA = "com.photo2me.photo2me.Data de inicio";
+    public static final String FESTA_DATA_FIM_EXTRA = "com.photo2me.photo2me.Data de fim";
+    public static final String FESTA_APELIDO_EXTRA = "com.photo2me.photo2me.apelido";
+    public static final String FESTA_TIMEZONE_EXTRA = "com.photo2me.photo2me.timezone";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,13 +115,14 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                msgErroConexao(getResources().getString(R.string.problema_com_conexao));
+                                toastMessage(getResources().getString(R.string.problema_com_conexao));
                             }
                         });
                     }
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         final String responseString = response.body().string();
+                        final int codigo = response.code();
                         Log.i(MainActivity.class.getName(),"onResponse: " + responseString);
                         runOnUiThread(new Runnable() {
                             @Override
@@ -127,10 +130,27 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     JSONObject json = new JSONObject(responseString);
                                     Log.i(MainActivity.class.getName(),json.getString("mensagem"));
+                                    if (codigo != 200){
+                                        toastMessage(json.getString("mensagem"));
+                                    } else {
+                                        //Salvar festa no banco de dados
+                                        salvarFestaDb(json);
+                                        //Iniciar serviços
+                                        iniciarServicos();
+                                        //Intent para a próxima tela
+                                        Log.i(MainActivity.class.getName(),"Criando intent");
+                                        Intent intent = new Intent(MainActivity.this,StartActivity.class);
+                                        intent.putExtra(MainActivity.FESTA_NOME_EXTRA,json.getString("nomeFesta"));
+                                        intent.putExtra(MainActivity.FESTA_DATA_INICIO_EXTRA,json.getString("dataInicio"));
+                                        intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,json.getString("dataFim"));
+                                        intent.putExtra(MainActivity.FESTA_APELIDO_EXTRA,json.getString("apelido"));
+                                        intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,json.getString("timezone"));
+                                        startActivity(intent);
+                                    }
                                 } catch (Exception e) {
                                     Log.i(MainActivity.class.getName(),"erro com JSON: " + e.getMessage());
                                     e.printStackTrace();
-                                    msgErroConexao(getResources().getString(R.string.problema_com_conexao));
+                                    toastMessage(getResources().getString(R.string.problema_com_conexao));
                                 }
                             }
                         });
@@ -138,17 +158,23 @@ public class MainActivity extends AppCompatActivity {
                 });
             } catch (Exception e){
                 Log.i(MainActivity.class.getName(),"post não funcionou");
-                msgErroConexao(getResources().getString(R.string.problema_com_conexao));
+                toastMessage(getResources().getString(R.string.problema_com_conexao));
             }
 
         }
     }
 
-    public void msgErroConexao(String mensagem){
+    public void toastMessage(String mensagem){
         //Mostrando mensagem de erro para o usuário
         Toast toast;
         toast = Toast.makeText(this,mensagem,Toast.LENGTH_LONG);
         toast.show();
+    }
+    private void salvarFestaDb(JSONObject json){
+
+    }
+    private void iniciarServicos(){
+
     }
 
 }

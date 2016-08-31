@@ -7,13 +7,15 @@ import java.util.Date;
  */
 public class Festa {
     private String apelido;
+    private String nome;
     private Date dataInicio;
     private Date dataFim;
     private String timezone;
     private Boolean ativa;
 
-    public Festa(String apelido, Date dataInicio, Date dataFim, String timezone){
+    public Festa(String apelido, String nome, Date dataInicio, Date dataFim, String timezone){
         this.apelido = apelido;
+        this.nome = nome;
         this.dataFim = dataFim;
         this.dataInicio = dataInicio;
         this.timezone = timezone;
@@ -21,6 +23,7 @@ public class Festa {
     }
 
     public String getApelido(){return apelido;}
+    public String getNome(){return nome;}
     public Date getDataInicio(){return dataInicio;}
     public Date getDataFim(){return dataFim;}
     public Boolean getAtiva(){return ativa;}
