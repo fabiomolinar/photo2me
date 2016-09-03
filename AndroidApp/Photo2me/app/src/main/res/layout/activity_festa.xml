@@ -9,4 +9,164 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.photo2me.photo2me.FestaActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Festa do João"
+        android:id="@+id/txtNomeFesta"
+        android:textColor="@color/laranjaOficial"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"/>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tabelaDatas"
+        android:layout_below="@+id/txtNomeFesta"
+        android:layout_centerHorizontal="true">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="9dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/data"
+                android:id="@+id/textView9"
+                android:textAlignment="center"
+                android:textColor="@color/laranjaSemiEscuro"
+                android:layout_column="1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/hora"
+                android:id="@+id/textView10"
+                android:textAlignment="center"
+                android:textColor="@color/laranjaSemiEscuro"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="9dp">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/inicio"
+                android:id="@+id/textView3"
+                android:paddingRight="24dp"
+                android:textColor="@color/laranjaSemiEscuro"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:paddingRight="9dp"
+                android:id="@+id/txtDataInicio"
+                android:textColor="@color/laranjaOficial"
+                android:layout_column="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/txtHoraInicio"
+                android:textColor="@color/laranjaOficial"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/fim"
+                android:id="@+id/textView4"
+                android:paddingRight="24dp"
+                android:textColor="@color/laranjaSemiEscuro"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:paddingRight="9dp"
+                android:id="@+id/txtDataFim"
+                android:textColor="@color/laranjaOficial"
+                android:layout_column="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/txtHoraFim"
+                android:textColor="@color/laranjaOficial"
+                android:layout_column="2" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnPausar"
+        android:text="@string/pausar"
+        android:layout_marginTop="90dp"
+        android:background="@color/azul"
+        android:textColor="@color/branco"
+        android:layout_below="@+id/tabelaDatas"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnParar"
+        android:text="@string/parar"
+        android:layout_marginTop="30dp"
+        android:background="@color/vermelho"
+        android:textColor="@color/branco"
+        android:layout_below="@+id/btnPausar"/>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/tempo_restante"
+                android:id="@+id/textView11"
+                android:paddingRight="24dp"
+                android:textColor="@color/laranjaSemiEscuro"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/txtTempoRestante"
+                android:textColor="@color/laranjaOficial"
+                android:layout_column="1" />
+        </TableRow>
+    </TableLayout>
+
 </RelativeLayout>

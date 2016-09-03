@@ -31,6 +31,21 @@
     <string name="bem_vindo_a">Bem vindo a:</string>
     <string name="algo_deu_errado">Algo deu errado. Tente voltar e refazer a operação.</string>
 
+    <string name="texto_apresentacao_1">A festa irá começar dia</string>
+    <string name="texto_apresentacao_2">às</string>
+    <string name="texto_apresentacao_3">e irá terminar dia</string>
+    <string name="texto_apresentacao_4">Apenas dentro deste período, todas as fotos que você tirar serão enviadas para o dono do evento.</string>
+    <string name="texto_apresentacao_5">Você poderá pausar ou parar de enviar as fotos a hora que quiser.</string>
+    <string name="texto_apresentacao_6">Então, vamos lá? Pronto para tirar fotos inesquecíveis?</string>
+    <string name="festa">Festa</string>
+    <string name="pausar">pausar</string>
+    <string name="parar">parar</string>
+    <string name="inicio">Início</string>
+    <string name="fim">Fim</string>
+    <string name="data">Data</string>
+    <string name="hora">Hora</string>
+    <string name="tempo_restante">Tempo restante</string>
+
 
     <string name="URL_BASE">http://photo.optykopoczno.pl/</string>
     <string name="API_DADOS_FESTA">dadosFesta</string>

@@ -36,7 +36,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="A festa irá começar às 12:00 do dia 13/10/2016 e irá até as 12:00 do dia 14/10/2016. \n\n Apenas dentro deste período, todas as fotos que você tirar serão enviadas para o dono do evento. \n\n Então, vamos lá? Pronto para tirar fotos inesquecíveis?"
         android:id="@+id/txtDetalhes"
         android:textColor="@color/laranjaSemiEscuro"
@@ -52,5 +52,6 @@
         android:id="@+id/button"
         style="@style/BotaoLaranja"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="comecarClick"/>
 </RelativeLayout>

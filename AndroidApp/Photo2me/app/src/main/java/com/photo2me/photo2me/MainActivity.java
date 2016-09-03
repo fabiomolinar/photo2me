@@ -1,5 +1,6 @@
 package com.photo2me.photo2me;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,7 +12,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.json.JSONObject;
 
@@ -27,6 +31,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private EditText identificador;
+    private ProgressBar progressBar;
     public static final String FESTA_NOME_EXTRA = "com.photo2me.photo2me.Nome da festa";
     public static final String FESTA_DATA_INICIO_EXTRA = "com.photo2me.photo2me.Data de inicio";
     public static final String FESTA_DATA_FIM_EXTRA = "com.photo2me.photo2me.Data de fim";
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //Iniciando Joda DateTime library
+        JodaTimeAndroid.init(this);
 
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -52,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         */
 
         identificador = (EditText) findViewById(R.id.etxIdentificador);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -77,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buscarFestaClick(View botao){
+        //Mostrando progress spinner
+        progressBar.setVisibility(View.VISIBLE);
         //Verificar que existe internet
         ConnectivityManager check = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
         NetworkInfo[] info = check.getAllNetworkInfo();
@@ -90,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Toast toast;
         CharSequence text;
         if (!temNet){
+            progressBar.setVisibility(View.INVISIBLE);
             text = getResources().getString(R.string.precisa_estar_conectado);
             toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
             toast.show();
@@ -110,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
+                        progressBar.setVisibility(View.INVISIBLE);
                         Log.i(MainActivity.class.getName(),"on Failure: " + e.getMessage());
                         //Jogando a mensagem para o Looper
                         runOnUiThread(new Runnable() {
@@ -124,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         final String responseString = response.body().string();
                         final int codigo = response.code();
                         Log.i(MainActivity.class.getName(),"onResponse: " + responseString);
+                        Log.i(MainActivity.class.getName(),"onResponse, código: " + codigo);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -131,12 +145,9 @@ public class MainActivity extends AppCompatActivity {
                                     JSONObject json = new JSONObject(responseString);
                                     Log.i(MainActivity.class.getName(),json.getString("mensagem"));
                                     if (codigo != 200){
+                                        progressBar.setVisibility(View.INVISIBLE);
                                         toastMessage(json.getString("mensagem"));
                                     } else {
-                                        //Salvar festa no banco de dados
-                                        salvarFestaDb(json);
-                                        //Iniciar serviços
-                                        iniciarServicos();
                                         //Intent para a próxima tela
                                         Log.i(MainActivity.class.getName(),"Criando intent");
                                         Intent intent = new Intent(MainActivity.this,StartActivity.class);
@@ -148,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                                         startActivity(intent);
                                     }
                                 } catch (Exception e) {
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     Log.i(MainActivity.class.getName(),"erro com JSON: " + e.getMessage());
                                     e.printStackTrace();
                                     toastMessage(getResources().getString(R.string.problema_com_conexao));
@@ -157,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             } catch (Exception e){
+                progressBar.setVisibility(View.INVISIBLE);
                 Log.i(MainActivity.class.getName(),"post não funcionou");
                 toastMessage(getResources().getString(R.string.problema_com_conexao));
             }

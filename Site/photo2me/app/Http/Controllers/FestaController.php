@@ -25,6 +25,8 @@ class FestaController extends Controller
           $festa->save();
           $idUsuarioFesta = $festa->id . '-' . $idUsuario;
           return response()->json([
+            //O nome das variáveis abaixo não devem ser modificadas sem razão,
+            //visto que o applicativo para android usa elas!!
             'mensagem' => Lang::get('messages.evento-encontrado',[],$lingua),
             'dataInicio' => $festa->data_inicio,
             'dataFim' => $festa->data_fim,
