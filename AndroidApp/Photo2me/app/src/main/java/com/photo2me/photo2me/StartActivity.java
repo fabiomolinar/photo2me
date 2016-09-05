@@ -1,6 +1,7 @@
 package com.photo2me.photo2me;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -24,6 +27,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class StartActivity extends AppCompatActivity {
+    public static final String FESTA_TABLE_ID = "FestaTableId";
+
     private Festa festa;
     private Locale locale;
     private TextView textoDetalhes;
@@ -33,6 +38,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        JodaTimeAndroid.init(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             locale = getResources().getConfiguration().getLocales().get(0);
@@ -46,6 +52,7 @@ public class StartActivity extends AppCompatActivity {
         textoNome = (TextView) findViewById(R.id.txtNomeFesta);
 
         Intent intentOriginador = getIntent();
+        //O formatador abaixo é necessário pois os dados do banco de dados são formatados de forma diferente
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         dtf.withLocale(locale);
         String festaApelido = intentOriginador.getStringExtra(MainActivity.FESTA_APELIDO_EXTRA);
@@ -112,16 +119,27 @@ public class StartActivity extends AppCompatActivity {
     public void comecarClick(View botao){
         //Salvar festa no banco de dados
         festa.setAtiva(true);
-        festa.save();
-        //Preparar e iniciar serviços
-        //Preparar e iniciar serviços
-        Intent intent = new Intent(StartActivity.this,FestaActivity.class);
-        intent.putExtra(MainActivity.FESTA_NOME_EXTRA,festa.getNome());
-        intent.putExtra(MainActivity.FESTA_DATA_INICIO_EXTRA,festa.getDataInicio().toString());
-        intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,festa.getDataFim().toString());
-        intent.putExtra(MainActivity.FESTA_APELIDO_EXTRA,festa.getApelido());
-        intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,festa.getTimezone());
-        startActivity(intent);
-        this.finish();
+        try {
+            long idFesta;
+            idFesta = festa.save();
+            SharedPreferences minhasPreferencias = getSharedPreferences(Preferencias.MINHAS_PREFERENCIAS,0);
+            SharedPreferences.Editor editor = minhasPreferencias.edit();
+            editor.putBoolean(Preferencias.PREF_FESTA_ATIVA,true);
+            editor.putBoolean(Preferencias.PREF_FESTA_PAUSADA,false);
+            editor.apply();
+            Intent intent = new Intent(StartActivity.this,FestaActivity.class);
+            intent.putExtra(MainActivity.FESTA_NOME_EXTRA,festa.getNome());
+            intent.putExtra(MainActivity.FESTA_DATA_INICIO_EXTRA,festa.getDataInicio().toString());
+            intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,festa.getDataFim().toString());
+            intent.putExtra(MainActivity.FESTA_APELIDO_EXTRA,festa.getApelido());
+            intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,festa.getTimezone());
+            intent.putExtra(StartActivity.FESTA_TABLE_ID,idFesta);
+            startActivity(intent);
+            this.finish();
+        } catch (Exception e){
+            toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
+            Log.i(StartActivity.class.getName(),e.getMessage());
+        }
+
     }
 }

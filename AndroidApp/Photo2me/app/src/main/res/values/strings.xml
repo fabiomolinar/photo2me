@@ -45,6 +45,17 @@
     <string name="data">Data</string>
     <string name="hora">Hora</string>
     <string name="tempo_restante">Tempo restante</string>
+    <string name="status">Status</string>
+    <string name="coletando">Coletando</string>
+    <string name="esperando_festa_comecar">Esperando festa começar</string>
+    <string name="pausado">Em pausa</string>
+    <string name="ops_erro_tente_novamente_mais_tarde">Ops, um erro aconteceu. Tente novamente mais tarde.</string>
+    <string name="erro_ao_atualizar_status_festa">Não conseguimos atualizar o status da festa...</string>
+    <string name="desativado">Desativado</string>
+    <string name="festa_ja_acabou">Festa já acabou</string>
+    <string name="festa_pausada">Festa pausada</string>
+    <string name="festa_ativa">Festa ativa</string>
+    <string name="reiniciar">Reiniciar</string>
 
 
     <string name="URL_BASE">http://photo.optykopoczno.pl/</string>

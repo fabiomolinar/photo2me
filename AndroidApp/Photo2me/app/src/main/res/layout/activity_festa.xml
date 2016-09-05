@@ -128,7 +128,8 @@
         android:layout_marginTop="90dp"
         android:background="@color/azul"
         android:textColor="@color/branco"
-        android:layout_below="@+id/tabelaDatas"/>
+        android:layout_below="@+id/tabelaDatas"
+        android:onClick="pausarClick"/>
 
     <Button
         android:layout_width="match_parent"
@@ -138,13 +139,15 @@
         android:layout_marginTop="30dp"
         android:background="@color/vermelho"
         android:textColor="@color/branco"
-        android:layout_below="@+id/btnPausar"/>
+        android:layout_below="@+id/btnPausar"
+        android:onClick="pararClick"/>
 
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -152,7 +155,7 @@
 
             <TextView
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/tempo_restante"
+                android:text="@string/status"
                 android:id="@+id/textView11"
                 android:paddingRight="24dp"
                 android:textColor="@color/laranjaSemiEscuro"
@@ -163,7 +166,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Large Text"
-                android:id="@+id/txtTempoRestante"
+                android:id="@+id/txtStatus"
+                android:textStyle="bold"
                 android:textColor="@color/laranjaOficial"
                 android:layout_column="1" />
         </TableRow>

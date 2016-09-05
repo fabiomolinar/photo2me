@@ -122,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        progressBar.setVisibility(View.INVISIBLE);
                         Log.i(MainActivity.class.getName(),"on Failure: " + e.getMessage());
                         //Jogando a mensagem para o Looper
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                progressBar.setVisibility(View.INVISIBLE);
                                 toastMessage(getResources().getString(R.string.problema_com_conexao));
                             }
                         });
@@ -182,12 +182,6 @@ public class MainActivity extends AppCompatActivity {
         Toast toast;
         toast = Toast.makeText(this,mensagem,Toast.LENGTH_LONG);
         toast.show();
-    }
-    private void salvarFestaDb(JSONObject json){
-
-    }
-    private void iniciarServicos(){
-
     }
 
 }
