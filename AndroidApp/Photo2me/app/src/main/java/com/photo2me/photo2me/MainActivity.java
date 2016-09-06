@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 temNet = true;
             }
         }
-        Log.i(MainActivity.class.getName(),"Tem internet: " + temNet);
+        Log.d(MainActivity.class.getName(),"Tem internet: " + temNet);
         Toast toast;
         CharSequence text;
         if (!temNet){
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             toast.show();
         } else {
             String apelido = identificador.getText().toString();
-            Log.i(MainActivity.class.getName(),"apelido: " + apelido);
+            Log.d(MainActivity.class.getName(),"apelido: " + apelido);
             //Pegar dados da festa através da API
             OkHttpClient client = new OkHttpClient();
             RequestBody formBody = new FormBody.Builder()
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        Log.i(MainActivity.class.getName(),"on Failure: " + e.getMessage());
+                        Log.d(MainActivity.class.getName(),"on Failure: " + e.getMessage());
                         //Jogando a mensagem para o Looper
                         runOnUiThread(new Runnable() {
                             @Override
@@ -136,20 +136,20 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         final String responseString = response.body().string();
                         final int codigo = response.code();
-                        Log.i(MainActivity.class.getName(),"onResponse: " + responseString);
-                        Log.i(MainActivity.class.getName(),"onResponse, código: " + codigo);
+                        Log.d(MainActivity.class.getName(),"onResponse: " + responseString);
+                        Log.d(MainActivity.class.getName(),"onResponse, código: " + codigo);
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 try {
                                     JSONObject json = new JSONObject(responseString);
-                                    Log.i(MainActivity.class.getName(),json.getString("mensagem"));
+                                    Log.d(MainActivity.class.getName(),json.getString("mensagem"));
                                     if (codigo != 200){
                                         progressBar.setVisibility(View.INVISIBLE);
                                         toastMessage(json.getString("mensagem"));
                                     } else {
                                         //Intent para a próxima tela
-                                        Log.i(MainActivity.class.getName(),"Criando intent");
+                                        Log.d(MainActivity.class.getName(),"Criando intent");
                                         Intent intent = new Intent(MainActivity.this,StartActivity.class);
                                         intent.putExtra(MainActivity.FESTA_NOME_EXTRA,json.getString("nomeFesta"));
                                         intent.putExtra(MainActivity.FESTA_DATA_INICIO_EXTRA,json.getString("dataInicio"));
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 } catch (Exception e) {
                                     progressBar.setVisibility(View.INVISIBLE);
-                                    Log.i(MainActivity.class.getName(),"erro com JSON: " + e.getMessage());
+                                    Log.d(MainActivity.class.getName(),"erro com JSON: " + e.getMessage());
                                     e.printStackTrace();
                                     toastMessage(getResources().getString(R.string.problema_com_conexao));
                                 }
@@ -170,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             } catch (Exception e){
                 progressBar.setVisibility(View.INVISIBLE);
-                Log.i(MainActivity.class.getName(),"post não funcionou");
+                Log.d(MainActivity.class.getName(),"post não funcionou");
                 toastMessage(getResources().getString(R.string.problema_com_conexao));
             }
 

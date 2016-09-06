@@ -46,7 +46,7 @@ public class StartActivity extends AppCompatActivity {
             locale = getResources().getConfiguration().locale;
         }
 
-        Log.i(StartActivity.class.getName(),locale.getCountry());
+        Log.d(StartActivity.class.getName(),locale.getCountry());
 
         textoDetalhes = (TextView) findViewById(R.id.txtDetalhes);
         textoNome = (TextView) findViewById(R.id.txtNomeFesta);
@@ -62,18 +62,18 @@ public class StartActivity extends AppCompatActivity {
             LocalDateTime festaInicio = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_INICIO_EXTRA));
             LocalDateTime festaFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
             festa = new Festa(festaApelido,festaNome,festaInicio,festaFim,festaTimezone);
-            Log.i(StartActivity.class.getName(),festa.toString());
+            Log.d(StartActivity.class.getName(),festa.toString());
             String textoApresentacao = criarTextoApresentacao();
             textoDetalhes.setText(Html.fromHtml(textoApresentacao));
             textoNome.setText(festaNome);
         } catch (Exception e){
-            Log.i(StartActivity.class.getName(),e.getMessage());
+            Log.d(StartActivity.class.getName(),e.getMessage());
             toastMessage(getResources().getString(R.string.algo_deu_errado));
         }
     }
 
     private String criarTextoApresentacao() {
-        Log.i(StartActivity.class.getName(),locale.toString());
+        Log.d(StartActivity.class.getName(),locale.toString());
         String texto;
         DateTimeZone timezone = DateTimeZone.forID(festa.getTimezone());
         DateTimeFormatter diaFormatter = DateTimeFormat.mediumDate();
@@ -138,7 +138,7 @@ public class StartActivity extends AppCompatActivity {
             this.finish();
         } catch (Exception e){
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
-            Log.i(StartActivity.class.getName(),e.getMessage());
+            Log.d(StartActivity.class.getName(),e.getMessage());
         }
 
     }

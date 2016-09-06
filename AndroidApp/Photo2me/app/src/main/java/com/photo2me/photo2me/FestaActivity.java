@@ -104,7 +104,7 @@ public class FestaActivity extends AppCompatActivity {
             horaInicio.setText(horaFormatter.print(inicioHora));
             horaFim.setText(horaFormatter.print(fimHora));
         } catch (Exception e){
-            Log.i(FestaActivity.class.getName(),"Erro fazendo o parse das datas");
+            Log.d(FestaActivity.class.getName(),"Erro fazendo o parse das datas");
             e.printStackTrace();
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
         }
@@ -124,7 +124,7 @@ public class FestaActivity extends AppCompatActivity {
                         });
                     }
                 } catch (Exception e){
-                    Log.i(FestaActivity.class.getName(),e.getMessage());
+                    Log.d(FestaActivity.class.getName(),e.getMessage());
                     e.printStackTrace();
                     toastMessage(getResources().getString(R.string.erro_ao_atualizar_status_festa));
                 }
@@ -207,6 +207,9 @@ public class FestaActivity extends AppCompatActivity {
             festa.setAtiva(false);
             festa.setFinalizada(true);
             festa.save();
+
+            Intent intent = new Intent(FestaActivity.this,ManagerService.class);
+            startService(intent);
         }
 
     }

@@ -47,6 +47,13 @@
         <activity
             android:name=".FestaActivity"
             android:label="@string/festa"/>
+      
+      <service
+               android:name=".ManagerService"
+               android:exported="false"/>
+      <service
+               android:name=".FotoSenderService"
+               android:exported="false"/>
     </application>
 
 </manifest>
