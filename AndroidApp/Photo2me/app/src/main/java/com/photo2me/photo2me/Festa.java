@@ -3,8 +3,11 @@ package com.photo2me.photo2me;
 import com.orm.SugarRecord;
 
 import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Fabio on 25/08/2016.
@@ -12,8 +15,8 @@ import java.util.Date;
 public class Festa extends SugarRecord{
     private String apelido;
     private String nome;
-    private LocalDateTime dataInicio;
-    private LocalDateTime dataFim;
+    private String dataInicio;
+    private String dataFim;
     private String timezone;
     private Boolean ativa;
     private Boolean finalizada;
@@ -22,7 +25,7 @@ public class Festa extends SugarRecord{
     public Festa(){
 
     }
-    public Festa(String apelido, String nome, LocalDateTime dataInicio, LocalDateTime dataFim, String timezone){
+    public Festa(String apelido, String nome, String dataInicio, String dataFim, String timezone){
         this.apelido = apelido;
         this.nome = nome;
         this.dataFim = dataFim;
@@ -43,14 +46,24 @@ public class Festa extends SugarRecord{
 
     public String getApelido(){return apelido;}
     public String getNome(){return nome;}
-    public LocalDateTime getDataInicio(){return dataInicio;}
-    public LocalDateTime getDataFim(){return dataFim;}
+    public String getDataInicio(){return dataInicio;}
+    public LocalDateTime getDataInicioJoda(Locale locale){
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        dtf.withLocale(locale);
+        return dtf.parseLocalDateTime(this.dataInicio);
+    }
+    public String getDataFim(){return dataFim;}
+    public LocalDateTime getDataFimJoda(Locale locale){
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        dtf.withLocale(locale);
+        return dtf.parseLocalDateTime(this.dataFim);
+    }
     public Boolean getAtiva(){return ativa;}
     public String getTimezone(){return timezone;}
     public void setAtiva(Boolean ativa){this.ativa = ativa;}
     public void setFinalizada(Boolean finalizada){this.finalizada = finalizada;}
-    public void setDataInicio(LocalDateTime data){this.dataInicio = data;}
-    public void setDataFim(LocalDateTime data){this.dataFim = data;}
+    public void setDataInicio(String data){this.dataInicio = data;}
+    public void setDataFim(String data){this.dataFim = data;}
 
     public String toString(){
         return "classe Festa - " +

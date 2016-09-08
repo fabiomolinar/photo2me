@@ -12,6 +12,7 @@ import android.util.Log;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -66,12 +67,32 @@ public class ManagerService extends Service {
     //Lista de pastas onde podem ter fotos. Adicionar se necessário.
     lista.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
     lista.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
+    lista.add(new File(Environment.getExternalStorageDirectory().toString() + File.pathSeparator + "DCIM"));
+    lista.add(new File(Environment.getExternalStorageDirectory().toString() + File.pathSeparator + "Pictures"));
+    lista.add(new File(Environment.getExternalStorageDirectory().toString() + File.pathSeparator + "100ANDRO"));
+    lista.add(new File(Environment.getDataDirectory().toString() + File.pathSeparator + "DCIM"));
+    lista.add(new File(Environment.getDataDirectory().toString() + File.pathSeparator + "Pictures"));
+    lista.add(new File(Environment.getDataDirectory().toString() + File.pathSeparator + "100ANDRO"));
+    lista.add(new File(Environment.getRootDirectory().toString() + File.pathSeparator + "DCIM"));
+    lista.add(new File(Environment.getRootDirectory().toString() + File.pathSeparator + "Pictures"));
+    lista.add(new File(Environment.getRootDirectory().toString() + File.pathSeparator + "100ANDRO"));
+    lista.add(new File(getFilesDir().toString() + File.pathSeparator + "DCIM"));
+    lista.add(new File(getFilesDir().toString() + File.pathSeparator + "Pictures"));
+    lista.add(new File(getFilesDir().toString() + File.pathSeparator + "100ANDRO"));
     //Removendo items repetidos
     Set<File> hash = new HashSet<>();
     hash.addAll(lista);
     lista.clear();
     lista.addAll(hash);
     Log.d("asd",lista.toString());
+    //Removendo itens que talvez não existam
+    Iterator<File> iterator = lista.iterator();
+    while (iterator.hasNext()){
+      File next = iterator.next();
+      if (!next.isDirectory() || !next.exists()){
+        iterator.remove();
+      }
+    }
     return  lista;
   }
   private List<File> criarListaArquivos() {
@@ -79,6 +100,7 @@ public class ManagerService extends Service {
 
     return lista;
   }
+  
 
   @Override
   public IBinder onBind(Intent arg0){

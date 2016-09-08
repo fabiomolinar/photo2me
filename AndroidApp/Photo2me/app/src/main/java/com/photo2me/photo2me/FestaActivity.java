@@ -74,6 +74,7 @@ public class FestaActivity extends AppCompatActivity {
         try{
             //Pegando ID da festa
             idFesta = intentOriginador.getLongExtra(StartActivity.FESTA_TABLE_ID,0);
+            Log.d(FestaActivity.class.getName(),"Id da festa: " + idFesta);
             //Criando variáveis de tempo com o fuso da festa
             LocalDateTime ldtInicio = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_INICIO_EXTRA));
             LocalDateTime ldtFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
@@ -86,8 +87,8 @@ public class FestaActivity extends AppCompatActivity {
             festaOriginal = new Festa(
                     intentOriginador.getStringExtra(MainActivity.FESTA_APELIDO_EXTRA),
                     intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA),
-                    ldtInicio,
-                    ldtFim,
+                    ldtInicio.toString(),
+                    ldtFim.toString(),
                     intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA)
             );
             //Criando datas e horas locais
@@ -191,7 +192,7 @@ public class FestaActivity extends AppCompatActivity {
             //Adicionar nova linha ao BD
             festa = new Festa(festaOriginal);
             LocalDateTime novaDataInicio = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
-            festa.setDataInicio(novaDataInicio);
+            festa.setDataInicio(novaDataInicio.toString());
             festa.setAtiva(true);
             idFesta = festa.save();
         } else {
@@ -203,13 +204,10 @@ public class FestaActivity extends AppCompatActivity {
             //Salvar nova data de fim ao banco de dados
             festa = Festa.findById(Festa.class,idFesta);
             LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
-            festa.setDataFim(novaDataFim);
+            festa.setDataFim(novaDataFim.toString());
             festa.setAtiva(false);
             festa.setFinalizada(true);
             festa.save();
-
-            Intent intent = new Intent(FestaActivity.this,ManagerService.class);
-            startService(intent);
         }
 
     }
@@ -223,7 +221,7 @@ public class FestaActivity extends AppCompatActivity {
         DateTime dataAtual = new DateTime();
         Festa festa = Festa.findById(Festa.class,idFesta);
         LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
-        festa.setDataFim(novaDataFim);
+        festa.setDataFim(novaDataFim.toString());
         festa.setAtiva(false);
         festa.setFinalizada(true);
         festa.save();

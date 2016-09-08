@@ -59,9 +59,11 @@ public class StartActivity extends AppCompatActivity {
         String festaNome = intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA);
         String festaTimezone = intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA);
         try {
-            LocalDateTime festaInicio = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_INICIO_EXTRA));
+            DateTime dataAtual = new DateTime();
+            DateTimeZone timezoneObject = DateTimeZone.forID(festaTimezone);
+            LocalDateTime festaInicio = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
             LocalDateTime festaFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
-            festa = new Festa(festaApelido,festaNome,festaInicio,festaFim,festaTimezone);
+            festa = new Festa(festaApelido,festaNome,festaInicio.toString(),festaFim.toString(),festaTimezone);
             Log.d(StartActivity.class.getName(),festa.toString());
             String textoApresentacao = criarTextoApresentacao();
             textoDetalhes.setText(Html.fromHtml(textoApresentacao));
@@ -78,20 +80,20 @@ public class StartActivity extends AppCompatActivity {
         DateTimeZone timezone = DateTimeZone.forID(festa.getTimezone());
         DateTimeFormatter diaFormatter = DateTimeFormat.mediumDate();
         DateTimeFormatter horaFormatter = DateTimeFormat.shortTime();
-        DateTime dataInicio = new DateTime(festa.getDataInicio().getYear(),
-                festa.getDataInicio().getMonthOfYear(),
-                festa.getDataInicio().getDayOfMonth(),
-                festa.getDataInicio().getHourOfDay(),
-                festa.getDataInicio().getMinuteOfHour(),
+        DateTime dataInicio = new DateTime(festa.getDataInicioJoda(locale).getYear(),
+                festa.getDataInicioJoda(locale).getMonthOfYear(),
+                festa.getDataInicioJoda(locale).getDayOfMonth(),
+                festa.getDataInicioJoda(locale).getHourOfDay(),
+                festa.getDataInicioJoda(locale).getMinuteOfHour(),
                 timezone);
         //Transformando para valores com a timezone do usuário
         LocalDate diaInicio = new LocalDate(dataInicio.withZone(DateTimeZone.getDefault()).toInstant());
         LocalTime horaInicio = new LocalTime(dataInicio.withZone(DateTimeZone.getDefault()).toInstant());
-        DateTime dataFim = new DateTime(festa.getDataFim().getYear(),
-                festa.getDataFim().getMonthOfYear(),
-                festa.getDataFim().getDayOfMonth(),
-                festa.getDataFim().getHourOfDay(),
-                festa.getDataFim().getMinuteOfHour(),
+        DateTime dataFim = new DateTime(festa.getDataFimJoda(locale).getYear(),
+                festa.getDataFimJoda(locale).getMonthOfYear(),
+                festa.getDataFimJoda(locale).getDayOfMonth(),
+                festa.getDataFimJoda(locale).getHourOfDay(),
+                festa.getDataFimJoda(locale).getMinuteOfHour(),
                 timezone);
         //Transformando para valores com a timezone do usuário
         LocalDate diaFim = new LocalDate(dataFim.withZone(DateTimeZone.getDefault()).toInstant());
