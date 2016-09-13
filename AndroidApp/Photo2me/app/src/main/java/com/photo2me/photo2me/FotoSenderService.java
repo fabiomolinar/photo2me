@@ -7,8 +7,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
+
+import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -16,6 +20,7 @@ import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class FotoSenderService extends IntentService {
     private static final String TAG = "Photo2Me/" + FotoSenderService.class.getSimpleName();
@@ -45,17 +50,39 @@ public class FotoSenderService extends IntentService {
             File foto = new File(path);
             //Preparando post HTTP
             OkHttpClient client = new OkHttpClient();
+            String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(foto.getAbsolutePath());
             RequestBody formBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("apelido",apelido)
+                    .addFormDataPart("lastModified", String.valueOf(foto.lastModified()))
                     .addFormDataPart("idUsuarioFesta",idFestaUsuario)
-                    .addFormDataPart("imagem",foto.getName(),RequestBody.create(MediaType.parse("image"),foto))
+                    .addFormDataPart("imagem",foto.getName(),RequestBody.create(MediaType.parse(mimeType),foto))
                     .build();
             String url = getResources().getString(R.string.URL_BASE) + getResources().getString(R.string.API_ENVIAR_FOTO);
             Request request = new Request.Builder()
                     .url(url)
                     .post(formBody)
                     .build();
+            //Fazendo chamada
+            try {
+                Response response = client.newCall(request).execute();
+                if (response.isSuccessful()){
+                    final String responseString = response.body().string();
+                    JSONObject json = new JSONObject(responseString);
+                    final int codigo = response.code();
+                    if (codigo == 200){
+                        Log.d(TAG,"response success. Mensagem: " + json.getString("mensagem"));
+                    } else {
+                        Log.d(TAG,"response is not 200. code: " + codigo + ". message: " + json.getString("mensagem"));
+                    }
+                } else {
+                    Log.d(TAG,"response not succesfull; code: " + response.code() + ". message: " + response.message());
+                }
+            } catch (Exception e){
+                Log.d(TAG,e.getMessage());
+                e.printStackTrace();
+            }
+
         } else {
             Log.d(TAG,"Não tem WiFi");
         }
