@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String FESTA_DATA_FIM_EXTRA = "com.photo2me.photo2me.Data de fim";
     public static final String FESTA_APELIDO_EXTRA = "com.photo2me.photo2me.apelido";
     public static final String FESTA_TIMEZONE_EXTRA = "com.photo2me.photo2me.timezone";
+    public static final String FESTA_ID_USUARIO_FESTA = "com.photo2me.photo2me.id_festa_usuario";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                                         intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,json.getString("dataFim"));
                                         intent.putExtra(MainActivity.FESTA_APELIDO_EXTRA,json.getString("apelido"));
                                         intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,json.getString("timezone"));
+                                        intent.putExtra(MainActivity.FESTA_ID_USUARIO_FESTA,json.getString("idUsuarioFesta"));
                                         startActivity(intent);
                                     }
                                 } catch (Exception e) {

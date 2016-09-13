@@ -91,6 +91,7 @@ public class FestaActivity extends AppCompatActivity {
                     ldtFim.toString(),
                     intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA)
             );
+            festaOriginal.setIdFestaUsuario(intentOriginador.getStringExtra(MainActivity.FESTA_ID_USUARIO_FESTA));
             //Criando datas e horas locais
             LocalDate inicioData = new LocalDate(inicio.withZone(DateTimeZone.getDefault()).toInstant());
             LocalDate fimData = new LocalDate(fim.withZone(DateTimeZone.getDefault()).toInstant());
@@ -206,7 +207,6 @@ public class FestaActivity extends AppCompatActivity {
             LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
             festa.setDataFim(novaDataFim.toString());
             festa.setAtiva(false);
-            festa.setFinalizada(true);
             festa.save();
         }
 
@@ -223,7 +223,6 @@ public class FestaActivity extends AppCompatActivity {
         LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
         festa.setDataFim(novaDataFim.toString());
         festa.setAtiva(false);
-        festa.setFinalizada(true);
         festa.save();
         //Intent para atividade principal
         Intent intent = new Intent(FestaActivity.this,MainActivity.class);

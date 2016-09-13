@@ -60,4 +60,5 @@
 
     <string name="URL_BASE">http://photo.optykopoczno.pl/</string>
     <string name="API_DADOS_FESTA">dadosFesta</string>
+    <string name="API_ENVIAR_FOTO">receberFoto</string>
 </resources>

@@ -18,6 +18,7 @@ public class Festa extends SugarRecord{
     private String dataInicio;
     private String dataFim;
     private String timezone;
+    private String idFestaUsuario;
     private Boolean ativa;
     private Boolean finalizada;
 
@@ -40,6 +41,7 @@ public class Festa extends SugarRecord{
         this.dataInicio = festa.getDataInicio();
         this.dataFim = festa.getDataFim();
         this.timezone = festa.getTimezone();
+        this.idFestaUsuario = festa.getIdFestaUsuario();
         this.ativa = false;
         this.finalizada = false;
     }
@@ -60,10 +62,12 @@ public class Festa extends SugarRecord{
     }
     public Boolean getAtiva(){return ativa;}
     public String getTimezone(){return timezone;}
+    public String getIdFestaUsuario(){return  idFestaUsuario;}
     public void setAtiva(Boolean ativa){this.ativa = ativa;}
     public void setFinalizada(Boolean finalizada){this.finalizada = finalizada;}
     public void setDataInicio(String data){this.dataInicio = data;}
     public void setDataFim(String data){this.dataFim = data;}
+    public void setIdFestaUsuario(String id){this.idFestaUsuario = id;}
 
     public String toString(){
         return "classe Festa - " +

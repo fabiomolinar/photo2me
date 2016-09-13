@@ -18,7 +18,7 @@
         android:id="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="9dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,14 +29,14 @@
         android:textColor="@color/laranjaOficial"
         android:textStyle="bold"
         android:id="@+id/txtNomeFesta"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="A festa irá começar às 12:00 do dia 13/10/2016 e irá até as 12:00 do dia 14/10/2016. \n\n Apenas dentro deste período, todas as fotos que você tirar serão enviadas para o dono do evento. \n\n Então, vamos lá? Pronto para tirar fotos inesquecíveis?"
         android:id="@+id/txtDetalhes"
         android:textColor="@color/laranjaSemiEscuro"
@@ -51,7 +51,8 @@
         android:text="@string/comecar"
         android:id="@+id/button"
         style="@style/BotaoLaranja"
-        android:layout_alignParentBottom="true"
+        android:onClick="comecarClick"
+        android:layout_below="@+id/txtDetalhes"
         android:layout_centerHorizontal="true"
-        android:onClick="comecarClick"/>
+        android:layout_marginTop="30dp" />
 </RelativeLayout>

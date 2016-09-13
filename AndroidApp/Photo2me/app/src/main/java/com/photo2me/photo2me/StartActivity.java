@@ -58,12 +58,14 @@ public class StartActivity extends AppCompatActivity {
         String festaApelido = intentOriginador.getStringExtra(MainActivity.FESTA_APELIDO_EXTRA);
         String festaNome = intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA);
         String festaTimezone = intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA);
+        String festaIdFestaUsuario = intentOriginador.getStringExtra(MainActivity.FESTA_ID_USUARIO_FESTA);
         try {
             DateTime dataAtual = new DateTime();
             DateTimeZone timezoneObject = DateTimeZone.forID(festaTimezone);
             LocalDateTime festaInicio = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
             LocalDateTime festaFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
             festa = new Festa(festaApelido,festaNome,festaInicio.toString(),festaFim.toString(),festaTimezone);
+            festa.setIdFestaUsuario(festaIdFestaUsuario);
             Log.d(StartActivity.class.getName(),festa.toString());
             String textoApresentacao = criarTextoApresentacao();
             textoDetalhes.setText(Html.fromHtml(textoApresentacao));
@@ -135,7 +137,11 @@ public class StartActivity extends AppCompatActivity {
             intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,festa.getDataFim().toString());
             intent.putExtra(MainActivity.FESTA_APELIDO_EXTRA,festa.getApelido());
             intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,festa.getTimezone());
+            //O id abaixo é id na tabela do SQLite
             intent.putExtra(StartActivity.FESTA_TABLE_ID,idFesta);
+            intent.putExtra(MainActivity.FESTA_ID_USUARIO_FESTA,festa.getIdFestaUsuario());
+            Intent intentServico = new Intent(StartActivity.this,ManagerService.class);
+            startService(intentServico);
             startActivity(intent);
             this.finish();
         } catch (Exception e){
