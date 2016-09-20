@@ -42,7 +42,8 @@ class FotoController extends Controller
             if ($fotos->count() > 0){
               //Foto já existe; retornar uma exceção
               return response()->json([
-                'mensagem' => Lang::get('messages.foto-ja-existe',[],$lingua)
+                'mensagem' => Lang::get('messages.foto-ja-existe',[],$lingua),
+                'appMsg' => 'repetida'
               ], 400);
             } else {
               //Foto não existe; adicionar
