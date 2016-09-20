@@ -8,5 +8,8 @@
   <input type="text" name="apelido" value="">
   idUsuarioFesta
   <input type="text" name="idUsuarioFesta" value="">
+  <br>
+  lastModified
+  <input type="text" name="lastModified" value="">
   <input type="submit" value="Upload Image" name="submit">
 </form>

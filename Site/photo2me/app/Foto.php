@@ -15,6 +15,8 @@ class Foto extends Model
     'user_id',
     'festa_id',
     'ordem_id',
+    'nome_original',
+    'last_modified_origianl',
     'nome_fotografo',
     'nome_arquivo_original',
     'nome_arquivo_novo',

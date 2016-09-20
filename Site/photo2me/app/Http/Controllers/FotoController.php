@@ -25,7 +25,7 @@ class FotoController extends Controller
       }
 
       //Verificar se o request está em ordem
-      if ($request->hasFile('imagem') && $request->has('apelido')){
+      if ($request->hasFile('imagem') && $request->has('apelido') && $request->has('lastModified')){
         //Verificar se a festa existe
         $festa = Festa::where('apelido',$request->input('apelido'))->first();
         if ($festa) {
@@ -34,21 +34,35 @@ class FotoController extends Controller
           $extensao = $imagem->getClientOriginalExtension();
           //Verificar se o arquivo é de fato uma imagem
           if (strpos(image_type_to_mime_type(exif_imagetype($imagem)),'image') !== false) {
-            //Salvar foto no storage
-            $nomeImagem = $idUsuarioFesta . '_' . date("Y-m-d H-i") . '.' . $extensao;
-            $caminho = $festa->id . '/' . $nomeImagem;
-            Storage::disk('fotos')->put($caminho, File::get($imagem));
-            //Adicionando registro da foto ao BD
-            $foto = new Foto;
-            $foto->user_id = $festa->user_id;
-            $foto->festa_id = $festa->id;
-            $foto->nome_fotografo = $idUsuarioFesta;
-            $foto->nome_arquivo_original = $imagem->getClientOriginalName();
-            $foto->nome_arquivo_novo = $nomeImagem;
-            $foto->save();
-            return response()->json([
-              'mensagem' => Lang::get('messages.sucesso',[],$lingua)
+            //Verificar se a foto já existe primeiro
+            $fotos = Foto::where([
+              ['last_modified_original','=',$request->input('lastModified')],
+              ['nome_arquivo_original','=',$imagem->getClientOriginalName()]
             ]);
+            if ($fotos->count() > 0){
+              //Foto já existe; retornar uma exceção
+              return response()->json([
+                'mensagem' => Lang::get('messages.foto-ja-existe',[],$lingua)
+              ], 400);
+            } else {
+              //Foto não existe; adicionar
+              //Salvar foto no storage
+              $nomeImagem = $idUsuarioFesta . '_' . date("Y-m-d H-i") . '.' . $extensao;
+              $caminho = $festa->id . '/' . $nomeImagem;
+              Storage::disk('fotos')->put($caminho, File::get($imagem));
+              //Adicionando registro da foto ao BD
+              $foto = new Foto;
+              $foto->user_id = $festa->user_id;
+              $foto->festa_id = $festa->id;
+              $foto->last_modified_original = $request->input('lastModified');
+              $foto->nome_fotografo = $idUsuarioFesta;
+              $foto->nome_arquivo_original = $imagem->getClientOriginalName();
+              $foto->nome_arquivo_novo = $nomeImagem;
+              $foto->save();
+              return response()->json([
+                'mensagem' => Lang::get('messages.sucesso',[],$lingua)
+              ]);
+            }
           }
         } else {
           return response()->json([
