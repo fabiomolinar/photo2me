@@ -27,6 +27,7 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.util.Locale;
 
 public class FestaActivity extends AppCompatActivity {
+    private static final String TAG = "photo2me/" + FestaActivity.class.getName();
     TextView nomeFesta;
     TextView dataInicio;
     TextView dataFim;
@@ -133,6 +134,24 @@ public class FestaActivity extends AppCompatActivity {
             }
         };
         t.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG,"Atividade sendo destruida");
+        SharedPreferences minhasPreferencias = getSharedPreferences(Preferencias.MINHAS_PREFERENCIAS,0);
+        SharedPreferences.Editor editor = minhasPreferencias.edit();
+        editor.putBoolean(Preferencias.PREF_FESTA_PAUSADA,true);
+        editor.putBoolean(Preferencias.PREF_FESTA_ATIVA,false);
+        editor.apply();
+        //Atualizando banco de dados
+        DateTime dataAtual = new DateTime();
+        Festa festa = Festa.findById(Festa.class,idFesta);
+        LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
+        festa.setDataFim(novaDataFim.toString());
+        festa.setAtiva(false);
+        festa.save();
     }
 
     private void toastMessage(String message){

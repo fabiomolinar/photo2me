@@ -43,14 +43,18 @@ public class FotoSenderService extends IntentService {
         //Verificar se tem wifi
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (infoWifi.isConnected()){
+        if (!infoWifi.isConnected()){
             String path = intent.getStringExtra(ManagerService.FOTO_PATH);
             String idFestaUsuario = intent.getStringExtra(ManagerService.FOTO_ID_USUARIO_FESTA);
             String apelido = intent.getStringExtra(ManagerService.FOTO_FESTA_ID);
             File foto = new File(path);
             //Preparando post HTTP
             OkHttpClient client = new OkHttpClient();
-            String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(foto.getAbsolutePath());
+            String extensao = MimeTypeMap.getFileExtensionFromUrl(foto.getAbsolutePath());
+            //Passando para o lowercase se não a função abaixo não detecta o mimetype.
+            extensao = extensao.toLowerCase();
+            String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extensao);
+            Log.d(TAG,"extensao: " + extensao + "; mimeType: " + mimeType);
             RequestBody formBody = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("apelido",apelido)
@@ -66,17 +70,17 @@ public class FotoSenderService extends IntentService {
             //Fazendo chamada
             try {
                 Response response = client.newCall(request).execute();
+                final String responseString = response.body().string();
+                JSONObject json = new JSONObject(responseString);
+                final int codigo = response.code();
                 if (response.isSuccessful()){
-                    final String responseString = response.body().string();
-                    JSONObject json = new JSONObject(responseString);
-                    final int codigo = response.code();
                     if (codigo == 200){
                         Log.d(TAG,"response success. Mensagem: " + json.getString("mensagem"));
                     } else {
                         Log.d(TAG,"response is not 200. code: " + codigo + ". message: " + json.getString("mensagem"));
                     }
                 } else {
-                    Log.d(TAG,"response not succesfull; code: " + response.code() + ". message: " + response.message());
+                    Log.d(TAG,"response not succesfull; code: " + response.code() + ". message: " + json.getString("mensagem"));
                 }
             } catch (Exception e){
                 Log.d(TAG,e.getMessage());

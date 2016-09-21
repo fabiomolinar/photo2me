@@ -24,9 +24,9 @@ public class Comparador {
         LocalDateTime lInicio = dtf.parseLocalDateTime(inicio);
         LocalDateTime lFim = dtf.parseLocalDateTime(fim);
         this.inicio = new DateTime(lInicio.getYear(),lInicio.getMonthOfYear(),lInicio.getDayOfMonth(),
-                lInicio.getHourOfDay(),lInicio.getMinuteOfHour(),timezoneObject);
+                lInicio.getHourOfDay(),lInicio.getMinuteOfHour(),lInicio.getSecondOfMinute(),lInicio.getMillisOfSecond(),timezoneObject);
         this.fim = new DateTime(lFim.getYear(),lFim.getMonthOfYear(),lFim.getDayOfMonth(),
-                lFim.getHourOfDay(),lFim.getMinuteOfHour(),timezoneObject);
+                lFim.getHourOfDay(),lFim.getMinuteOfHour(),lFim.getSecondOfMinute(),lFim.getMillisOfSecond(),timezoneObject);
         this.apelido = apelido;
         this.idFestaUsuario = idFestaUsuario;
     }
@@ -38,5 +38,10 @@ public class Comparador {
             }
         }
         return false;
+    }
+    public String toString(){
+        return "classe comparador - " +
+                "inicio: " + this.inicio.toString() + ";" +
+                "fim: " + this.fim.toString() + ";";
     }
 }

@@ -10,6 +10,9 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.util.Log;
 
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDateTime;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,7 +60,7 @@ public class ManagerService extends Service {
               ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
               NetworkInfo infoWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
               Log.d(ManagerService.class.getName(),"wifi está conectado: "+ infoWifi.isConnected());
-              if (infoWifi.isConnected()){
+              if (!infoWifi.isConnected()){
                 //Fazer lista de onde pode ter fotos
                 //Chamar a função com o parametro "removerSubPastas" se estiver usando método recursivo
                 List<File> listaCaminhos = criarListaCaminhos(false);
@@ -72,7 +75,7 @@ public class ManagerService extends Service {
                   }
                 });
                 //Criar lista com os períodos de captura de foto
-                List<Festa> listaFestas = Festa.find(Festa.class,"name = * and finalizada = 0");
+                List<Festa> listaFestas = Festa.find(Festa.class,"finalizada = 0");
                 List<Comparador> listaComparador = new ArrayList<Comparador>();
                 for (Festa _festa : listaFestas){
                   listaComparador.add(new Comparador(_festa.getDataInicio(),_festa.getDataFim(),_festa.getTimezone(),
@@ -83,6 +86,8 @@ public class ManagerService extends Service {
                   for (Comparador _comparador : listaComparador){
                     if (_comparador.entreInicioEFim(_file.lastModified())){
                       //Enviar para o FotoSenderIntent
+                      LocalDateTime data = new LocalDateTime(_file.lastModified(), DateTimeZone.forID("America/Sao_Paulo"));
+                      Log.d(TAG,"Foto sendo enviada ao ServiceIntent: " + _file.getName() + "; lastModified: " + data.toString());
                       Intent serviceIntent = new Intent(ManagerService.this,FotoSenderService.class);
                       serviceIntent.putExtra(ManagerService.FOTO_FESTA_ID,_comparador.apelido);
                       serviceIntent.putExtra(ManagerService.FOTO_ID_USUARIO_FESTA,_comparador.idFestaUsuario);
@@ -92,9 +97,13 @@ public class ManagerService extends Service {
                   }
                 }
               }
-              Thread.sleep(60000);
             } catch (Exception e){
               Log.d(ManagerService.class.getName(),e.getMessage());
+              e.printStackTrace();
+            }
+            try {
+              Thread.sleep(10000);
+            } catch (InterruptedException e){
               e.printStackTrace();
             }
           }
@@ -117,13 +126,11 @@ public class ManagerService extends Service {
     lista.add(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "100ANDRO"));
     lista.add(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Camera"));
     lista.add(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString() + File.separator + "Pictures"));
-    Log.d(TAG,"lista completa: " + lista.toString());
     //Removendo items repetidos
     Set<File> hash = new HashSet<>();
     hash.addAll(lista);
     lista.clear();
     lista.addAll(hash);
-    Log.d(TAG,"removendo repetidos: " + lista.toString());
     //Removendo itens que talvez não existam
     Iterator<File> iterator = lista.iterator();
     while (iterator.hasNext()){
@@ -132,7 +139,6 @@ public class ManagerService extends Service {
         iterator.remove();
       }
     }
-    Log.d(TAG,"removendo se não existe: " + lista.toString());
     if (removerSubPastas){
       //Removendo itens que sejam sub-pastas de alguma pasta
       iterator = lista.iterator();
@@ -150,7 +156,6 @@ public class ManagerService extends Service {
           }
         }
       }
-      Log.d(TAG,"removendo subpastas: " + lista.toString());
     }
     return  lista;
   }
@@ -158,26 +163,21 @@ public class ManagerService extends Service {
     //Essa função não faz a busca por fotos de forma profunda
     //Apenas verifica nas pastas listadas se existem fotos
     listaFotos.clear();
-    Log.d(TAG,"tamanho: " + listaPastas.size());
     for (int i = 0; i < listaPastas.size(); i++){
-      Log.d(TAG,"pasta para listar: " + listaPastas.get(i).toString());
       if (listaPastas.get(i).listFiles() != null){
         for (File arquivo : listaPastas.get(i).listFiles()){
           if (arquivo.isFile()){
-            Log.d(TAG,"nome do arquivo: " + arquivo.toString());
             //Verificar se a extensão é a extensão de fotos
             if (arquivo.toString().endsWith(".jpg") ||
                     arquivo.toString().endsWith(".jpeg") ||
                     arquivo.toString().endsWith(".JPEG") ||
                     arquivo.toString().endsWith(".JPG")){
-              Log.d(TAG,"adicionando foto a lista");
               listaFotos.add(arquivo);
             }
           }
         }
       }
     }
-    Log.d(TAG,"lista de fotos: " + listaFotos.toString());
   }
   private void criarListaArquivosRecursivo(List<File> listaPastas) {
     //Essa função usa uma outra função que faz a busca por fotos de forma recursiva e em profundidade nas pastas
@@ -186,13 +186,11 @@ public class ManagerService extends Service {
     for (int i = 0; i < listaPastas.size(); i++){
       listarEmDiretorio(listaPastas.get(i));
     }
-    Log.d(TAG,listaFotos.toString());
   }
   private void listarEmDiretorio(File diretorio){
+    //
     File[] lista = diretorio.listFiles();
-    Log.d(TAG,lista.toString());
     if (lista != null){
-      Log.d(TAG,"lista dentro da pasta: " + lista.toString());
       for (File arquivo : lista){
         if (arquivo.isFile()){
           //Ver se a extensão é uma extensão de imagem
