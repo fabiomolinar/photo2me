@@ -1,10 +1,12 @@
 package com.photo2me.photo2me;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -245,7 +247,24 @@ public class FestaActivity extends AppCompatActivity {
         festa.save();
         //Intent para atividade principal
         Intent intent = new Intent(FestaActivity.this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         this.finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(getResources().getString(R.string.sair_da_festa))
+                .setMessage(getResources().getString(R.string.certeza_sair_festa))
+                .setPositiveButton(getResources().getString(R.string.sim), new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .setNegativeButton(getResources().getString(R.string.nao),null)
+                .show();
     }
 }

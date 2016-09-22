@@ -56,6 +56,10 @@
     <string name="festa_pausada">Festa pausada</string>
     <string name="festa_ativa">Festa ativa</string>
     <string name="reiniciar">Reiniciar</string>
+    <string name="sair_da_festa">Sair da festa</string>
+    <string name="certeza_sair_festa">Certeza que deseja sair? A coleta de fotos será terminada.</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
 
 
     <string name="URL_BASE">http://photo.optykopoczno.pl/</string>

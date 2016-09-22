@@ -70,17 +70,17 @@ public class FotoSenderService extends IntentService {
             //Fazendo chamada
             try {
                 Response response = client.newCall(request).execute();
-                final String responseString = response.body().string();
-                JSONObject json = new JSONObject(responseString);
-                final int codigo = response.code();
                 if (response.isSuccessful()){
+                    final String responseString = response.body().string();
+                    JSONObject json = new JSONObject(responseString);
+                    final int codigo = response.code();
                     if (codigo == 200){
                         Log.d(TAG,"response success. Mensagem: " + json.getString("mensagem"));
                     } else {
                         Log.d(TAG,"response is not 200. code: " + codigo + ". message: " + json.getString("mensagem"));
                     }
                 } else {
-                    Log.d(TAG,"response not succesfull; code: " + response.code() + ". message: " + json.getString("mensagem"));
+                    Log.d(TAG,"response not succesfull; code: " + response.code() + ". message: " + response.message());
                 }
             } catch (Exception e){
                 Log.d(TAG,e.getMessage());
