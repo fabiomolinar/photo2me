@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                                         intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,json.getString("timezone"));
                                         intent.putExtra(MainActivity.FESTA_ID_USUARIO_FESTA,json.getString("idUsuarioFesta"));
                                         startActivity(intent);
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     }
                                 } catch (Exception e) {
                                     progressBar.setVisibility(View.INVISIBLE);
