@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name" translatable="false">Photo2me</string>
     <string name="action_settings">Configuration</string>
     <string name="logo">Logo</string>
-    <string name="bem_vindo">Welcome!</string>
+    <string name="bem_vindo">Witam!</string>
     <string name="eu_aceito">I accept</string>
     <string name="necessario_aceitar_termos">To use the application, first it\'s necessary to accept the terms described below.</string>
 
@@ -43,18 +42,12 @@
     <string name="reiniciar">Restart</string>
     <string name="sair_da_festa">Leave event</string>
     <string name="certeza_sair_festa">Are you sure you want to leave? Photo capturing will be terminated.</string>
-    <string name="sim">Yes</string>
-    <string name="nao">No</string>
-    <string name="sobre">About us</string>
+    <string name="sim">Tak</string>
+    <string name="nao">Nie</string>
+    <string name="sobre">U nas</string>
     <string name="sobre_txt1">Would you like to use our application too? We are always available through the email below:</string>
     <string name="sobre_txt2">Thank you for using our application and service!</string>
     <string name="sobre_txt3">For now we are under pre-beta version of our app and service. That means that for a while we are passing the app through a series of tests. We hope you experience with us was more than pleasant! If you want to be part of it or to hear the latest news, send us a message to the aforementioned email!</string>
     <string name="sobre_txt4">We put ourselves at your disposal in case of doubts or comments. Feel free to get in contact with us any time you want.</string>
     <string name="sobre_txt5">Cheers, the photo2me team! :)</string>
-
-
-    <string name="email_contato" translatable="false">photo2me.kontakt@gmail.com</string>
-    <string name="URL_BASE" translatable="false">http://photo.optykopoczno.pl/</string>
-    <string name="API_DADOS_FESTA" translatable="false">dadosFesta</string>
-    <string name="API_ENVIAR_FOTO" translatable="false">receberFoto</string>
 </resources>

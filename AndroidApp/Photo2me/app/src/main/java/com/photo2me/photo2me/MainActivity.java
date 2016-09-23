@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             OkHttpClient client = new OkHttpClient();
             RequestBody formBody = new FormBody.Builder()
                     .add("apelido",apelido)
+                    .add("lingua",getResources().getConfiguration().locale.getDisplayLanguage())
                     .build();
             String url = getResources().getString(R.string.URL_BASE) + getResources().getString(R.string.API_DADOS_FESTA);
             Request request = new Request.Builder()

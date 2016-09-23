@@ -1,0 +1,53 @@
+<resources>
+    <string name="action_settings">Configurações</string>
+    <string name="logo">Logo</string>
+    <string name="bem_vindo">Bem Vindo!</string>
+    <string name="eu_aceito">Eu aceito</string>
+    <string name="necessario_aceitar_termos">Para utilizar o app, primeiro é necessário aceitar os termos descritos abaixo.</string>
+
+    <string name="main_chamada">Bem vindo a mais um evento!\n\nNos diga abaixo qual o identificador da festa para que você possa começar a capturar momentos!</string>
+    <string name="identificador">identificador</string>
+    <string name="buscar">buscar</string>
+
+    <string name="precisa_estar_conectado">Você precisa estar conectado à internet</string>
+    <string name="problema_com_conexao">Ops, temos um problema com a conexão</string>
+    <string name="comecar">Começar</string>
+    <string name="bem_vindo_a">Bem vindo a:</string>
+    <string name="algo_deu_errado">Algo deu errado. Tente voltar e refazer a operação.</string>
+
+    <string name="texto_apresentacao_1">O evento irá começar dia</string>
+    <string name="texto_apresentacao_2">às</string>
+    <string name="texto_apresentacao_3">e irá terminar dia</string>
+    <string name="texto_apresentacao_4">Apenas dentro deste período, todas as fotos que você tirar serão enviadas para o dono do evento.</string>
+    <string name="texto_apresentacao_5">Você poderá pausar ou parar de enviar as fotos a hora que quiser.</string>
+    <string name="texto_apresentacao_6">Então, vamos lá? Pronto para tirar fotos inesquecíveis?</string>
+    <string name="festa">Festa</string>
+    <string name="pausar">pausar</string>
+    <string name="parar">parar</string>
+    <string name="inicio">Início</string>
+    <string name="fim">Fim</string>
+    <string name="data">Data</string>
+    <string name="hora">Hora</string>
+    <string name="tempo_restante">Tempo restante</string>
+    <string name="status">Status</string>
+    <string name="coletando">Coletando</string>
+    <string name="esperando_festa_comecar">Esperando festa começar</string>
+    <string name="pausado">Em pausa</string>
+    <string name="ops_erro_tente_novamente_mais_tarde">Ops, um erro aconteceu. Tente novamente mais tarde.</string>
+    <string name="erro_ao_atualizar_status_festa">Não conseguimos atualizar o status da festa...</string>
+    <string name="desativado">Desativado</string>
+    <string name="festa_ja_acabou">Festa já acabou</string>
+    <string name="festa_pausada">Festa pausada</string>
+    <string name="festa_ativa">Festa ativa</string>
+    <string name="reiniciar">Reiniciar</string>
+    <string name="sair_da_festa">Sair da festa</string>
+    <string name="certeza_sair_festa">Certeza que deseja sair? A coleta de fotos será terminada.</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="sobre">Sobre nós</string>
+    <string name="sobre_txt1">Gostaria de utilizar nossos serviços também? Estamos sempre a disposição através do email abaixo:</string>
+    <string name="sobre_txt2">Muito obrigado por utilizar o nosso aplicativo e o nosso serviço!</string>
+    <string name="sobre_txt3">Por enquanto estamos em fase pré-beta do nosso aplicativo e do nosso serviço. Isso significa que por enquanto estamos passando o aplicativo por uma série de testes. Esperamos que sua experiência conosco seja mais do que agradável. Se quiser fazer parte ou ficar por dentro das novidades, envie uma mensagem para nós através do email acima!</string>
+    <string name="sobre_txt4">Nos colocamos à sua disposição em caso de dúvidas ou comentários. Fique a vontade para entrar em contato com a gente pelo email apresentado acima.</string>
+    <string name="sobre_txt5">Sinceramente, equipe photo2me! :)</string>
+</resources>
