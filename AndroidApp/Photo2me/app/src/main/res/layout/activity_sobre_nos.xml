@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.photo2me.photo2me.SobreNosActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sobre_txt1"
+        android:id="@+id/txtSobre1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        style="@style/TextViewSobreNos"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/email_contato"
+        android:id="@+id/txtEmail"
+        android:layout_below="@+id/txtSobre1"
+        android:layout_centerHorizontal="true"
+        style="@style/TextViewSobreNos"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/sobre_txt2"
+        android:id="@+id/txtSobre2"
+        android:layout_below="@+id/txtEmail"
+        android:layout_centerHorizontal="true"
+        style="@style/TextViewSobreNos"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/sobre_txt3"
+        android:id="@+id/txtSobre3"
+        android:layout_below="@+id/txtSobre2"
+        android:layout_centerHorizontal="true"
+        style="@style/TextViewSobreNos"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/sobre_txt4"
+        android:id="@+id/txtSobre4"
+        android:layout_below="@+id/txtSobre3"
+        android:layout_centerHorizontal="true"
+        style="@style/TextViewSobreNos"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/sobre_txt5"
+        android:id="@+id/txtSobre5"
+        android:layout_below="@+id/txtSobre4"
+        android:layout_centerHorizontal="true"
+        style="@style/TextViewSobreNos"/>
+</RelativeLayout>

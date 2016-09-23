@@ -39,4 +39,9 @@
         <item name="android:paddingRight">13dp</item>
     </style>
 
+    <style name="TextViewSobreNos">
+        <item name="android:textColor">@color/laranjaEscuro</item>
+        <item name="android:layout_marginBottom">9dp</item>
+    </style>
+
 </resources>

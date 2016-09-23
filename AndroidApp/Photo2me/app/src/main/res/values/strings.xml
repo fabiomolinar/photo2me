@@ -60,8 +60,15 @@
     <string name="certeza_sair_festa">Certeza que deseja sair? A coleta de fotos será terminada.</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="sobre">Sobre nós</string>
+    <string name="sobre_txt1">Gostaria de utilizar nossos serviços também? Estamos sempre a disposição através do email abaixo:</string>
+    <string name="sobre_txt2">Muito obrigado por utilizar o nosso aplicativo e o nosso serviço!</string>
+    <string name="sobre_txt3">Por enquanto estamos em fase pré-beta do nosso aplicativo e do nosso serviço. Isso significa que por enquanto estamos passando o aplicativo por uma série de testes. Esperamos que sua experiência conosco seja mais do que agradável. Se quiser fazer parte ou ficar por dentro das novidades, envie uma mensagem para nós através do email acima!</string>
+    <string name="sobre_txt4">Nos colocamos à sua disposição em caso de dúvidas ou comentários. Fique a vontade para entrar em contato com a gente pelo email apresentado acima.</string>
+    <string name="sobre_txt5">Sinceramente, equipe photo2me! :)</string>
 
 
+    <string name="email_contato">photo2me.kontakt@gmail.com</string>
     <string name="URL_BASE">http://photo.optykopoczno.pl/</string>
     <string name="API_DADOS_FESTA">dadosFesta</string>
     <string name="API_ENVIAR_FOTO">receberFoto</string>

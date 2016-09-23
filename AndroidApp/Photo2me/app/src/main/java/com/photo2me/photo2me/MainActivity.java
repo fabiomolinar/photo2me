@@ -30,6 +30,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "photo2me/" + MainActivity.class.getName();
     private EditText identificador;
     private ProgressBar progressBar;
     public static final String FESTA_NOME_EXTRA = "com.photo2me.photo2me.Nome da festa";
@@ -79,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.sobre) {
+            Intent intent = new Intent(MainActivity.this,SobreNosActivity.class);
+            startActivity(intent);
             return true;
         }
 
