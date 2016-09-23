@@ -47,14 +47,12 @@ public class ManagerService extends Service {
   public int onStartCommand(Intent intent, int flags, int startId){
     if (!estaRodando){
       estaRodando = true;
-      Log.d(ManagerService.class.getName(),"Serviço iniciado");
       //Iniciando novo thread pois não queremos que esse serviço seja executado no thread da aplicação
       new Thread(new Runnable(){
         @Override
         public void run(){
           while(true){
             try{
-              Log.d(ManagerService.class.getName(),"Serviço rodando e funcionando");
               //Fazer trabalho aqui
               //Verificar se tem wifi
               ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
