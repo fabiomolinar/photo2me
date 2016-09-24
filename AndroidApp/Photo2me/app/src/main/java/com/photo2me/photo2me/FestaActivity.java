@@ -116,10 +116,11 @@ public class FestaActivity extends AppCompatActivity {
 
             //Criando notification manager
             mNota = new NotificationCompat.Builder(this);
-            mNota.setSmallIcon(R.drawable.logo);
-            mNota.setContentText(intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA));
+            mNota.setSmallIcon(R.drawable.logo_contorno);
+            mNota.setContentTitle(intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA));
             mNota.setContentText(getResources().getString(R.string.coletando));
             mNota.setOngoing(true);
+            mNota.setColor(getResources().getColor(R.color.laranjaOficial));
             Intent notaIntent = new Intent(this, FestaActivity.class);
             //Flags abaixo garantem que irei chamar a atividade que já está aberta
             notaIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -177,6 +178,8 @@ public class FestaActivity extends AppCompatActivity {
         festa.setDataFim(novaDataFim.toString());
         festa.setAtiva(false);
         festa.save();
+        //Removendo a notificação
+        notificationManager.cancel(getResources().getInteger(R.integer.notification_festa_status));
     }
 
     private void toastMessage(String message){
@@ -240,6 +243,9 @@ public class FestaActivity extends AppCompatActivity {
             festa.setDataInicio(novaDataInicio.toString());
             festa.setAtiva(true);
             idFesta = festa.save();
+            //Atualizando notificação
+            mNota.setContentText(getResources().getString(R.string.coletando));
+            notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
         } else {
             //Pusar a atividade
             //Setando preferências
@@ -252,6 +258,9 @@ public class FestaActivity extends AppCompatActivity {
             festa.setDataFim(novaDataFim.toString());
             festa.setAtiva(false);
             festa.save();
+            //Atualizando notificação
+            mNota.setContentText(getResources().getString(R.string.pausado));
+            notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
         }
 
     }
