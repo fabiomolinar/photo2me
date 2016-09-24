@@ -57,4 +57,6 @@
     <string name="URL_BASE" translatable="false">http://photo.optykopoczno.pl/</string>
     <string name="API_DADOS_FESTA" translatable="false">dadosFesta</string>
     <string name="API_ENVIAR_FOTO" translatable="false">receberFoto</string>
+
+    <integer name="notification_festa_status">1</integer>
 </resources>

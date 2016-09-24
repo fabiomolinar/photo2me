@@ -1,5 +1,7 @@
 package com.photo2me.photo2me;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +48,8 @@ public class FestaActivity extends AppCompatActivity {
     long idFesta;
     Festa festaOriginal;
     DateTimeZone timezoneObject;
+    NotificationCompat.Builder mNota;
+    NotificationManager notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +113,24 @@ public class FestaActivity extends AppCompatActivity {
             dataFim.setText(diaFormatter.print(fimData));
             horaInicio.setText(horaFormatter.print(inicioHora));
             horaFim.setText(horaFormatter.print(fimHora));
+
+            //Criando notification manager
+            mNota = new NotificationCompat.Builder(this);
+            mNota.setSmallIcon(R.drawable.logo);
+            mNota.setContentText(intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA));
+            mNota.setContentText(getResources().getString(R.string.coletando));
+            mNota.setOngoing(true);
+            Intent notaIntent = new Intent(this, FestaActivity.class);
+            //Flags abaixo garantem que irei chamar a atividade que já está aberta
+            notaIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    this,
+                    0,
+                    notaIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            mNota.setContentIntent(pendingIntent);
+            notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
         } catch (Exception e){
             Log.d(FestaActivity.class.getName(),"Erro fazendo o parse das datas");
             e.printStackTrace();
