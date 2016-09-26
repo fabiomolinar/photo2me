@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="UploadSoWifi"
+        android:title="@string/wifi_upload_only"
+        android:summary="@string/upload_only_with_wifi_on"
+        android:defaultValue="true"/>
+</PreferenceScreen>

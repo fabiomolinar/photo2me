@@ -3,6 +3,7 @@ package com.photo2me.photo2me;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        //Definindo as preferências padrões
+        PreferenceManager.setDefaultValues(this,R.xml.app_preferencias,false);
 
         logo = (ImageView)findViewById(R.id.logo);
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.fade_in);

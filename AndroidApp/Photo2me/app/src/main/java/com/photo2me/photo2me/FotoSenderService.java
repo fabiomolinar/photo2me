@@ -3,9 +3,11 @@ package com.photo2me.photo2me;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
@@ -40,11 +42,14 @@ public class FotoSenderService extends IntentService {
      */
     @Override
     protected void onHandleIntent(final Intent intent) {
+        //Pegar preferencias do usuario
+        SharedPreferences appPreferencias = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean usarWifi = appPreferencias.getBoolean(Preferencias.APP_UPLOAD_SO_WIFI,true);
         Log.d(FotoSenderService.class.getName(),"onHandleIntent");
         //Verificar se tem wifi
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (!infoWifi.isConnected()){
+        if (infoWifi.isConnected() || (!usarWifi)){
             String path = intent.getStringExtra(ManagerService.FOTO_PATH);
             String idFestaUsuario = intent.getStringExtra(ManagerService.FOTO_ID_USUARIO_FESTA);
             String apelido = intent.getStringExtra(ManagerService.FOTO_FESTA_ID);

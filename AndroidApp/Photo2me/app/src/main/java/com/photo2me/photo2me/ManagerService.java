@@ -3,11 +3,13 @@ package com.photo2me.photo2me;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.joda.time.DateTimeZone;
@@ -31,10 +33,12 @@ public class ManagerService extends Service {
   private Boolean estaRodando;
   private List<File> listaFotos = new ArrayList<File>();
   private Locale locale;
+  private Context contexto;
 
   @Override
   public void onCreate(){
     Log.d(ManagerService.class.getName(),"Serviço criado");
+    contexto = getApplicationContext();
     estaRodando = false;
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
       locale = getResources().getConfiguration().getLocales().get(0);
@@ -52,13 +56,17 @@ public class ManagerService extends Service {
         @Override
         public void run(){
           while(true){
+            //Pegar preferencias do usuario
+            SharedPreferences appPreferencias = PreferenceManager.getDefaultSharedPreferences(contexto);
+            Boolean usarWifi = appPreferencias.getBoolean(Preferencias.APP_UPLOAD_SO_WIFI,true);
+            Log.d(TAG,"usar wifi: " + usarWifi.toString());
             try{
               //Fazer trabalho aqui
               //Verificar se tem wifi
               ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
               NetworkInfo infoWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
               Log.d(ManagerService.class.getName(),"wifi está conectado: "+ infoWifi.isConnected());
-              if (!infoWifi.isConnected()){
+              if (infoWifi.isConnected() || (!usarWifi)){
                 //Fazer lista de onde pode ter fotos
                 //Chamar a função com o parametro "removerSubPastas" se estiver usando método recursivo
                 List<File> listaCaminhos = criarListaCaminhos(false);

@@ -1,6 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:compat="http://schemas.android.com/apk/res-auto"
     tools:context="com.photo2me.photo2me.MainActivity">
     <item
         android:id="@+id/sobre"
@@ -8,4 +9,10 @@
         android:title="@string/sobre"
         app:showAsAction="always"
         android:icon="@drawable/interrogacao"/>
+    <item
+        android:id="@+id/configuracoes"
+        android:orderInCategory="101"
+        android:title="@string/configuracoes"
+        compat:showAsAction="ifRoom"
+        android:icon="@drawable/configuracoes"/>
 </menu>

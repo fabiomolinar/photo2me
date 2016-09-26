@@ -52,6 +52,9 @@
     <string name="sobre_txt4">We put ourselves at your disposal in case of doubts or comments. Feel free to get in contact with us any time you want.</string>
     <string name="sobre_txt5">Cheers, the photo2me team! :)</string>
     <string name="permissao_necessaria">For the application to work, you have to grant permission. You can always revoke it later.</string>
+    <string name="wifi_upload_only">Wifi upload only</string>
+    <string name="upload_only_with_wifi_on">Upload images only when connected to WiFi</string>
+    <string name="configuracoes">Settings</string>
 
 
     <string name="email_contato" translatable="false">photo2me.kontakt@gmail.com</string>
@@ -60,4 +63,5 @@
     <string name="API_ENVIAR_FOTO" translatable="false">receberFoto</string>
 
     <integer name="notification_festa_status">1</integer>
+    <string name="title_activity_preferencias">PreferenciasActivity</string>
 </resources>

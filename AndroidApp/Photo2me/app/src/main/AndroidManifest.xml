@@ -63,6 +63,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.photo2me.photo2me.MainActivity"/>
         </activity>
+        <activity
+            android:name=".PreferenciasActivity"
+            android:label="@string/configuracoes"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.photo2me.photo2me.MainActivity"/>
+        </activity>
 
         <service
             android:name=".ManagerService"
