@@ -65,13 +65,7 @@ public class ManagerService extends Service {
                 //Criar lista de arquivos que gostaríamos de enviar para o servidor
                 criarListaArquivos(listaCaminhos);
                 //Ordenar a lista por ordem cronológica
-                Collections.sort(listaFotos, new Comparator<File>() {
-                  @Override
-                  public int compare(File f1, File f2) {
-                    long subtracao = f1.lastModified() - f2.lastModified();
-                    return (int) subtracao;
-                  }
-                });
+                Log.d(TAG,"lista fotos: " + listaFotos.toString());
                 //Criar lista com os períodos de captura de foto
                 List<Festa> listaFestas = Festa.find(Festa.class,"finalizada = 0");
                 List<Comparador> listaComparador = new ArrayList<Comparador>();
