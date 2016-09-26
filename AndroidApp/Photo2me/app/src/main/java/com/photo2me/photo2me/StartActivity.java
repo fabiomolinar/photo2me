@@ -2,7 +2,11 @@ package com.photo2me.photo2me;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -25,9 +29,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Locale;
+import java.util.jar.Manifest;
 
 public class StartActivity extends AppCompatActivity {
     public static final String FESTA_TABLE_ID = "FestaTableId";
+    private static final int PERMISSAO_READ_EXTERNAL_STORAGE = 1;
 
     private Festa festa;
     private Locale locale;
@@ -121,6 +127,41 @@ public class StartActivity extends AppCompatActivity {
     }
 
     public void comecarClick(View botao){
+        //Para SDK > 23, verificar se temos a permissão primeiro.
+        if (Build.VERSION.SDK_INT >= 23){
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                    PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSAO_READ_EXTERNAL_STORAGE);
+            } else {
+                chamarIntent();
+            }
+        } else {
+            chamarIntent();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case PERMISSAO_READ_EXTERNAL_STORAGE:{
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //Permissão recebida
+                    chamarIntent();
+                } else {
+                    Toast toast = Toast.makeText(this, getResources().getString(R.string.permissao_necessaria),Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                return;
+            }
+            default:{
+                return;
+            }
+        }
+    }
+
+    private void chamarIntent(){
         //Salvar festa no banco de dados
         festa.setAtiva(true);
         try {
@@ -148,6 +189,5 @@ public class StartActivity extends AppCompatActivity {
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
             Log.d(StartActivity.class.getName(),e.getMessage());
         }
-
     }
 }

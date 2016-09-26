@@ -50,4 +50,5 @@
     <string name="sobre_txt3">Na razie jesteśmy pod pre-beta wersji naszej aplikacji i usług. To oznacza, że przez pewien czas my przejściu przez aplikację za pomocą szeregu testów. Mamy nadzieję, że wystąpi u nas było więcej niż przyjemne! Jeśli chcesz być jego częścią lub usłyszeć najnowsze wiadomości, wyślij do nas wiadomość e-mail do wspomnianego!</string>
     <string name="sobre_txt4">Kładziemy się do Państwa dyspozycji w razie wątpliwości lub uwag. Zapraszam do nawiązania kontaktu z nami w dowolnym momencie.</string>
     <string name="sobre_txt5">Twoje zdrowie, drużyna photo2me! :)</string>
+    <string name="permissao_necessaria">Dla zastosowania do pracy, trzeba przyznać uprawnienia. Zawsze można cofnąć je później.</string>
 </resources>

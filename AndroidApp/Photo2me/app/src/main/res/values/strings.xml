@@ -51,6 +51,7 @@
     <string name="sobre_txt3">For now we are under pre-beta version of our app and service. That means that for a while we are passing the app through a series of tests. We hope you experience with us was more than pleasant! If you want to be part of it or to hear the latest news, send us a message to the aforementioned email!</string>
     <string name="sobre_txt4">We put ourselves at your disposal in case of doubts or comments. Feel free to get in contact with us any time you want.</string>
     <string name="sobre_txt5">Cheers, the photo2me team! :)</string>
+    <string name="permissao_necessaria">For the application to work, you have to grant permission. You can always revoke it later.</string>
 
 
     <string name="email_contato" translatable="false">photo2me.kontakt@gmail.com</string>
