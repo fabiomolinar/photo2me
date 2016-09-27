@@ -1,13 +1,9 @@
 {
-  "private": true,
-  "scripts": {
-    "prod": "gulp --production",
-    "dev": "gulp watch"
-  },
+  "name": "photo2me-package",
+  "version": "1.0.0",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "require-dir": "^0.3.0"
   },
   "dependencies": {
     "jquery": "^3.1.1",
