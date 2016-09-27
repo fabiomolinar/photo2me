@@ -1,16 +1,11 @@
-var elixir = require('laravel-elixir');
+var
+  gulp = require('gulp'),
+  semanticBuild = require('semantic-ui/tasks/build'),
+  semanticWatch = require('semantic-ui/tasks/watch');
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
-
-elixir(function(mix) {
-    mix.sass('app.scss');
+gulp.task('jquery',function(){
+  return gulp.src('node_modules/jquery/dist/jquery.min.js')
+    .pipe(gulp.dest('public/js'));
 });
+gulp.task('semanticBuild',semanticBuild);
+gulp.task('semanticWatch',semanticWatch);
