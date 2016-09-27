@@ -1,3 +1,15 @@
 /*******************************
      User Global Variables
 *******************************/
+@laranjaOficial               : #F58634;
+@laranjaMonocromatico         : #DC915B;
+@laranjaComplementar          : #346EF5;
+@monocromaticoClaro           : #F2D5C0;
+@laranjaClaro                 : #FAC69E;
+@laranjaSemiEscuro            : #C2580A;
+@laranjaEscuro                : #793706;
+@primaryColor                 : @laranjaOficial;
+@secondaryColor               : @laranjaMonocromatico;
+@lightPrimaryColor            : @laranjaClaro;
+@lightSecondaryColor          : @monocromaticoClaro;
+@focusedFormBorderColor       : @laranjaComplementar;
