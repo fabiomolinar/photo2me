@@ -54,8 +54,6 @@ public class StartActivity extends AppCompatActivity {
             locale = getResources().getConfiguration().locale;
         }
 
-        Log.d(StartActivity.class.getName(),locale.getCountry());
-
         textoDetalhes = (TextView) findViewById(R.id.txtDetalhes);
         textoNome = (TextView) findViewById(R.id.txtNomeFesta);
 
@@ -74,18 +72,15 @@ public class StartActivity extends AppCompatActivity {
             LocalDateTime festaFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
             festa = new Festa(festaApelido,festaNome,festaInicio.toString(),festaFim.toString(),festaTimezone);
             festa.setIdFestaUsuario(festaIdFestaUsuario);
-            Log.d(StartActivity.class.getName(),festa.toString());
             String textoApresentacao = criarTextoApresentacao();
             textoDetalhes.setText(Html.fromHtml(textoApresentacao));
             textoNome.setText(festaNome);
         } catch (Exception e){
-            Log.d(StartActivity.class.getName(),e.getMessage());
             toastMessage(getResources().getString(R.string.algo_deu_errado));
         }
     }
 
     private String criarTextoApresentacao() {
-        Log.d(StartActivity.class.getName(),locale.toString());
         String texto;
         DateTimeZone timezone = DateTimeZone.forID(festa.getTimezone());
         DateTimeFormatter diaFormatter = DateTimeFormat.mediumDate();
@@ -184,7 +179,6 @@ public class StartActivity extends AppCompatActivity {
             intent.putExtra(StartActivity.FESTA_TABLE_ID,idFesta);
             intent.putExtra(MainActivity.FESTA_ID_USUARIO_FESTA,festa.getIdFestaUsuario());
             //Criando serviço
-            Log.d(TAG,"serviço rodando: " + servicoEstaRodando(ManagerService.class.getName()));
             if (!servicoEstaRodando(ManagerService.class.getName())){
                 Intent intentServico = new Intent(StartActivity.this,ManagerService.class);
                 startService(intentServico);
@@ -193,7 +187,6 @@ public class StartActivity extends AppCompatActivity {
             this.finish();
         } catch (Exception e){
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
-            Log.d(StartActivity.class.getName(),e.getMessage());
         }
     }
     private Boolean servicoEstaRodando(String servico){

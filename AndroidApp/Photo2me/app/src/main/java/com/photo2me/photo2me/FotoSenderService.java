@@ -45,7 +45,6 @@ public class FotoSenderService extends IntentService {
         //Pegar preferencias do usuario
         SharedPreferences appPreferencias = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean usarWifi = appPreferencias.getBoolean(Preferencias.APP_UPLOAD_SO_WIFI,true);
-        Log.d(FotoSenderService.class.getName(),"onHandleIntent");
         //Verificar se tem wifi
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo infoWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
@@ -65,7 +64,6 @@ public class FotoSenderService extends IntentService {
                     encontrada = true;
                 }
             }
-            Log.d(TAG,"foto foi encontrada: " + encontrada);
             if (!encontrada){
                 //Preparando post HTTP
                 OkHttpClient client = new OkHttpClient();
@@ -73,7 +71,6 @@ public class FotoSenderService extends IntentService {
                 //Passando para o lowercase se não a função abaixo não detecta o mimetype.
                 extensao = extensao.toLowerCase();
                 String mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extensao);
-                Log.d(TAG,"extensao: " + extensao + "; mimeType: " + mimeType);
                 RequestBody formBody = new MultipartBody.Builder()
                         .setType(MultipartBody.FORM)
                         .addFormDataPart("apelido",apelido)
@@ -87,7 +84,6 @@ public class FotoSenderService extends IntentService {
                         .post(formBody)
                         .build();
                 //Fazendo chamada
-                Log.d(TAG,"fazendo chamada HTTP");
                 try {
                     Response response = client.newCall(request).execute();
                     if (response.isSuccessful()){
@@ -95,7 +91,6 @@ public class FotoSenderService extends IntentService {
                         JSONObject json = new JSONObject(responseString);
                         final int codigo = response.code();
                         if (codigo == 200){
-                            Log.d(TAG,"response success. Mensagem: " + json.getString("mensagem"));
                             //Adicionar item no banco de dados de fotos enviadas
                             fotoObjeto.setEnviada(true);
                             fotoObjeto.save();
@@ -106,30 +101,18 @@ public class FotoSenderService extends IntentService {
                                     fotoObjeto.setEnviada(true);
                                     fotoObjeto.save();
                                 }
-                            } else {
-                                Log.d(TAG,"response is not 200. code: " + codigo + ". message: " + json.getString("mensagem"));
                             }
-                        } else {
-                            Log.d(TAG,"response is not 200. code: " + codigo + ". message: " + json.getString("mensagem"));
                         }
-                    } else {
-                        Log.d(TAG,"response not succesfull; code: " + response.code() + ". message: " + response.message());
                     }
                 } catch (Exception e){
-                    Log.d(TAG,e.getMessage());
                     e.printStackTrace();
                 }
-            } else {
-                Log.d(TAG,"foto repetida e tentativa de enviar ao servidor cancelada");
             }
-        } else {
-            Log.d(TAG,"Não tem WiFi");
         }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(FotoSenderService.class.getName(),"Serviço iniciado");
         //NÃO MODIFICAR O RETORNO ABAIXO. Seguindo a documentação do android, esse retorno não pode ser modificado.
         return super.onStartCommand(intent,flags,startId);
     }

@@ -33,7 +33,6 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 SharedPreferences minhasPreferencias = getSharedPreferences(Preferencias.MINHAS_PREFERENCIAS,0);
                 Boolean aceitouTermos = minhasPreferencias.getBoolean(Preferencias.PREF_BOOL_ACEITOU_TERMOS,false);
-                Log.d("Splash","aceitouTermos: " + aceitouTermos.toString());
                 if (!aceitouTermos){
                     final Intent intent = new Intent(SplashActivity.this,TermsActivity.class);
                     SplashActivity.this.startActivity(intent);

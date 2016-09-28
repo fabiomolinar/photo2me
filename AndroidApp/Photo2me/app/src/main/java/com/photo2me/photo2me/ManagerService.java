@@ -37,7 +37,6 @@ public class ManagerService extends Service {
 
   @Override
   public void onCreate(){
-    Log.d(ManagerService.class.getName(),"Serviço criado");
     contexto = getApplicationContext();
     estaRodando = false;
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -59,13 +58,11 @@ public class ManagerService extends Service {
             //Pegar preferencias do usuario
             SharedPreferences appPreferencias = PreferenceManager.getDefaultSharedPreferences(contexto);
             Boolean usarWifi = appPreferencias.getBoolean(Preferencias.APP_UPLOAD_SO_WIFI,true);
-            Log.d(TAG,"usar wifi: " + usarWifi.toString());
             try{
               //Fazer trabalho aqui
               //Verificar se tem wifi
               ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
               NetworkInfo infoWifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-              Log.d(ManagerService.class.getName(),"wifi está conectado: "+ infoWifi.isConnected());
               if (infoWifi.isConnected() || (!usarWifi)){
                 //Fazer lista de onde pode ter fotos
                 //Chamar a função com o parametro "removerSubPastas" se estiver usando método recursivo
@@ -73,7 +70,6 @@ public class ManagerService extends Service {
                 //Criar lista de arquivos que gostaríamos de enviar para o servidor
                 criarListaArquivos(listaCaminhos);
                 //Ordenar a lista por ordem cronológica
-                Log.d(TAG,"lista fotos: " + listaFotos.toString());
                 //Criar lista com os períodos de captura de foto
                 List<Festa> listaFestas = Festa.find(Festa.class,"finalizada = 0");
                 List<Comparador> listaComparador = new ArrayList<Comparador>();
@@ -87,7 +83,6 @@ public class ManagerService extends Service {
                     if (_comparador.entreInicioEFim(_file.lastModified())){
                       //Enviar para o FotoSenderIntent
                       LocalDateTime data = new LocalDateTime(_file.lastModified(), DateTimeZone.forID("America/Sao_Paulo"));
-                      Log.d(TAG,"Foto sendo enviada ao ServiceIntent: " + _file.getName() + "; lastModified: " + data.toString());
                       Intent serviceIntent = new Intent(ManagerService.this,FotoSenderService.class);
                       serviceIntent.putExtra(ManagerService.FOTO_FESTA_ID,_comparador.apelido);
                       serviceIntent.putExtra(ManagerService.FOTO_ID_USUARIO_FESTA,_comparador.idFestaUsuario);
@@ -98,12 +93,11 @@ public class ManagerService extends Service {
                 }
               }
             } catch (Exception e){
-              Log.d(ManagerService.class.getName(),e.getMessage());
               e.printStackTrace();
             }
             try {
-              int minutosProximaTentativa = 1;
-              Thread.sleep(minutosProximaTentativa * 1000);
+              int minutosProximaTentativa = 6*60;
+              Thread.sleep(minutosProximaTentativa * 60 * 1000);
             } catch (InterruptedException e){
               e.printStackTrace();
             }
@@ -223,7 +217,6 @@ public class ManagerService extends Service {
   
   @Override
   public void onDestroy(){
-    Log.d(ManagerService.class.getName(),"Serviço destruido");
     estaRodando = false;
   }
 }

@@ -82,7 +82,6 @@ public class FestaActivity extends AppCompatActivity {
         try{
             //Pegando ID da festa
             idFesta = intentOriginador.getLongExtra(StartActivity.FESTA_TABLE_ID,0);
-            Log.d(FestaActivity.class.getName(),"Id da festa: " + idFesta);
             //Criando variáveis de tempo com o fuso da festa
             LocalDateTime ldtInicio = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_INICIO_EXTRA));
             LocalDateTime ldtFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
@@ -133,7 +132,6 @@ public class FestaActivity extends AppCompatActivity {
             notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
         } catch (Exception e){
-            Log.d(FestaActivity.class.getName(),"Erro fazendo o parse das datas");
             e.printStackTrace();
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
         }
@@ -153,7 +151,6 @@ public class FestaActivity extends AppCompatActivity {
                         });
                     }
                 } catch (Exception e){
-                    Log.d(FestaActivity.class.getName(),e.getMessage());
                     e.printStackTrace();
                     toastMessage(getResources().getString(R.string.erro_ao_atualizar_status_festa));
                 }
@@ -165,7 +162,6 @@ public class FestaActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG,"Atividade sendo destruida");
         SharedPreferences minhasPreferencias = getSharedPreferences(Preferencias.MINHAS_PREFERENCIAS,0);
         SharedPreferences.Editor editor = minhasPreferencias.edit();
         editor.putBoolean(Preferencias.PREF_FESTA_PAUSADA,true);
