@@ -1,5 +1,6 @@
 package com.photo2me.photo2me;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -33,6 +34,7 @@ import java.util.jar.Manifest;
 
 public class StartActivity extends AppCompatActivity {
     public static final String FESTA_TABLE_ID = "FestaTableId";
+    private static final String TAG = "Photo2Me/" + StartActivity.class.getName();
     private static final int PERMISSAO_READ_EXTERNAL_STORAGE = 1;
 
     private Festa festa;
@@ -181,13 +183,26 @@ public class StartActivity extends AppCompatActivity {
             //O id abaixo é id na tabela do SQLite
             intent.putExtra(StartActivity.FESTA_TABLE_ID,idFesta);
             intent.putExtra(MainActivity.FESTA_ID_USUARIO_FESTA,festa.getIdFestaUsuario());
-            Intent intentServico = new Intent(StartActivity.this,ManagerService.class);
-            startService(intentServico);
+            //Criando serviço
+            Log.d(TAG,"serviço rodando: " + servicoEstaRodando(ManagerService.class.getName()));
+            if (!servicoEstaRodando(ManagerService.class.getName())){
+                Intent intentServico = new Intent(StartActivity.this,ManagerService.class);
+                startService(intentServico);
+            }
             startActivity(intent);
             this.finish();
         } catch (Exception e){
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
             Log.d(StartActivity.class.getName(),e.getMessage());
         }
+    }
+    private Boolean servicoEstaRodando(String servico){
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo serviceInfo : manager.getRunningServices(Integer.MAX_VALUE)){
+            if (servico.equals(serviceInfo.service.getClassName())){
+                return true;
+            }
+        }
+        return false;
     }
 }

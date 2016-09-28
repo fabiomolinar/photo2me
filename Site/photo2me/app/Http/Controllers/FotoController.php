@@ -51,18 +51,25 @@ class FotoController extends Controller
               $nomeImagem = $idUsuarioFesta . '_' . date("Y-m-d H-i") . '.' . $extensao;
               $caminho = $festa->id . '/' . $nomeImagem;
               Storage::disk('fotos')->put($caminho, File::get($imagem));
-              //Adicionando registro da foto ao BD
-              $foto = new Foto;
-              $foto->user_id = $festa->user_id;
-              $foto->festa_id = $festa->id;
-              $foto->last_modified_original = $request->input('lastModified');
-              $foto->nome_fotografo = $idUsuarioFesta;
-              $foto->nome_arquivo_original = $imagem->getClientOriginalName();
-              $foto->nome_arquivo_novo = $nomeImagem;
-              $foto->save();
-              return response()->json([
-                'mensagem' => Lang::get('messages.sucesso',[],$lingua)
-              ]);
+              //Se a foto de fato tiver sido salva, salvar info no banco de dados
+              if (Storage::disk('fotos')->exists($caminho)){
+                //Adicionando registro da foto ao BD
+                $foto = new Foto;
+                $foto->user_id = $festa->user_id;
+                $foto->festa_id = $festa->id;
+                $foto->last_modified_original = $request->input('lastModified');
+                $foto->nome_fotografo = $idUsuarioFesta;
+                $foto->nome_arquivo_original = $imagem->getClientOriginalName();
+                $foto->nome_arquivo_novo = $nomeImagem;
+                $foto->save();
+                return response()->json([
+                  'mensagem' => Lang::get('messages.sucesso',[],$lingua)
+                ]);
+              } else {
+                return response()->json([
+                  'mensagem' => Lang::get('messages.foto-nao-foi-salva',[],$lingua)
+                ], 503);
+              }
             }
           }
         } else {

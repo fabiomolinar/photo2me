@@ -102,7 +102,8 @@ public class ManagerService extends Service {
               e.printStackTrace();
             }
             try {
-              Thread.sleep(10000);
+              int minutosProximaTentativa = 1;
+              Thread.sleep(minutosProximaTentativa * 1000);
             } catch (InterruptedException e){
               e.printStackTrace();
             }
@@ -204,6 +205,14 @@ public class ManagerService extends Service {
           listarEmDiretorio(arquivo);
         }
       }
+    }
+  }
+
+  public Boolean getEstaRodando(){
+    if (estaRodando){
+      return true;
+    } else {
+      return false;
     }
   }
 
