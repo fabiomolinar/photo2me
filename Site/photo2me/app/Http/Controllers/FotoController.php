@@ -48,7 +48,7 @@ class FotoController extends Controller
             } else {
               //Foto não existe; adicionar
               //Salvar foto no storage
-              $nomeImagem = $idUsuarioFesta . '_' . date("Y-m-d H-i") . '.' . $extensao;
+              $nomeImagem = $idUsuarioFesta . '_' . date("Y-m-d H-i-s") . '.' . $extensao;
               $caminho = $festa->id . '/' . $nomeImagem;
               Storage::disk('fotos')->put($caminho, File::get($imagem));
               //Se a foto de fato tiver sido salva, salvar info no banco de dados
