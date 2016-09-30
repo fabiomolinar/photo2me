@@ -10,6 +10,8 @@ public class Preferencias {
     public static final String PREF_BOOL_ACEITOU_TERMOS = "AceitouTermos";
     public static final String PREF_FESTA_ATIVA = "FestaAtiva";
     public static final String PREF_FESTA_PAUSADA = "FestaPausada";
+    public static final String PREF_FESTA_INICIO = "FestaInicio";
+    public static final String PREF_FESTA_FIM = "FestaFim";
 
     //Shared preferences
     //Se a variável abaixo for modificada, modificar também o recurso xml chamado "app_preferencias"!!!!!!!

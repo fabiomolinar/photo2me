@@ -2,6 +2,8 @@ package com.photo2me.photo2me;
 
 import com.orm.SugarRecord;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -49,15 +51,15 @@ public class Festa extends SugarRecord{
     public String getApelido(){return apelido;}
     public String getNome(){return nome;}
     public String getDataInicio(){return dataInicio;}
-    public LocalDateTime getDataInicioJoda(Locale locale){
+    public LocalDateTime getDataInicioJoda(DateTimeZone tz){
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        dtf.withLocale(locale);
+        dtf.withZone(tz);
         return dtf.parseLocalDateTime(this.dataInicio);
     }
     public String getDataFim(){return dataFim;}
-    public LocalDateTime getDataFimJoda(Locale locale){
+    public LocalDateTime getDataFimJoda(DateTimeZone tz){
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        dtf.withLocale(locale);
+        dtf.withZone(tz);
         return dtf.parseLocalDateTime(this.dataFim);
     }
     public Boolean getAtiva(){return ativa;}
@@ -77,5 +79,34 @@ public class Festa extends SugarRecord{
                 " dataFim: " + dataFim + ";" +
                 " ativa: " + ativa + ";" +
                 " timezoe: " + timezone;
+    }
+
+    public String dataMaisTardia(String inicioFesta, long dataAtual){
+        DateTimeZone timezoneObject = DateTimeZone.getDefault();
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        dtf.withZone(timezoneObject);
+        LocalDateTime ldtInicio = dtf.parseLocalDateTime(inicioFesta);
+        DateTime dtInicio = new DateTime(ldtInicio.getYear(),ldtInicio.getMonthOfYear(),ldtInicio.getDayOfMonth(),
+                ldtInicio.getHourOfDay(),ldtInicio.getMinuteOfHour(),ldtInicio.getSecondOfMinute(),timezoneObject);
+        if (dataAtual > dtInicio.getMillis()){
+            LocalDateTime resultado = new LocalDateTime(dataAtual,timezoneObject);
+            return resultado.toString();
+        } else {
+            return inicioFesta;
+        }
+    }
+    public String dataMaisCedo(String fimFesta, long dataAtual){
+        DateTimeZone timezoneObject = DateTimeZone.getDefault();
+        DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        dtf.withZone(timezoneObject);
+        LocalDateTime ldtFim = dtf.parseLocalDateTime(fimFesta);
+        DateTime dtFim = new DateTime(ldtFim.getYear(),ldtFim.getMonthOfYear(),ldtFim.getDayOfMonth(),
+                ldtFim.getHourOfDay(),ldtFim.getMinuteOfHour(),ldtFim.getSecondOfMinute(),timezoneObject);
+        if (dataAtual > dtFim.getMillis()){
+            return fimFesta;
+        } else {
+            LocalDateTime resultado = new LocalDateTime(dataAtual,timezoneObject);
+            return resultado.toString();
+        }
     }
 }

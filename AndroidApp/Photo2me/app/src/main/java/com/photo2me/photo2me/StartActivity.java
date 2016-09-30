@@ -60,16 +60,22 @@ public class StartActivity extends AppCompatActivity {
         Intent intentOriginador = getIntent();
         //O formatador abaixo é necessário pois os dados do banco de dados são formatados de forma diferente
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-        dtf.withLocale(locale);
         String festaApelido = intentOriginador.getStringExtra(MainActivity.FESTA_APELIDO_EXTRA);
         String festaNome = intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA);
         String festaTimezone = intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA);
         String festaIdFestaUsuario = intentOriginador.getStringExtra(MainActivity.FESTA_ID_USUARIO_FESTA);
         try {
             DateTime dataAtual = new DateTime();
-            DateTimeZone timezoneObject = DateTimeZone.forID(festaTimezone);
-            LocalDateTime festaInicio = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
-            LocalDateTime festaFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
+            DateTimeZone timezoneFesta = DateTimeZone.forID(festaTimezone);
+            DateTimeZone timezoneUsuario = DateTimeZone.getDefault();
+            LocalDateTime ldtInicio = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_INICIO_EXTRA));
+            LocalDateTime ldtFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
+            DateTime dtInicio = new DateTime(ldtInicio.getYear(),ldtInicio.getMonthOfYear(),ldtInicio.getDayOfMonth(),
+                    ldtInicio.getHourOfDay(),ldtInicio.getMinuteOfHour(),ldtInicio.getSecondOfMinute(),timezoneFesta);
+            DateTime dtFim = new DateTime(ldtFim.getYear(),ldtFim.getMonthOfYear(),ldtFim.getDayOfMonth(),ldtFim.getHourOfDay(),
+                    ldtFim.getMinuteOfHour(),ldtFim.getSecondOfMinute(),timezoneFesta);
+            LocalDateTime festaInicio = new LocalDateTime(dtInicio.getMillis(),timezoneUsuario);
+            LocalDateTime festaFim = new LocalDateTime(dtFim.getMillis(),timezoneUsuario);
             festa = new Festa(festaApelido,festaNome,festaInicio.toString(),festaFim.toString(),festaTimezone);
             festa.setIdFestaUsuario(festaIdFestaUsuario);
             String textoApresentacao = criarTextoApresentacao();
@@ -82,27 +88,27 @@ public class StartActivity extends AppCompatActivity {
 
     private String criarTextoApresentacao() {
         String texto;
-        DateTimeZone timezone = DateTimeZone.forID(festa.getTimezone());
+        DateTimeZone timezone = DateTimeZone.getDefault();
         DateTimeFormatter diaFormatter = DateTimeFormat.mediumDate();
         DateTimeFormatter horaFormatter = DateTimeFormat.shortTime();
-        DateTime dataInicio = new DateTime(festa.getDataInicioJoda(locale).getYear(),
-                festa.getDataInicioJoda(locale).getMonthOfYear(),
-                festa.getDataInicioJoda(locale).getDayOfMonth(),
-                festa.getDataInicioJoda(locale).getHourOfDay(),
-                festa.getDataInicioJoda(locale).getMinuteOfHour(),
+        DateTime dataInicio = new DateTime(festa.getDataInicioJoda(timezone).getYear(),
+                festa.getDataInicioJoda(timezone).getMonthOfYear(),
+                festa.getDataInicioJoda(timezone).getDayOfMonth(),
+                festa.getDataInicioJoda(timezone).getHourOfDay(),
+                festa.getDataInicioJoda(timezone).getMinuteOfHour(),
                 timezone);
         //Transformando para valores com a timezone do usuário
-        LocalDate diaInicio = new LocalDate(dataInicio.withZone(DateTimeZone.getDefault()).toInstant());
-        LocalTime horaInicio = new LocalTime(dataInicio.withZone(DateTimeZone.getDefault()).toInstant());
-        DateTime dataFim = new DateTime(festa.getDataFimJoda(locale).getYear(),
-                festa.getDataFimJoda(locale).getMonthOfYear(),
-                festa.getDataFimJoda(locale).getDayOfMonth(),
-                festa.getDataFimJoda(locale).getHourOfDay(),
-                festa.getDataFimJoda(locale).getMinuteOfHour(),
+        LocalDate diaInicio = new LocalDate(dataInicio);
+        LocalTime horaInicio = new LocalTime(dataInicio);
+        DateTime dataFim = new DateTime(festa.getDataFimJoda(timezone).getYear(),
+                festa.getDataFimJoda(timezone).getMonthOfYear(),
+                festa.getDataFimJoda(timezone).getDayOfMonth(),
+                festa.getDataFimJoda(timezone).getHourOfDay(),
+                festa.getDataFimJoda(timezone).getMinuteOfHour(),
                 timezone);
         //Transformando para valores com a timezone do usuário
-        LocalDate diaFim = new LocalDate(dataFim.withZone(DateTimeZone.getDefault()).toInstant());
-        LocalTime horaFim = new LocalTime(dataFim.withZone(DateTimeZone.getDefault()).toInstant());
+        LocalDate diaFim = new LocalDate(dataFim);
+        LocalTime horaFim = new LocalTime(dataFim);
         texto = getResources().getString(R.string.texto_apresentacao_1) +
                 "<b> " + diaFormatter.print(diaInicio) + "</b> " +
                 getResources().getString(R.string.texto_apresentacao_2) +
@@ -162,17 +168,24 @@ public class StartActivity extends AppCompatActivity {
         //Salvar festa no banco de dados
         festa.setAtiva(true);
         try {
-            long idFesta;
-            idFesta = festa.save();
             SharedPreferences minhasPreferencias = getSharedPreferences(Preferencias.MINHAS_PREFERENCIAS,0);
             SharedPreferences.Editor editor = minhasPreferencias.edit();
             editor.putBoolean(Preferencias.PREF_FESTA_ATIVA,true);
             editor.putBoolean(Preferencias.PREF_FESTA_PAUSADA,false);
+            editor.putString(Preferencias.PREF_FESTA_INICIO,festa.getDataInicio());
+            editor.putString(Preferencias.PREF_FESTA_FIM,festa.getDataFim());
             editor.apply();
+            long idFesta;
+            //Antes de salvar, verificar se a data atual é maior que a data de início;
+            //Caso verdadeiro, salvar a data atual e não a data de início
+            festa.setDataInicio(festa.dataMaisTardia(festa.getDataInicio(),new DateTime().getMillis()));
+            Log.d(TAG,"data de inicio salva: " + festa.getDataInicio());
+            Log.d(TAG,"data de fim salva: " + festa.getDataFim());
+            idFesta = festa.save();
             Intent intent = new Intent(StartActivity.this,FestaActivity.class);
             intent.putExtra(MainActivity.FESTA_NOME_EXTRA,festa.getNome());
-            intent.putExtra(MainActivity.FESTA_DATA_INICIO_EXTRA,festa.getDataInicio().toString());
-            intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,festa.getDataFim().toString());
+            intent.putExtra(MainActivity.FESTA_DATA_INICIO_EXTRA,festa.getDataInicio());
+            intent.putExtra(MainActivity.FESTA_DATA_FIM_EXTRA,festa.getDataFim());
             intent.putExtra(MainActivity.FESTA_APELIDO_EXTRA,festa.getApelido());
             intent.putExtra(MainActivity.FESTA_TIMEZONE_EXTRA,festa.getTimezone());
             //O id abaixo é id na tabela do SQLite

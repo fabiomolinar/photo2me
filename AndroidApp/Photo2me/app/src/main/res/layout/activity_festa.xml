@@ -19,40 +19,25 @@
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp"/>
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtNomeFesta"
+        android:id="@+id/txtMensagem"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/laranjaEscuro"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:text="@string/voce_esta_pronto_agora_tirar_fotos"/>
 
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tabelaDatas"
-        android:layout_below="@+id/txtNomeFesta"
+        android:layout_below="@id/txtMensagem"
         android:layout_centerHorizontal="true">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="9dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/data"
-                android:id="@+id/textView9"
-                android:textAlignment="center"
-                android:textColor="@color/laranjaSemiEscuro"
-                android:layout_column="1" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="@string/hora"
-                android:id="@+id/textView10"
-                android:textAlignment="center"
-                android:textColor="@color/laranjaSemiEscuro"
-                android:layout_column="2" />
-        </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
@@ -125,10 +110,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnPausar"
         android:text="@string/pausar"
-        android:layout_marginTop="90dp"
+        android:layout_marginBottom="13dp"
         android:background="@color/azul"
         android:textColor="@color/branco"
-        android:layout_below="@+id/tabelaDatas"
+        android:layout_above="@+id/btnParar"
         android:onClick="pausarClick"/>
 
     <Button
@@ -136,41 +121,23 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnParar"
         android:text="@string/parar"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/vermelho"
         android:textColor="@color/branco"
-        android:layout_below="@+id/btnPausar"
+        android:layout_above="@+id/txtStatus"
         android:onClick="pararClick"/>
 
-    <TableLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp">
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/status"
-                android:id="@+id/textView11"
-                android:paddingRight="24dp"
-                android:textColor="@color/laranjaSemiEscuro"
-                android:layout_column="0" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/txtStatus"
-                android:textStyle="bold"
-                android:textColor="@color/laranjaOficial"
-                android:layout_column="1" />
-        </TableRow>
-    </TableLayout>
+        android:layout_marginBottom="13dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/txtStatus"
+        android:textStyle="bold"
+        android:textColor="@color/laranjaOficial"
+        android:layout_column="1" />
 
 </RelativeLayout>

@@ -55,6 +55,7 @@
     <string name="wifi_upload_only">Wifi upload only</string>
     <string name="upload_only_with_wifi_on">Upload images only when connected to WiFi</string>
     <string name="configuracoes">Settings</string>
+    <string name="voce_esta_pronto_agora_tirar_fotos">You are ready to go! Now the easy and fun part, just take amazing photos!</string>
 
 
     <string name="email_contato" translatable="false">photo2me.kontakt@gmail.com</string>

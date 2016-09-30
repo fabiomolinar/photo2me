@@ -12,7 +12,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,7 +26,6 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.Locale;
 
@@ -47,7 +45,7 @@ public class FestaActivity extends AppCompatActivity {
     Context contexto;
     long idFesta;
     Festa festaOriginal;
-    DateTimeZone timezoneObject;
+    DateTimeZone timezoneFesta;
     NotificationCompat.Builder mNota;
     NotificationManager notificationManager;
 
@@ -78,18 +76,18 @@ public class FestaActivity extends AppCompatActivity {
 
         Intent intentOriginador = getIntent();
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        dtf.withLocale(locale);
         try{
             //Pegando ID da festa
             idFesta = intentOriginador.getLongExtra(StartActivity.FESTA_TABLE_ID,0);
             //Criando variáveis de tempo com o fuso da festa
+            //Horários recebidos do intent anterior já estão no fuso do usuário
             LocalDateTime ldtInicio = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_INICIO_EXTRA));
             LocalDateTime ldtFim = dtf.parseLocalDateTime(intentOriginador.getStringExtra(MainActivity.FESTA_DATA_FIM_EXTRA));
-            timezoneObject = DateTimeZone.forID(intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA));
+            timezoneFesta = DateTimeZone.forID(intentOriginador.getStringExtra(MainActivity.FESTA_TIMEZONE_EXTRA));
             inicio = new DateTime(ldtInicio.getYear(),ldtInicio.getMonthOfYear(),ldtInicio.getDayOfMonth(),
-                    ldtInicio.getHourOfDay(),ldtInicio.getMinuteOfHour(),timezoneObject);
+                    ldtInicio.getHourOfDay(),ldtInicio.getMinuteOfHour());
             fim = new DateTime(ldtFim.getYear(),ldtFim.getMonthOfYear(),ldtFim.getDayOfMonth(),
-                    ldtFim.getHourOfDay(),ldtFim.getMinuteOfHour(),timezoneObject);
+                    ldtFim.getHourOfDay(),ldtFim.getMinuteOfHour());
             //Criando modelo da festa
             festaOriginal = new Festa(
                     intentOriginador.getStringExtra(MainActivity.FESTA_APELIDO_EXTRA),
@@ -100,10 +98,10 @@ public class FestaActivity extends AppCompatActivity {
             );
             festaOriginal.setIdFestaUsuario(intentOriginador.getStringExtra(MainActivity.FESTA_ID_USUARIO_FESTA));
             //Criando datas e horas locais
-            LocalDate inicioData = new LocalDate(inicio.withZone(DateTimeZone.getDefault()).toInstant());
-            LocalDate fimData = new LocalDate(fim.withZone(DateTimeZone.getDefault()).toInstant());
-            LocalTime inicioHora = new LocalTime(inicio.withZone(DateTimeZone.getDefault()).toInstant());
-            LocalTime fimHora = new LocalTime(fim.withZone(DateTimeZone.getDefault()).toInstant());
+            LocalDate inicioData = new LocalDate(inicio);
+            LocalDate fimData = new LocalDate(fim);
+            LocalTime inicioHora = new LocalTime(inicio);
+            LocalTime fimHora = new LocalTime(fim);
             //Atualizando a tela com dados
             DateTimeFormatter diaFormatter = DateTimeFormat.mediumDate();
             DateTimeFormatter horaFormatter = DateTimeFormat.shortTime();
@@ -170,7 +168,7 @@ public class FestaActivity extends AppCompatActivity {
         //Atualizando banco de dados
         DateTime dataAtual = new DateTime();
         Festa festa = Festa.findById(Festa.class,idFesta);
-        LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
+        LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
         festa.setDataFim(novaDataFim.toString());
         festa.setAtiva(false);
         festa.save();
@@ -235,13 +233,16 @@ public class FestaActivity extends AppCompatActivity {
             pausar.setText(getResources().getString(R.string.pausar));
             //Adicionar nova linha ao BD
             festa = new Festa(festaOriginal);
-            LocalDateTime novaDataInicio = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
+            LocalDateTime novaDataInicio = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
             festa.setDataInicio(novaDataInicio.toString());
             festa.setAtiva(true);
             idFesta = festa.save();
             //Atualizando notificação
             mNota.setContentText(getResources().getString(R.string.coletando));
             notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
+            //Atualizando TextBox do status
+            status.setText(getResources().getString(R.string.festa_ativa));
+            status.setTextColor(getResources().getColor(R.color.verde));
         } else {
             //Pusar a atividade
             //Setando preferências
@@ -250,13 +251,16 @@ public class FestaActivity extends AppCompatActivity {
             pausar.setText(getResources().getString(R.string.reiniciar));
             //Salvar nova data de fim ao banco de dados
             festa = Festa.findById(Festa.class,idFesta);
-            LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
+            LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
             festa.setDataFim(novaDataFim.toString());
             festa.setAtiva(false);
             festa.save();
             //Atualizando notificação
             mNota.setContentText(getResources().getString(R.string.pausado));
             notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
+            //Atualizando TextBox do status
+            status.setText(getResources().getString(R.string.festa_pausada));
+            status.setTextColor(getResources().getColor(R.color.azul));
         }
 
     }
@@ -269,7 +273,7 @@ public class FestaActivity extends AppCompatActivity {
         //Atualizando banco de dados
         DateTime dataAtual = new DateTime();
         Festa festa = Festa.findById(Festa.class,idFesta);
-        LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(),timezoneObject);
+        LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
         festa.setDataFim(novaDataFim.toString());
         festa.setAtiva(false);
         festa.save();

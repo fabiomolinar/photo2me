@@ -42,6 +42,7 @@ public class FotoSenderService extends IntentService {
      */
     @Override
     protected void onHandleIntent(final Intent intent) {
+        Log.d(TAG,"FotoSender onHandleIntent");
         //Pegar preferencias do usuario
         SharedPreferences appPreferencias = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean usarWifi = appPreferencias.getBoolean(Preferencias.APP_UPLOAD_SO_WIFI,true);
@@ -64,7 +65,9 @@ public class FotoSenderService extends IntentService {
                     encontrada = true;
                 }
             }
+            Log.d(TAG,"foto encontrada = " + encontrada);
             if (!encontrada){
+                Log.d(TAG,"fazendo chamada HTTP");
                 //Preparando post HTTP
                 OkHttpClient client = new OkHttpClient();
                 String extensao = MimeTypeMap.getFileExtensionFromUrl(foto.getAbsolutePath());
