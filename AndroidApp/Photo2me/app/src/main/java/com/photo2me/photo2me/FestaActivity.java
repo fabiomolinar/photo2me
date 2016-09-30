@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -238,11 +239,14 @@ public class FestaActivity extends AppCompatActivity {
             //Adicionar nova linha ao BD
             festa = new Festa(festaOriginal);
             LocalDateTime novaDataInicio = new LocalDateTime(dataAtual.getMillis());
+            String dataInicioVelha = festa.getDataInicio();
             festa.setDataInicio(novaDataInicio.toString());
             //Antes de salvar, verificar se a data atual é maior que a data de início;
             //Caso verdadeiro, salvar a data atual e não a data de início
-            festa.setDataInicio(festa.dataMaisTardia(festa.getDataInicio(),new DateTime().getMillis()));
+            festa.setDataInicio(festa.dataMaisTardia(dataInicioVelha,new DateTime().getMillis()));
             festa.setAtiva(true);
+            Log.d(TAG,"data de inicio salva: " + festa.getDataInicio());
+            Log.d(TAG,"data de fim salva: " + festa.getDataFim());
             idFesta = festa.save();
             //Atualizando notificação
             mNota.setContentText(getResources().getString(R.string.coletando));
@@ -251,7 +255,7 @@ public class FestaActivity extends AppCompatActivity {
             status.setText(getResources().getString(R.string.festa_ativa));
             status.setTextColor(getResources().getColor(R.color.verde));
         } else {
-            //Pusar a atividade
+            //Pausar a atividade
             //Setando preferências
             editor.putBoolean(Preferencias.PREF_FESTA_PAUSADA,true);
             editor.apply();
@@ -259,11 +263,14 @@ public class FestaActivity extends AppCompatActivity {
             //Salvar nova data de fim ao banco de dados
             festa = Festa.findById(Festa.class,idFesta);
             LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis());
+            String dataFimVelha = festa.getDataFim();
             festa.setDataFim(novaDataFim.toString());
             //Antes de salvar, verificar se a data atual é menor que a data de fim;
             //Caso verdadeiro, salvar a data atual e não a data de fim
-            festa.setDataInicio(festa.dataMaisCedo(festa.getDataFim(),new DateTime().getMillis()));
+            festa.setDataFim(festa.dataMaisCedo(dataFimVelha,new DateTime().getMillis()));
             festa.setAtiva(false);
+            Log.d(TAG,"data de inicio salva: " + festa.getDataInicio());
+            Log.d(TAG,"data de fim salva: " + festa.getDataFim());
             festa.save();
             //Atualizando notificação
             mNota.setContentText(getResources().getString(R.string.pausado));
@@ -284,8 +291,14 @@ public class FestaActivity extends AppCompatActivity {
         DateTime dataAtual = new DateTime();
         Festa festa = Festa.findById(Festa.class,idFesta);
         LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
+        String dataFimVelha = festa.getDataFim();
         festa.setDataFim(novaDataFim.toString());
+        //Antes de salvar, verificar se a data atual é menor que a data de fim;
+        //Caso verdadeiro, salvar a data atual e não a data de fim
+        festa.setDataFim(festa.dataMaisCedo(dataFimVelha,new DateTime().getMillis()));
         festa.setAtiva(false);
+        Log.d(TAG,"data de inicio salva: " + festa.getDataInicio());
+        Log.d(TAG,"data de fim salva: " + festa.getDataFim());
         festa.save();
         //Intent para atividade principal
         Intent intent = new Intent(FestaActivity.this,MainActivity.class);
