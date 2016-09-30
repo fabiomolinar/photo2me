@@ -134,7 +134,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text=""
         android:id="@+id/txtStatus"
         android:textStyle="bold"
         android:textColor="@color/laranjaOficial"

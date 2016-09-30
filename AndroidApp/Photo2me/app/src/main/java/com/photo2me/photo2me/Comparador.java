@@ -19,14 +19,12 @@ public class Comparador {
 
     public Comparador(String inicio, String fim, String timezone, Locale locale, String apelido, String idFestaUsuario){
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
-        dtf.withLocale(locale);
-        DateTimeZone timezoneObject = DateTimeZone.forID(timezone);
         LocalDateTime lInicio = dtf.parseLocalDateTime(inicio);
         LocalDateTime lFim = dtf.parseLocalDateTime(fim);
         this.inicio = new DateTime(lInicio.getYear(),lInicio.getMonthOfYear(),lInicio.getDayOfMonth(),
-                lInicio.getHourOfDay(),lInicio.getMinuteOfHour(),lInicio.getSecondOfMinute(),lInicio.getMillisOfSecond(),timezoneObject);
+                lInicio.getHourOfDay(),lInicio.getMinuteOfHour(),lInicio.getSecondOfMinute(),lInicio.getMillisOfSecond());
         this.fim = new DateTime(lFim.getYear(),lFim.getMonthOfYear(),lFim.getDayOfMonth(),
-                lFim.getHourOfDay(),lFim.getMinuteOfHour(),lFim.getSecondOfMinute(),lFim.getMillisOfSecond(),timezoneObject);
+                lFim.getHourOfDay(),lFim.getMinuteOfHour(),lFim.getSecondOfMinute(),lFim.getMillisOfSecond());
         this.apelido = apelido;
         this.idFestaUsuario = idFestaUsuario;
     }

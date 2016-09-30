@@ -128,7 +128,6 @@ public class FestaActivity extends AppCompatActivity {
                     PendingIntent.FLAG_UPDATE_CURRENT);
             mNota.setContentIntent(pendingIntent);
             notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
         } catch (Exception e){
             e.printStackTrace();
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
@@ -183,6 +182,7 @@ public class FestaActivity extends AppCompatActivity {
     }
     private void atualizarTela(){
         SharedPreferences minhasPreferencias = getSharedPreferences(Preferencias.MINHAS_PREFERENCIAS,0);
+        SharedPreferences.Editor editor = minhasPreferencias.edit();
         Boolean ativa = minhasPreferencias.getBoolean(Preferencias.PREF_FESTA_ATIVA,false);
         Boolean pausada = minhasPreferencias.getBoolean(Preferencias.PREF_FESTA_PAUSADA,false);
         if (!ativa){
@@ -202,7 +202,11 @@ public class FestaActivity extends AppCompatActivity {
                 status.setTextColor(ContextCompat.getColor(contexto,R.color.laranjaOficial));
                 pausar.setVisibility(View.INVISIBLE);
                 pausar.setEnabled(false);
+                editor.putBoolean(Preferencias.PREF_FESTA_PAUSADA,true);
+                editor.apply();
+                notificationManager.cancel(getResources().getInteger(R.integer.notification_festa_status));
             } else {
+                notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
                 if (pausada){
                     status.setText(getResources().getString(R.string.festa_pausada));
                     status.setTextColor(ContextCompat.getColor(contexto,R.color.azul));
@@ -233,8 +237,11 @@ public class FestaActivity extends AppCompatActivity {
             pausar.setText(getResources().getString(R.string.pausar));
             //Adicionar nova linha ao BD
             festa = new Festa(festaOriginal);
-            LocalDateTime novaDataInicio = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
+            LocalDateTime novaDataInicio = new LocalDateTime(dataAtual.getMillis());
             festa.setDataInicio(novaDataInicio.toString());
+            //Antes de salvar, verificar se a data atual é maior que a data de início;
+            //Caso verdadeiro, salvar a data atual e não a data de início
+            festa.setDataInicio(festa.dataMaisTardia(festa.getDataInicio(),new DateTime().getMillis()));
             festa.setAtiva(true);
             idFesta = festa.save();
             //Atualizando notificação
@@ -251,8 +258,11 @@ public class FestaActivity extends AppCompatActivity {
             pausar.setText(getResources().getString(R.string.reiniciar));
             //Salvar nova data de fim ao banco de dados
             festa = Festa.findById(Festa.class,idFesta);
-            LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis(), timezoneFesta);
+            LocalDateTime novaDataFim = new LocalDateTime(dataAtual.getMillis());
             festa.setDataFim(novaDataFim.toString());
+            //Antes de salvar, verificar se a data atual é menor que a data de fim;
+            //Caso verdadeiro, salvar a data atual e não a data de fim
+            festa.setDataInicio(festa.dataMaisCedo(festa.getDataFim(),new DateTime().getMillis()));
             festa.setAtiva(false);
             festa.save();
             //Atualizando notificação
