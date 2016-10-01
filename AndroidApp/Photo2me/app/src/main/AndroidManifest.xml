@@ -28,7 +28,9 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashBackground">
+            android:theme="@style/SplashBackground"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,15 +39,21 @@
         </activity>
         <activity
             android:name=".TermsActivity"
-            android:theme="@style/SplashBackgroundInvertido" />
+            android:theme="@style/SplashBackgroundInvertido"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".StartActivity"
             android:label="@string/comecar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.photo2me.photo2me.MainActivity" />
@@ -53,10 +61,12 @@
         <activity
             android:name=".FestaActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/festa"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:label="@string/festa" />
         <activity
             android:name=".SobreNosActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:label="@string/sobre"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -65,6 +75,8 @@
         </activity>
         <activity
             android:name=".PreferenciasActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:label="@string/configuracoes"
             android:parentActivityName=".MainActivity">
             <meta-data
