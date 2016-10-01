@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 
@@ -26,7 +27,7 @@ import java.util.Locale;
 import java.util.Set;
 
 public class ManagerService extends Service {
-    private static final String TAG = "Photo2Me/" + ManagerService.class.getName();
+    private static final String TAG = "Photo2me/" + ManagerService.class.getName();
     public static final String FOTO_PATH = "com.photo2me.photo2me.path para foto";
     public static final String FOTO_ID_USUARIO_FESTA = "com.photo2me.photo2me.id_usuario_festa";
     public static final String FOTO_FESTA_ID = "com.photo2me.photo2me.id da festa";
@@ -79,9 +80,6 @@ public class ManagerService extends Service {
                                     listaComparador.add(new Comparador(_festa.getDataInicio(),_festa.getDataFim(),_festa.getTimezone(),
                                             locale,_festa.getApelido(),_festa.getIdFestaUsuario()));
                                 }
-                                Log.d(TAG,"listaCaminhos: " + listaCaminhos.toString());
-                                Log.d(TAG,"listaFestas: " + listaFestas.toString());
-                                Log.d(TAG,"listaFotos: " + listaFotos.toString());
                                 //Verificar quais fotos estão dentro dos períodos de captura
                                 for (File _file : listaFotos){
                                     for (Comparador _comparador : listaComparador){
@@ -102,7 +100,7 @@ public class ManagerService extends Service {
                         }
                         try {
                             int minutosProximaTentativa = 1;
-                            Thread.sleep(minutosProximaTentativa * 30 * 1000);
+                            Thread.sleep(minutosProximaTentativa * 60 * 1000);
                         } catch (InterruptedException e){
                             e.printStackTrace();
                         }

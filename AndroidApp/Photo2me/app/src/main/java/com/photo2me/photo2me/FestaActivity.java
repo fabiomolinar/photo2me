@@ -31,7 +31,7 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class FestaActivity extends AppCompatActivity {
-    private static final String TAG = "photo2me/" + FestaActivity.class.getName();
+    private static final String TAG = "Photo2me/" + FestaActivity.class.getName();
     TextView nomeFesta;
     TextView dataInicio;
     TextView dataFim;

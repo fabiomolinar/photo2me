@@ -21,13 +21,16 @@ public class Comparador {
         DateTimeFormatter dtf = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
         LocalDateTime lInicio = dtf.parseLocalDateTime(inicio);
         LocalDateTime lFim = dtf.parseLocalDateTime(fim);
+        DateTimeZone timeZone = DateTimeZone.getDefault();
         this.inicio = new DateTime(lInicio.getYear(),lInicio.getMonthOfYear(),lInicio.getDayOfMonth(),
-                lInicio.getHourOfDay(),lInicio.getMinuteOfHour(),lInicio.getSecondOfMinute(),lInicio.getMillisOfSecond());
+                lInicio.getHourOfDay(),lInicio.getMinuteOfHour(),lInicio.getSecondOfMinute(),lInicio.getMillisOfSecond(),timeZone);
         this.fim = new DateTime(lFim.getYear(),lFim.getMonthOfYear(),lFim.getDayOfMonth(),
-                lFim.getHourOfDay(),lFim.getMinuteOfHour(),lFim.getSecondOfMinute(),lFim.getMillisOfSecond());
+                lFim.getHourOfDay(),lFim.getMinuteOfHour(),lFim.getSecondOfMinute(),lFim.getMillisOfSecond(),timeZone);
         this.apelido = apelido;
         this.idFestaUsuario = idFestaUsuario;
     }
+    public DateTime getInicio(){return this.inicio;}
+    public DateTime getFim(){return this.fim;}
 
     public Boolean entreInicioEFim(long toTest){
         if (toTest > inicio.getMillis()){

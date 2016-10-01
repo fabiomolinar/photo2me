@@ -34,7 +34,7 @@ import java.util.jar.Manifest;
 
 public class StartActivity extends AppCompatActivity {
     public static final String FESTA_TABLE_ID = "FestaTableId";
-    private static final String TAG = "Photo2Me/" + StartActivity.class.getName();
+    private static final String TAG = "Photo2me/" + StartActivity.class.getName();
     private static final int PERMISSAO_READ_EXTERNAL_STORAGE = 1;
 
     private Festa festa;

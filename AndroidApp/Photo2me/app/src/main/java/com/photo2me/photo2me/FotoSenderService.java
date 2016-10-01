@@ -26,7 +26,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class FotoSenderService extends IntentService {
-    private static final String TAG = "Photo2Me/" + FotoSenderService.class.getSimpleName();
+    private static final String TAG = "Photo2me/" + FotoSenderService.class.getSimpleName();
     /**
      * A constructor is required, and must call the super IntentService(String)
      * constructor with a name for the worker thread.
