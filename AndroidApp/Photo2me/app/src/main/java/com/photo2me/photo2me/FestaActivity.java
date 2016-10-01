@@ -56,6 +56,7 @@ public class FestaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_festa);
         JodaTimeAndroid.init(this);
         contexto = getApplicationContext();
+        Log.d(TAG,"Teste só para o master");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             locale = getResources().getConfiguration().getLocales().get(0);
