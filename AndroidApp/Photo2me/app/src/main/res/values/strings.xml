@@ -64,5 +64,4 @@
     <string name="API_ENVIAR_FOTO" translatable="false">receberFoto</string>
 
     <integer name="notification_festa_status">1</integer>
-    <string name="title_activity_preferencias">PreferenciasActivity</string>
 </resources>

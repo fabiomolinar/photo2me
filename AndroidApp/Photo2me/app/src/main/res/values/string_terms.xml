@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="termos">
+    <string name="termos" translatable="false">
         <![CDATA[
         <h1>Título</h1>
         <p>Aqui irá o parágrafo falando dos termos de uso e etc.</p>

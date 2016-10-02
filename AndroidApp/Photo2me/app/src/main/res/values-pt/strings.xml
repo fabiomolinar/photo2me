@@ -51,4 +51,8 @@
     <string name="sobre_txt4">Nos colocamos à sua disposição em caso de dúvidas ou comentários. Fique a vontade para entrar em contato com a gente pelo email apresentado acima.</string>
     <string name="sobre_txt5">Sinceramente, equipe photo2me! :)</string>
     <string name="permissao_necessaria">Para o aplicativi funcionar, você precisa dar a permissão. Você sempre poderá revogá-la mais tarde.</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="upload_only_with_wifi_on">Enviar fotos apenas quando conectado a uma rede WiFi</string>
+    <string name="voce_esta_pronto_agora_tirar_fotos">Tudo preparado! Agora a parte que importa, tirar fotos excepcionais!</string>
+    <string name="wifi_upload_only">Upload apenas por Wifi</string>
 </resources>

@@ -51,4 +51,8 @@
     <string name="sobre_txt4">Kładziemy się do Państwa dyspozycji w razie wątpliwości lub uwag. Zapraszam do nawiązania kontaktu z nami w dowolnym momencie.</string>
     <string name="sobre_txt5">Twoje zdrowie, drużyna photo2me! :)</string>
     <string name="permissao_necessaria">Dla zastosowania do pracy, trzeba przyznać uprawnienia. Zawsze można cofnąć je później.</string>
+    <string name="configuracoes">Ustawienia</string>
+    <string name="upload_only_with_wifi_on">Prześlij obrazy tylko po podłączeniu do sieci WiFi</string>
+    <string name="voce_esta_pronto_agora_tirar_fotos">Jesteś gotowy do pracy! Teraz łatwe i przyjemne części, po prostu wziąć niesamowite zdjęcia!</string>
+    <string name="wifi_upload_only">Wifi przesłać tylko</string>
 </resources>
