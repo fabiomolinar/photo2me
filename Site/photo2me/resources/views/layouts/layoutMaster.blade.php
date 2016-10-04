@@ -10,26 +10,24 @@
     <meta name="contact" content="fabiomolinar@gmail.com">
     <meta name="keywords" content="{{ trans('keywords.head') }}">
     {{-- CSS --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/master.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.min.css') }}">
     {{-- JS --}}
-    <script type="text/javascript" src="{{ asset('/js/jquery-1.12.3.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/main.min.js') }}"></script>
     {{-- Trackers --}}
     <?php // TODO: Adicionar trackers! ?>
     @yield('head')
   </head>
   <body>
-    <div id="super-wrapper">
-      <div class="container-fluid master-wrapper">
-        <div id="header">
-          @yield('header')
-        </div>
-        <div id="conteudo">
-          @yield('conteudo')
-        </div>
-        <div id="footer">
-          @yield('footer')
-          @include('modal.modalMensagem')
-        </div>
+    <div class="master-wrapper">
+      <div id="header">
+        @yield('header')
+      </div>
+      <div id="conteudo">
+        @yield('conteudo')
+      </div>
+      <div id="footer">
+        @yield('footer')
+        @include('elements.modals.modalMensagem')
       </div>
     </div>
   </body>

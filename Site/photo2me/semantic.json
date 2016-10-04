@@ -21,7 +21,9 @@
   "components": [
     "reset",
     "site",
-    "grid"
+    "grid",
+    "menu",
+    "image"
   ],
   "version": "2.2.4"
 }

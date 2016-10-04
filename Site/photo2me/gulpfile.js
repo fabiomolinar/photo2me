@@ -1,5 +1,6 @@
 var
   gulp = require('gulp'),
+  plugins = require('gulp-load-plugins')(),
   requireDir = require('require-dir'),
   semantic = requireDir('resources/assets/semantic/tasks'),
   runSequence = require('run-sequence'),
@@ -49,6 +50,13 @@ gulp.task('build',function(callback){
   runSequence(
     ['jquery','semanticBuild'],
     ['semanticJS','semanticCSS'],
+    ['deletarMainMin'],
+    ['agruparJS','agruparCSS']
+  );
+});
+//Build específico
+gulp.task('buildEspecifico',function(callback){
+  runSequence(
     ['deletarMainMin'],
     ['agruparJS','agruparCSS']
   );
