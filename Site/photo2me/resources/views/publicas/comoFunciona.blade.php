@@ -12,7 +12,7 @@
 @endsection
 
 @section('conteudo')
-  <h1>Home</h1>
+  <h1>Como Funciona</h1>
   <p>
     Teste, teste, teste.
   </p>
@@ -22,6 +22,5 @@
   @include('elements.footers.footer')
   {{-- JS --}}
   <script type="text/javascript">
-    _FtmHome.init();
   </script>
 @endsection

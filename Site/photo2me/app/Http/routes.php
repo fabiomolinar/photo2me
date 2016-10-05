@@ -11,8 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('publicas.home');
+//Rotas públicas
+Route::group([],function(){
+  Route::get('/', function () {return view('publicas.home');})->name('home');
+  Route::get('/como-funciona',function(){return view('publicas.comoFunciona');})->name('comoFunciona');
+  Route::get('/contato',function(){return view('publicas.contato');})->name('contato');
+  Route::get('/cadastrar',function(){return view('publicas.cadastrar');})->name('cadastrar');
+  Route::get('/entrar',function(){return view('publicas.entrar');})->name('entrar');
 });
 
 //API
