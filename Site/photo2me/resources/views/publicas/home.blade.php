@@ -12,6 +12,11 @@
 @endsection
 
 @section('conteudo')
+  <div id="home-banner" class="ui segment">
+    <div class="ui text container">
+      <h1>Título de impacto</h1>
+    </div>
+  </div>
   <h1>Home</h1>
   <p>
     Teste, teste, teste.

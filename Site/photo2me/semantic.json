@@ -22,6 +22,8 @@
     "reset",
     "site",
     "grid",
+    "segment",
+    "container",
     "menu",
     "image"
   ],
