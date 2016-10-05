@@ -18,17 +18,20 @@
     @yield('head')
   </head>
   <body>
-    <div class="master-wrapper">
-      <div id="header">
-        @yield('header')
-      </div>
-      <div id="conteudo">
-        @yield('conteudo')
-      </div>
-      <div id="footer">
-        @yield('footer')
-        @include('elements.modals.modalMensagem')
+    <div id="super-wrapper">
+      @yield('sideHeader')
+      <div id="master-content" class="pusher">
+        <div id="header">
+          @yield('header')
+        </div>
+        <div id="conteudo">
+          @yield('conteudo')
+        </div>
+        <div id="footer">
+          @yield('footer')
+        </div>
       </div>
     </div>
+    @include('elements.modals.modalMensagem')
   </body>
 </html>

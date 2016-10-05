@@ -25,7 +25,10 @@
     "segment",
     "container",
     "menu",
-    "image"
+    "image",
+    "sidebar",
+    "visibility",
+    "icon"
   ],
   "version": "2.2.4"
 }

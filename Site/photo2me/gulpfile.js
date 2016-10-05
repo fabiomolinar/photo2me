@@ -58,18 +58,20 @@ gulp.task('watch',function(){
 //BUILDERS
 //Main build
 gulp.task('build',function(callback){
-  return plugins.runSequence(
+  plugins.runSequence(
     ['jquery','semanticBuild'],
     ['semanticJS','semanticCSS'],
     ['deletarMainMin'],
-    ['agruparJS','agruparCSS']
+    ['agruparJS','agruparCSS'],
+    callback
   );
 });
 //Build específico
 gulp.task('buildEspecifico',function(callback){
-  return plugins.runSequence(
+  plugins.runSequence(
     ['deletarMainMin'],
-    ['agruparJS','agruparCSS']
+    ['agruparJS','agruparCSS'],
+    callback
   );
 });
 

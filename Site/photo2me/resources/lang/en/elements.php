@@ -7,4 +7,5 @@ return [
   'header-contato' => 'Contact us',
   'header-cadastrar' => 'Sign in',
   'header-entrar' => 'Log in',
+  'header-menu' => 'Menu'
 ];
