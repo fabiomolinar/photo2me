@@ -1,4 +1,4 @@
-<div class="ui left vertical menu sidebar">
+<div class="ui sidebar left vertical menu">
   <a href="{{ URL::route('comoFunciona') }}" class="item">{{ trans('elements.header-como-funciona') }}</a>
   <a href="{{ URL::route('contato') }}" class="item">{{ trans('elements.header-contato') }}</a>
   <a href="{{ URL::route('cadastrar') }}" class="item">{{ trans('elements.header-cadastrar') }}</a>

@@ -1,6 +1,7 @@
 /*******************************
      User Global Variables
 *******************************/
+
 @laranjaOficial               : #F58634;
 @laranjaMonocromatico         : #DC915B;
 @laranjaComplementar          : #346EF5;
@@ -13,3 +14,6 @@
 @lightPrimaryColor            : @laranjaClaro;
 @lightSecondaryColor          : @monocromaticoClaro;
 @focusedFormBorderColor       : @laranjaComplementar;
+
+@imagePath : '../themes/default/assets/images';
+@fontPath  : '../themes/default/assets/fonts';

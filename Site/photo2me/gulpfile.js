@@ -28,6 +28,10 @@ gulp.task('semanticCSS',function(){
   return gulp.src('resources/assets/semantic/dist/semantic.min.css')
     .pipe(gulp.dest('public/css'));
 });
+gulp.task('semanticThemes',function(){
+  return gulp.src('resources/assets/semantic/dist/themes/**/*')
+    .pipe(gulp.dest('public/themes'))
+});
 //Agrupar todos os JSs da pasta public/js
 gulp.task('agruparJS',function(){
   return gulp.src('public/js/**/*.js')
@@ -51,7 +55,7 @@ gulp.task('agruparCSS',function(){
 //Rodar os watches
 gulp.task('watch',function(){
   //Watch dos específicos
-  gulp.watch('public/**/*.+(css|js)',['buildEspecifico']);
+  gulp.watch(['public/**/*.+(css|js)','!public/**/main.min.+(css|js)'],['buildEspecifico']);
   //Main watch
   gulp.watch(['semantic.json','resources/assets/semantic/**/*'],['build']);
 });
@@ -60,7 +64,7 @@ gulp.task('watch',function(){
 gulp.task('build',function(callback){
   plugins.runSequence(
     ['jquery','semanticBuild'],
-    ['semanticJS','semanticCSS'],
+    ['semanticJS','semanticCSS','semanticThemes'],
     ['deletarMainMin'],
     ['agruparJS','agruparCSS'],
     callback
