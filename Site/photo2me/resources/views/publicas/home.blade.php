@@ -7,7 +7,6 @@
   <meta name="Description" content="{{ trans('descriptions.home') }}">
 @endsection
 
-
 @section('sideHeader')
   @include('elements.headers.sideHeader')
 @endsection
@@ -32,6 +31,5 @@
   @include('elements.footers.footer')
   {{-- JS --}}
   <script type="text/javascript">
-    _FtmHome.init();
   </script>
 @endsection

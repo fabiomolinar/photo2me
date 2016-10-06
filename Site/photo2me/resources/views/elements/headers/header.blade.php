@@ -4,9 +4,9 @@
   </div>
   <a href="{{ URL::route('comoFunciona') }}" class="item mobile-hide">{{ trans('elements.header-como-funciona') }}</a>
   <a href="{{ URL::route('contato') }}" class="item mobile-hide">{{ trans('elements.header-contato') }}</a>
-  <a class="item mobile-show"><i class="sidebar icon"></i>{{ trans('elements.header-menu') }}</a>
+  <a id="header-side-menu" class="item mobile-show"><i class="sidebar icon"></i>{{ trans('elements.header-menu') }}</a>
   <div class="right menu">
     <a href="{{ URL::route('cadastrar') }}" class="item">{{ trans('elements.header-cadastrar') }}</a>
     <a href="{{ URL::route('entrar') }}" class="item">{{ trans('elements.header-entrar') }}</a>
   </div>
-<
+</div>

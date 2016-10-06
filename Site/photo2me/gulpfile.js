@@ -34,15 +34,10 @@ gulp.task('semanticThemes',function(){
 });
 //Agrupar todos os JSs da pasta public/js
 gulp.task('agruparJS',function(){
-  return gulp.src('public/js/**/*.js')
+  return gulp.src(['public/js/**/*.js','!public/js/jquery.min.js','!public/js/semantic.min.js'])
     .pipe(plugins.gulpUglify())
     .pipe(plugins.gulpConcat('main.min.js'))
     .pipe(gulp.dest('public/js'));
-});
-//Deletar os main.min.(js|css)
-gulp.task('deletarMainMin',function(){
-  return gulp.src('public/**/main.min.+(css|js)')
-    .pipe(plugins.gulpClean());
 });
 //Agrupar todos os CSSs da pasta public/css
 gulp.task('agruparCSS',function(){
@@ -50,6 +45,11 @@ gulp.task('agruparCSS',function(){
     .pipe(plugins.gulpCSSNano())
     .pipe(plugins.gulpConcat('main.min.css'))
     .pipe(gulp.dest('public/css'));
+});
+//Deletar os main.min.(js|css)
+gulp.task('deletarMainMin',function(){
+  return gulp.src('public/**/main.min.+(css|js)')
+    .pipe(plugins.gulpClean());
 });
 //WATCHES
 //Rodar os watches

@@ -7,6 +7,10 @@
   <meta name="Description" content="{{ trans('descriptions.home') }}">
 @endsection
 
+@section('sideHeader')
+  @include('elements.headers.sideHeader')
+@endsection
+
 @section('header')
   @include('elements.headers.header')
 @endsection

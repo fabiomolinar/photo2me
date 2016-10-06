@@ -12,24 +12,27 @@
     {{-- CSS --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.min.css') }}">
     {{-- JS --}}
+    <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/semantic.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/main.min.js') }}"></script>
     {{-- Trackers --}}
     <?php // TODO: Adicionar trackers! ?>
     @yield('head')
   </head>
   <body>
-    <div id="super-wrapper">
-      @yield('sideHeader')
-      <div id="master-content" class="pusher">
-        <div id="header">
-          @yield('header')
-        </div>
-        <div id="conteudo">
-          @yield('conteudo')
-        </div>
-        <div id="footer">
-          @yield('footer')
-        </div>
+    @yield('sideHeader')
+    <div id="master-content" class="pusher">
+      <div id="header">
+        @yield('header')
+      </div>
+      <div id="conteudo">
+        @yield('conteudo')
+      </div>
+      <div id="footer">
+        @yield('footer')
+        <script type="text/javascript">
+          _FtmMaster.init();
+        </script>
       </div>
     </div>
     @include('elements.modals.modalMensagem')
