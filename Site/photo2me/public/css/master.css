@@ -20,6 +20,9 @@ body{
 	min-height:100%;
 	position: relative;
 }
+#header{
+  height: 69px;
+}
 #conteudo{
 	padding-bottom: 234px; /* Tamanho do footer! */
 }

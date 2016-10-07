@@ -14,7 +14,7 @@
     {{-- JS --}}
     <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/semantic.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/js/main.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/main.js') }}"></script>
     {{-- Trackers --}}
     <?php // TODO: Adicionar trackers! ?>
     @yield('head')
@@ -31,7 +31,9 @@
       <div id="footer">
         @yield('footer')
         <script type="text/javascript">
-          _FtmMaster.init();
+          $(document).ready(function(){
+            _FtmMaster.init();
+          });
         </script>
       </div>
     </div>

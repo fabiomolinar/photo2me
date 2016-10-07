@@ -39,6 +39,11 @@ gulp.task('agruparJS',function(){
     .pipe(plugins.gulpConcat('main.min.js'))
     .pipe(gulp.dest('public/js'));
 });
+gulp.task('agruparJSTeste',function(){
+  return gulp.src(['public/js/**/*.js','!public/js/jquery.min.js','!public/js/semantic.min.js'])
+    .pipe(plugins.gulpConcat('main.js'))
+    .pipe(gulp.dest('public/js'));
+});
 //Agrupar todos os CSSs da pasta public/css
 gulp.task('agruparCSS',function(){
   return gulp.src('public/css/**/*.css')
@@ -48,17 +53,19 @@ gulp.task('agruparCSS',function(){
 });
 //Deletar os main.min.(js|css)
 gulp.task('deletarMainMin',function(){
-  return gulp.src('public/**/main.min.+(css|js)')
+  return gulp.src('public/**/main*.+(css|js)')
     .pipe(plugins.gulpClean());
 });
+
 //WATCHES
 //Rodar os watches
 gulp.task('watch',function(){
   //Watch dos específicos
-  gulp.watch(['public/**/*.+(css|js)','!public/**/main.min.+(css|js)'],['buildEspecifico']);
+  gulp.watch(['public/**/*.+(css|js)','!public/**/main*.+(css|js)'],['buildTeste']);
   //Main watch
   gulp.watch(['semantic.json','resources/assets/semantic/**/*'],['build']);
 });
+
 //BUILDERS
 //Main build
 gulp.task('build',function(callback){
@@ -75,6 +82,13 @@ gulp.task('buildEspecifico',function(callback){
   plugins.runSequence(
     ['deletarMainMin'],
     ['agruparJS','agruparCSS'],
+    callback
+  );
+});
+gulp.task('buildTeste',function(callback){
+  plugins.runSequence(
+    ['deletarMainMin'],
+    ['agruparJSTeste','agruparCSS'],
     callback
   );
 });

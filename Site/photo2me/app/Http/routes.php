@@ -13,7 +13,7 @@
 
 //Rotas públicas
 Route::group([],function(){
-  Route::get('/', function () {return view('publicas.home');})->name('home');
+  Route::get('/', ['uses' => 'PublicController@home', 'as' => 'home']);
   Route::get('/como-funciona',function(){return view('publicas.comoFunciona');})->name('comoFunciona');
   Route::get('/contato',function(){return view('publicas.contato');})->name('contato');
   Route::get('/cadastrar',function(){return view('publicas.cadastrar');})->name('cadastrar');
