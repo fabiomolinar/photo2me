@@ -1,39 +1,39 @@
 var _FtmHome = (function(){
-  var banerSegment;
-  var alturaMaxBaner = 700;
-  var alturaHeader;
-  var alturaWindow;
-  var alturaDocument;
+  var _banerSegment;
+  var _alturaMaxBaner = 700;
+  var _alturaHeader;
+  var _alturaWindow;
+  var _alturaDocument;
 
-  var setarTamanhoBaner = function(){
-    if (banerSegment && alturaWindow){
+  var _setarTamanhoBaner = function(){
+    if (_banerSegment && _alturaWindow){
       //Tamanho mínimo é o tamanho do próprio conteúdo
       var tamanhoMinimo = $('#baner-segment .container').height();
-      var banerPadding = banerSegment.outerHeight(true) - banerSegment.innerHeight();
-      if (alturaWindow < tamanhoMinimo){
-        banerSegment.height(tamanhoMinimo);
-      } else if ((alturaWindow - alturaHeader) > alturaMaxBaner){
-        banerSegment.height(alturaMaxBaner);
+      var banerPadding = _banerSegment.outerHeight(true) - _banerSegment.innerHeight();
+      if (_alturaWindow < tamanhoMinimo){
+        _banerSegment.height(tamanhoMinimo);
+      } else if ((_alturaWindow - _alturaHeader) > _alturaMaxBaner){
+        _banerSegment.height(_alturaMaxBaner);
       } else {
-        banerSegment.outerHeight(alturaWindow - alturaHeader - banerPadding);
+        _banerSegment.outerHeight(_alturaWindow - _alturaHeader - banerPadding);
       }
     }
   }
-  var atualizarVariaveisDOM = function(){
-    banerSegment = $('#baner-segment');
-    alturaHeader = $('#header').height();
-    alturaWindow = $(window).height();
-    alturaDocument = $(document).height();
+  var _atualizarVariaveisDOM = function(){
+    _banerSegment = $('#baner-segment');
+    _alturaHeader = $('#header').height();
+    _alturaWindow = $(window).height();
+    _alturaDocument = $(document).height();
   };
-  var initResize = function(){
-    atualizarVariaveisDOM();
-    setarTamanhoBaner();
+  var _initResize = function(){
+    _atualizarVariaveisDOM();
+    _setarTamanhoBaner();
   };
   var resize = function(){
-    initResize();
+    _initResize();
   };
   var init = function(){
-    initResize();
+    _initResize();
   };
 
   return {
