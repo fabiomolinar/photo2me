@@ -16,7 +16,7 @@
 @endsection
 
 @section('conteudo')
-  <div id="home-banner" class="ui segment" style="height: 900px; background-color:blue">
+  <div id="home-banner" class="ui segment" style="height: 90px; background-color:blue">
     <div class="ui text container">
       <h1>Título de impacto</h1>
     </div>

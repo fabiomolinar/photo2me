@@ -7,5 +7,7 @@ return [
   'header-contato' => 'Contact us',
   'header-cadastrar' => 'Sign in',
   'header-entrar' => 'Log in',
-  'header-menu' => 'Menu'
+  'header-menu' => 'Menu',
+  'footer-criar-comecar' => 'Do you want to create your event and start collecting photos?',
+  'footer-comece-ja' => 'Start Now!'
 ];
