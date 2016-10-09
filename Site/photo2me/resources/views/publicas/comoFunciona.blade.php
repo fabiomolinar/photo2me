@@ -2,9 +2,9 @@
 
 @section('head')
   {{-- Meta --}}
-  <meta name="keywords" content="{{ trans('keywords.home') }}">
-  <title>{{ trans('titles.home') }}</title>
-  <meta name="Description" content="{{ trans('descriptions.home') }}">
+  <meta name="keywords" content="{{ trans('keywords.comoFunciona') }}">
+  <title>{{ trans('titles.comoFunciona') }}</title>
+  <meta name="Description" content="{{ trans('descriptions.comoFunciona') }}">
 @endsection
 
 @section('sideHeader')
@@ -16,15 +16,22 @@
 @endsection
 
 @section('conteudo')
-  <h1>Como Funciona</h1>
-  <p>
-    Teste, teste, teste.
-  </p>
+  <div class="ui segment">
+    <div class="ui container">
+      <div class="ui grid">
+        
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('footer')
   @include('elements.footers.footer')
   {{-- JS --}}
   <script type="text/javascript">
+    $(document).ready(function(){
+      $(window).resize(function(){
+      });
+    });
   </script>
 @endsection
