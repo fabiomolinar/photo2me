@@ -1,12 +1,12 @@
 <div class="ui inverted vertical footer segment">
   <div class="ui center aligned container">
     <div class="ui stackable centered inverted grid">
-      <div class="three wide center aligned column mobile-hide">
+      <div class="three wide middle aligned center aligned column mobile-hide">
         <div class="ui inverted link list">
           <a href="{{ URL::route('comoFunciona') }}" class="item">{{ trans('elements.header-como-funciona') }}</a>
         </div>
       </div>
-      <div class="three wide center aligned column mobile-hide">
+      <div class="three wide middle aligned center aligned column mobile-hide">
         <div class="ui inverted link list">
           <a href="{{ URL::route('contato') }}" class="item">{{ trans('elements.header-contato') }}</a>
         </div>

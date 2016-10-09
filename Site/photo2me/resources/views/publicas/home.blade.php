@@ -17,7 +17,7 @@
 
 @section('conteudo')
 {{-- Banner --}}
-  <div class="ui attached segment" id="baner-segment">
+  <div class="ui attached center aligned segment" id="baner-segment">
     <div class="ui container">
       <div class="ui centered grid">
         <div class="row">
@@ -28,10 +28,10 @@
         </div>
         <div class="row">
           <div class="six wide center aligned column">
-            <button class="ui large button" type="button" name="button">{{ trans('messages.como-funciona') }}</button>
+            <button class="fluid ui large button" type="button" name="button">{{ trans('messages.como-funciona') }}</button>
           </div>
           <div class="six wide center aligned column">
-            <button class="ui large button" type="button" name="button">{{ trans('messages.comecar-agora') }}</button>
+            <button class="fluid ui large button" type="button" name="button">{{ trans('messages.comecar-agora') }}</button>
           </div>
         </div>
       </div>
@@ -46,6 +46,21 @@
           @include('elements.cards.vantagem')
         </div>
         @endforeach
+      </div>
+    </div>
+  </div>
+  {{-- Explicação mais longa --}}
+  <div class="ui bottom attached segment">
+    <div class="ui container">
+      <div class="ui centered grid">
+        <div class="five wide middle aligned column">
+          <img class="ui fluid middle aligned image" src="img/logo.png" alt="" />
+        </div>
+        <div class="seven wide justified column">
+          <h2 class="ui header">{{ trans('messages.moto') }}</h2>
+          <p class="">{{ trans('messages.explicacao-longa') }}</p>
+          <button class="ui fluid button" type="button" name="button">{{ trans('messages.descubra-mais') }}</button>
+        </div>
       </div>
     </div>
   </div>
