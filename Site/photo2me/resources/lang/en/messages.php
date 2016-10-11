@@ -4,6 +4,7 @@ return [
   'moto' => "DON'T LOSE A MOMENT",
   'chamada-longa' => "Ever wanted to get the photos your guests took at your event? Now it's posible...",
   'descubra-mais' => 'Find out more',
+  'email-contato' => 'photo2me.kontakt@gmail.com',
   //Home
   'como-funciona' => 'How it works',
   'comecar-agora' => 'Start now',
@@ -14,6 +15,24 @@ return [
   'vantagem2-descricao' => 'From all the photos you will receive, download the best ones for free!',
   'vantagem3-descricao' => 'Just photos of the event are shared and only you get access to the photos. If you decide, you can share them later.',
   'explicacao-longa' => 'Photo2Me came to exist after we figured out that most of the photos that are taken at your event won\'t get to your hands. You might ask your guests to send you the pictures later, and some of them do; but most will end up forgetting about it. Photo2Me take advantage of technology to make sure the amazing pictures your guests will take will end on your hands after the event is finished. That way we can ensure you will have records of all the amazing moments spent at your event.',
+  //Como functiona
+  'preparando-tudo' => 'Setting everything up',
+  'passo-a-passo' => 'The step-by-step you and your guests have to follow in order to succesfully share your photos.',
+  'o-que-voce-precisa-fazer' => 'What you will have to do',
+  'o-que-convidados-precisam-fazer' => 'What your guest have to do',
+  'criar-festa-titulo' => 'Create event',
+  'divulgar-codigo-titulo' => 'Share code',
+  'baixar-app-titulo' => 'Download app',
+  'digitar-codigo-titulo' => 'Type code',
+  'fazer-fotos-titulo' => 'Take photos!',
+  'criar-festa-descricao' => 'Create an event at our website. You will be given a special code.',
+  'divulgar-codigo-descricao' => 'Share your event\'s code with your guests.',
+  'baixar-app-descricao' => 'Ask your guests to download our app. It\'s a really lite one.',
+  'digitar-codigo-descricao' => 'Access the event by typing the shared code.',
+  'fazer-fotos-descricao' => 'Take amazing photos and register special moments.',
+  //Contato
+  'entrar-em-contato' => 'How to get in contact with us',
+  'entrar-em-contato-descricao' => 'It will be a pleasure for us to hear back from you. If you would like more information about us, or to send a compliment or complain, feel always free to enter in contact with us. You can both use the form below or send an email to ',
   //API
   'evento-encontrado' => 'Event found',
   'evento-nao-encontrado' => 'Event not found',

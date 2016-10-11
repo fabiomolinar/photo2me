@@ -15,6 +15,7 @@
     <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/semantic.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/main.js') }}"></script>
+    @include('elements.globais')    
     {{-- Trackers --}}
     <?php // TODO: Adicionar trackers! ?>
     @yield('head')

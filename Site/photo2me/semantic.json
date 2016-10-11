@@ -29,8 +29,12 @@
     "list",
     "button",
     "image",
+    "step",
     "sidebar",
     "sticky",
+    "form",
+    "input",
+    "message",
     "visibility",
     "icon"
   ],
