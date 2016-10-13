@@ -24,8 +24,8 @@
       </p>
       <div class="ui basic segment">
         <div id="contato-form-grid" class="ui centered grid">
-          <div class="five column">
-            <div class="ui large form">
+          <div class="center aligned column">
+            <form class="ui large form">
               <div class="ui stacked segment">
                 <div class="required field">
                   <div class="ui left icon input">
@@ -44,21 +44,21 @@
                     <textarea name="mensagem" placeholder="{{ trans('form.deixe-seu-recado') }}"></textarea>
                   </div>
                 </div>
+                <button class="ui button" type="submit">{{ trans('elements.contato-enviar') }}</button>
               </div>
               <div class="ui error message">
                 <div class="header">{{ trans('form.ops-temos-um-problema') }}</div>
                 <ul class="list">
                 </ul>
-              </div>
-              <div class="ui success message">
-                <div class="header">{{ trans('form.mensagem-enviada') }}</div>
-                <p>{{ trans('form.entraremos-em-contato') }}</p>
-              </div>
+              </div>              
+            </form>
+            <div class="ui success message">
+              <div class="header">{{ trans('form.mensagem-enviada') }}</div>
+              <p>{{ trans('form.entraremos-em-contato') }}</p>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 @endsection

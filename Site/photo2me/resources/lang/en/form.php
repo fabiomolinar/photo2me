@@ -7,8 +7,12 @@ return [
   //Form validation
   'fvNomeObrigatorio' => 'The field \'name\' is obligatory.',
   'fvEmailObrigatorio' => 'The field \'email\' is obligatory.',
+  'fvEmailFormato' => 'The field \'email\' has to be a valid email',
+  'fvPasswordObrigatorio' => 'The field \'password\' is obligatory',
   //Contato
   'nos-diga-seu-nome' => 'Tell us your name',
   'qual-seu-email' => 'What\'s your email?',
-  'deixe-seu-recado' => 'Leave your message here'
+  'deixe-seu-recado' => 'Leave your message here',
+  //Entrar
+  'qual-sua-senha' => 'What is your password?'
 ];

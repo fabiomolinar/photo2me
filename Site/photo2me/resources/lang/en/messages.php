@@ -5,6 +5,13 @@ return [
   'chamada-longa' => "Ever wanted to get the photos your guests took at your event? Now it's posible...",
   'descubra-mais' => 'Find out more',
   'email-contato' => 'photo2me.kontakt@gmail.com',
+  //API
+  'evento-encontrado' => 'Event found',
+  'evento-nao-encontrado' => 'Event not found',
+  'faltando-campos' => 'Some fields are missing',
+  'sucesso' => 'Success',
+  'foto-ja-existe' => 'Image refused because it was already saved in the server',
+  'foto-nao-foi-salva' => 'Something happened and we could not save the photo',
   //Home
   'como-funciona' => 'How it works',
   'comecar-agora' => 'Start now',
@@ -33,11 +40,22 @@ return [
   //Contato
   'entrar-em-contato' => 'How to get in contact with us',
   'entrar-em-contato-descricao' => 'It will be a pleasure for us to hear back from you. If you would like more information about us, or to send a compliment or complain, feel always free to enter in contact with us. You can both use the form below or send an email to ',
-  //API
-  'evento-encontrado' => 'Event found',
-  'evento-nao-encontrado' => 'Event not found',
-  'faltando-campos' => 'Some fields are missing',
-  'sucesso' => 'Success',
-  'foto-ja-existe' => 'Image refused because it was already saved in the server',
-  'foto-nao-foi-salva' => 'Something happened and we could not save the photo',
+  //Entrar
+  'bem-vindo-de-volta' => 'Welcome back again!',
+  'nao-e-usuario' => 'Not a user?',
+  'clique-aqui-para-cadastrar' => 'Click here to register!',
+  'esqueci-minha-senha' => 'Forgot my password',
+  'manter-conectado' => 'Keep me signed in',
+  //Cadastrar
+  'bem-vindo' => 'Welcome!',
+  'crie-uma-senha' => 'Create a password',
+  //Header do dashboard
+  'painel' => 'Dashboard',
+  'criar-evento' => 'Create event',  
+  //Painel
+  'painel' => 'Dashboard',
+  'seus-eventos' => 'Your events',
+  'nenhum-evento-encontrado' => 'No events found',
+  'nao-preocupe-pode-criar-um' => 'But don\'t worry, you can easily create one.',
+  'apenas-clique-aqui' => 'Just click here.',
 ];

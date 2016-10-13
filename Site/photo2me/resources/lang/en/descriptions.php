@@ -6,4 +6,7 @@ return [
   'contato' => 'Get in contact with us',
   'cadastrar' => 'Register to get an account',
   'entrar' => "Let's get going!",
+  'painel' => 'Information summary',
+  'criarEvento' => 'Create your event to start gathering photos',
+  'detalhesEvento' => 'All information about your event',
 ];

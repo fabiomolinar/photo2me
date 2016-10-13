@@ -10,5 +10,11 @@ return [
   'header-menu' => 'Menu',
   //footer
   'footer-criar-comecar' => 'Do you want to create your event and start collecting photos?',
-  'footer-comece-ja' => 'Start Now!'
+  'footer-comece-ja' => 'Start Now!',
+  //contato
+  'contato-enviar' => 'Send',
+  //entrar
+  'entrar-entrar' => 'Sign in',
+  //cadastrar
+  'cadastrar-cadastrar' => 'Sign up'
 ];

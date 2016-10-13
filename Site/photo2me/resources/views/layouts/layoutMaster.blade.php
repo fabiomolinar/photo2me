@@ -30,12 +30,12 @@
         @yield('conteudo')
       </div>
       <div id="footer">
-        @yield('footer')
         <script type="text/javascript">
           $(document).ready(function(){
             _FtmMaster.init();
           });
         </script>
+        @yield('footer')        
       </div>
     </div>
     @include('elements.modals.modalMensagem')

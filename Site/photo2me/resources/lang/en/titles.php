@@ -6,4 +6,7 @@ return [
   'contato' => 'Contact',
   'cadastrar' => 'Sign In',
   'entrar' => 'Log In',
+  'painel' => 'Dashboard',
+  'criarEvento' => 'Create Event',
+  'detalhesEvento' => 'Event Details',
 ];
