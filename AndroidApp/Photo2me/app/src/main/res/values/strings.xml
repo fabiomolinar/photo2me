@@ -4,7 +4,7 @@
     <string name="logo">Logo</string>
     <string name="bem_vindo">Welcome!</string>
     <string name="eu_aceito">I accept</string>
-    <string name="necessario_aceitar_termos">To use the application, first it\'s necessary to accept the terms described below.</string>
+    <string name="necessario_aceitar_termos">To use the application, first it\'s necessary to accept the terms of use and privacy policy described below.</string>
 
     <string name="main_chamada">Welcome to a new event!\n\nTell us what is the event\'s code below so you can start capturing moments!</string>
     <string name="identificador">code</string>

@@ -2,7 +2,7 @@
     <string name="logo">Logo</string>
     <string name="bem_vindo">Witam!</string>
     <string name="eu_aceito">Akceptuję</string>
-    <string name="necessario_aceitar_termos">Aby korzystać z aplikacji, najpierw trzeba zaakceptować warunki opisane poniżej.</string>
+    <string name="necessario_aceitar_termos">Aby korzystać z aplikacji, najpierw trzeba zaakceptować warunki korzystania i polityka prywatności opisane poniżej.</string>
 
     <string name="main_chamada">Zapraszamy do nowego wydarzenia!\n\nNapisz kod wydarzenia poniżej i rozpocznij kolekcjonowanie chwil!</string>
     <string name="identificador">kod</string>

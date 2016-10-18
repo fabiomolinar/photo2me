@@ -3,7 +3,7 @@
     <string name="logo">Logo</string>
     <string name="bem_vindo">Bem Vindo!</string>
     <string name="eu_aceito">Eu aceito</string>
-    <string name="necessario_aceitar_termos">Para utilizar o app, primeiro é necessário aceitar os termos descritos abaixo.</string>
+    <string name="necessario_aceitar_termos">Para utilizar o app, primeiro é necessário aceitar os termos de uso e política de privacidade descritos abaixo.</string>
 
     <string name="main_chamada">Bem vindo a mais um evento!\n\nNos diga abaixo qual o identificador da festa para que você possa começar a capturar momentos!</string>
     <string name="identificador">identificador</string>
