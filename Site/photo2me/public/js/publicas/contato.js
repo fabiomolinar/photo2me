@@ -31,6 +31,10 @@ var _FtmContato = (function(){
           rules: [
             {
               type: 'email',
+              prompt: _FtmGlobais.fvEmailFormato
+            },
+            {
+              type: 'empty',
               prompt: _FtmGlobais.fvEmailObrigatorio
             }
           ]

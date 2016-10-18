@@ -25,7 +25,8 @@
       <div class="ui basic segment">
         <div id="contato-form-grid" class="ui centered grid">
           <div class="center aligned column">
-            <form class="ui large form">
+            <form class="ui large form" action="{{ URL::route('postContato') }}" method="post">
+              {{ csrf_field() }}
               <div class="ui stacked segment">
                 <div class="required field">
                   <div class="ui left icon input">
@@ -50,9 +51,9 @@
                 <div class="header">{{ trans('form.ops-temos-um-problema') }}</div>
                 <ul class="list">
                 </ul>
-              </div>              
+              </div>
             </form>
-            <div class="ui success message">
+            <div id="contato-msg-sucesso" class="ui success message">
               <div class="header">{{ trans('form.mensagem-enviada') }}</div>
               <p>{{ trans('form.entraremos-em-contato') }}</p>
             </div>

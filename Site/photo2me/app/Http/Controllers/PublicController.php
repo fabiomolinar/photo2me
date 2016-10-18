@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Lang;
 
 use App\Http\Requests;
+use App\Http\Requests\ContatoRequest;
 
 class PublicController extends Controller
 {
@@ -28,5 +29,18 @@ class PublicController extends Controller
       )
     );
     return view('publicas.home')->with('vantagens',$vantagens);
+  }
+
+  public function contato(ContatoRequest $request){
+    /*
+    *   Como estou usando a classe ContatoRequest e passando o request,
+    *   o request está sendo validado automatimente. Se ele não passar
+    *   a validação, o laravel retorna automaticamente um JSON junto
+    *   com as mensagens de erro.
+    */
+    //Caso contrário, retornar um json de sucesso
+    return response()->json([
+      'status' => 'sucesso'
+    ], 200);
   }
 }
