@@ -15,7 +15,7 @@
     <script type="text/javascript" src="{{ asset('/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/semantic.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('/js/main.js') }}"></script>
-    @include('elements.globais')    
+    @include('elements.globais')
     {{-- Trackers --}}
     <?php // TODO: Adicionar trackers! ?>
     @yield('head')
@@ -35,9 +35,9 @@
             _FtmMaster.init();
           });
         </script>
-        @yield('footer')        
+        @yield('footer')
       </div>
     </div>
-    @include('elements.modals.modalMensagem')
+    @include('elements.modals.modals')
   </body>
 </html>

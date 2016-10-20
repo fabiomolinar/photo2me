@@ -43,6 +43,10 @@ var _FtmContato = (function(){
       onSuccess: function(event,fields){
         var _botaoEnviar = _formulario.find('button');
         var _dados = _formulario.serialize();
+        var errorMsgBox = _formulario.find('.ui.error.message');
+        errorMsgBox
+          .removeClass('visible')
+          .addClass('hidden');
         _botaoEnviar.addClass('loading');
         $.ajax({
           type: 'POST',
@@ -57,23 +61,24 @@ var _FtmContato = (function(){
             _botaoEnviar.removeClass('loading');
             console.log('erro');
             if (jqXHR.status == 422){
-              var errorMsgBox = _formulario.find('.ui.error.message');
               var stringErros = "";
               for (var key in jqXHR.responseJSON){
                 if (jqXHR.responseJSON.hasOwnProperty(key)){
                   var erros = jqXHR.responseJSON[key];
                   for (var i = 0; i < erros.length; i++){
-                    stringErros = stringErros + "<li>" + erros[i] + "<li>";
+                    stringErros = stringErros + "<li>" + erros[i] + "</li>";
                   }
                 }
               }
               errorMsgBox.find('ul')
                 .empty()
                 .append(stringErros);
-              errorMsgBox.addClass('visible');
+              errorMsgBox
+              .removeClass('hidden')
+              .addClass('visible');
             } else {
               //algum outro tipo de erro
-              
+              $('#modals-ops-algo-deu-errado').modal('show');
             }
           }
         });

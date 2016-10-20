@@ -51,11 +51,15 @@ return [
   'crie-uma-senha' => 'Create a password',
   //Header do dashboard
   'painel' => 'Dashboard',
-  'criar-evento' => 'Create event',  
+  'criar-evento' => 'Create event',
   //Painel
   'painel' => 'Dashboard',
   'seus-eventos' => 'Your events',
   'nenhum-evento-encontrado' => 'No events found',
   'nao-preocupe-pode-criar-um' => 'But don\'t worry, you can easily create one.',
   'apenas-clique-aqui' => 'Just click here.',
+  //Modals
+  'ops' => 'Ops...',
+  'parece-algo-deu-errado' => 'It looks like something went wrong.',
+  'tente-novamente-mais-tarde' => 'Please try again later.',
 ];
