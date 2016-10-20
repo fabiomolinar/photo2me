@@ -37,6 +37,7 @@
     "message",
     "modal",
     "dimmer",
+    "transition",
     "visibility",
     "icon"
   ],

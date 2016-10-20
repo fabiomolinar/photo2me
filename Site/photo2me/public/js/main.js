@@ -131,6 +131,10 @@ var _FtmContato = (function(){
         var _botaoEnviar = _formulario.find('button');
         var _dados = _formulario.serialize();
         var errorMsgBox = _formulario.find('.ui.error.message');
+        var successMsgBox = $('#contato-msg-sucesso');
+        successMsgBox
+          .removeClass('visible')
+          .addClass('hidden');
         errorMsgBox
           .removeClass('visible')
           .addClass('hidden');
@@ -142,11 +146,12 @@ var _FtmContato = (function(){
           dataType: 'json',
           success: function(data, textStatus, jqXHR){
             _botaoEnviar.removeClass('loading');
-            console.log('sucesso');
+            successMsgBox
+              .removeClass('hidden')
+              .addClass('visible');
           },
           error: function(jqXHR, textStatus, errorThrown){
             _botaoEnviar.removeClass('loading');
-            console.log('erro');
             if (jqXHR.status == 422){
               var stringErros = "";
               for (var key in jqXHR.responseJSON){
