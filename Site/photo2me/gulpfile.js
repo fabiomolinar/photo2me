@@ -53,7 +53,7 @@ gulp.task('agruparCSS',function(){
 });
 //Deletar os main.min.(js|css)
 gulp.task('deletarMainMin',function(){
-  return gulp.src('public/**/main*.+(css|js)')
+  return gulp.src(['public/**/main*.+(css|js)'])
     .pipe(plugins.gulpClean());
 });
 

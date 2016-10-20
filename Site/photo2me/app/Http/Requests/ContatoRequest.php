@@ -35,7 +35,7 @@ class ContatoRequest extends Request
     {
         return [
             'nome.required' => Lang::get('form.fvNomeObrigatorio'),
-            'email.email' => Lang::get('messages.fvEmailFormato'),
+            'email.email' => Lang::get('form.fvEmailFormato'),
             'email.required' => Lang::get('form.fvEmailObrigatorio')
         ];
     }

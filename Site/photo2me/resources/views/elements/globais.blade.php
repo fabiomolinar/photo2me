@@ -6,6 +6,8 @@
       this.fvEmailObrigatorio = "{!! trans('form.fvEmailObrigatorio') !!}";
       this.fvEmailFormato = "{!! trans('form.fvEmailFormato') !!}";
       this.fvPasswordObrigatorio = "{!! trans('form.fvPasswordObrigatorio') !!}";
+      //URLS
+      this.urlPostContato = "{{ URL::route('postContato') }}"
     }
     return {
       init: init
