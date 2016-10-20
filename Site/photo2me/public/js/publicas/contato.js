@@ -45,12 +45,8 @@ var _FtmContato = (function(){
         var _dados = _formulario.serialize();
         var errorMsgBox = _formulario.find('.ui.error.message');
         var successMsgBox = $('#contato-msg-sucesso');
-        successMsgBox
-          .removeClass('visible')
-          .addClass('hidden');
-        errorMsgBox
-          .removeClass('visible')
-          .addClass('hidden');
+        successMsgBox.transition('hide');
+        errorMsgBox.transition('hide');
         _botaoEnviar.addClass('loading');
         $.ajax({
           type: 'POST',
@@ -59,9 +55,15 @@ var _FtmContato = (function(){
           dataType: 'json',
           success: function(data, textStatus, jqXHR){
             _botaoEnviar.removeClass('loading');
-            successMsgBox
-              .removeClass('hidden')
-              .addClass('visible');
+            successMsgBox.transition('show');
+            setTimeout(function(){successMsgBox.transition('fade','500ms');},3000);
+            $('html, body').animate({
+              //scrollTop: posição do topo do elemento - tamanho da tela + tamanho do header + uma certa margem
+              scrollTop: successMsgBox.offset().top - $(window).height() + 70 + 9
+            },500);
+            errorMsgBox
+              .removeClass('transition')
+              .removeClass('hidden');
           },
           error: function(jqXHR, textStatus, errorThrown){
             _botaoEnviar.removeClass('loading');
@@ -78,9 +80,11 @@ var _FtmContato = (function(){
               errorMsgBox.find('ul')
                 .empty()
                 .append(stringErros);
-              errorMsgBox
-              .removeClass('hidden')
-              .addClass('visible');
+              errorMsgBox.transition('show');
+              $('html, body').animate({
+                //scrollTop: posição do topo do elemento - tamanho da tela + tamanho do header + uma certa margem
+                scrollTop: errorMsgBox.offset().top - $(window).height() + 70 + 9
+              },100);
             } else {
               //algum outro tipo de erro
               $('#modals-ops-algo-deu-errado').modal('show');

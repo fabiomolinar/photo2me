@@ -53,7 +53,7 @@
                 </ul>
               </div>
             </form>
-            <div id="contato-msg-sucesso" class="ui success message hidden">
+            <div id="contato-msg-sucesso" class="ui success floating message hidden">
               <div class="header">{{ trans('form.mensagem-enviada') }}</div>
               <p>{{ trans('form.entraremos-em-contato') }}</p>
             </div>
