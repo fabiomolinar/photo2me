@@ -46,9 +46,12 @@
                 <div class="header">{{ trans('form.ops-temos-um-problema') }}</div>
                 <ul class="list">
                 </ul>
-              </div> 
+              </div>
             </div>
           </form>
+          <div class="ui segment">
+            <p>{{ trans('messages.ja-e-usuario') }} <a href="{{ URL::route('entrar') }}">{{ trans('messages.clique-aqui-para-entrar') }}</a></p>
+          </div>
         </div>
       </div>
     </div>

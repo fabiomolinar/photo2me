@@ -49,6 +49,8 @@ return [
   //Cadastrar
   'bem-vindo' => 'Welcome!',
   'crie-uma-senha' => 'Create a password',
+  'ja-e-usuario' => 'Already a user?',
+  'clique-aqui-para-entrar' => 'Click here to log in!',
   //Header do dashboard
   'painel' => 'Dashboard',
   'criar-evento' => 'Create event',

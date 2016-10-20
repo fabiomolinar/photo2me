@@ -26,13 +26,13 @@
               <div class="required field">
                 <div class="ui left icon input">
                   <i class="at icon"></i>
-                  <input type="text" name="email" placeholder="{{ trans('form.qual-seu-email') }}">
+                  <input type="text" name="email" placeholder="{{ trans('form.seu-email') }}">
                 </div>
               </div>
               <div class="required field">
                 <div class="ui left icon input">
                   <i class="hashtag icon"></i>
-                  <input type="password" name="password" placeholder="{{ trans('form.qual-sua-senha') }}">
+                  <input type="password" name="password" placeholder="{{ trans('form.sua-senha') }}">
                 </div>
               </div>
               <p><a href="">{{ trans('messages.esqueci-minha-senha') }}</a></p>
@@ -47,10 +47,10 @@
                 <div class="header">{{ trans('form.ops-temos-um-problema') }}</div>
                 <ul class="list">
                 </ul>
-              </div> 
+              </div>
             </div>
             <div class="ui segment">
-              <p>{{ trans('messages.nao-e-usuario') }} <a href="{{ URL::route('cadastrar') }}">{{ trans('clique-aqui-para-cadastrar') }}</a></p>
+              <p>{{ trans('messages.nao-e-usuario') }} <a href="{{ URL::route('cadastrar') }}">{{ trans('messages.clique-aqui-para-cadastrar') }}</a></p>
             </div>
           </form>
         </div>

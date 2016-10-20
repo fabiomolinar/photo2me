@@ -14,5 +14,9 @@ return [
   'qual-seu-email' => 'What\'s your email?',
   'deixe-seu-recado' => 'Leave your message here',
   //Entrar
-  'qual-sua-senha' => 'What is your password?'
+  'qual-sua-senha' => 'What is your password?',
+  'seu-email' => 'Your email',
+  'sua-senha' => 'Your password',
+  //Cadastrar
+  'crie-uma-senha' => 'Create a password',
 ];
