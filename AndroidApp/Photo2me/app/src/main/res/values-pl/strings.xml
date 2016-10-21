@@ -15,8 +15,8 @@
     <string name="algo_deu_errado">Coś poszło nie tak. Spróbuj wrócić i ponowić operacje.</string>
 
     <string name="texto_apresentacao_1">Wydarzenia rozpoczyna się</string>
-    <string name="texto_apresentacao_2">o</string>
-    <string name="texto_apresentacao_3">i będzie się kończyć</string>
+    <string name="texto_apresentacao_2">o godz.</string>
+    <string name="texto_apresentacao_3">i skończy się</string>
     <string name="texto_apresentacao_4">Tylko w tym czasie, wszystkie zdjęcia, które robisz zostaną wysłane do organizatora wydarzenia.</string>
     <string name="texto_apresentacao_5">Można zatrzymać lub skonczyć wysyłanie zdjęć w dowolnym momencie.</string>
     <string name="texto_apresentacao_6">Więc przejdźmy do niego! Gotowy, aby uchwycić niesamowite chwile?</string>
@@ -49,9 +49,9 @@
     <string name="sobre_txt5">Dziękujemy, drużyna photo2me! :)</string>
     <string name="permissao_necessaria">Aby używać aplikacji, trzeba udzelić pozwolenia. Zawsze można cofnąć je później.</string>
     <string name="configuracoes">Ustawienia</string>
-    <string name="upload_only_with_wifi_on">Prześlij zdjęcia tylko po podłączeniu do sieci WiFi</string>
+    <string name="upload_only_with_wifi_on">Prześlij zdjęcia tylko po podłączeniu z siecą WiFi</string>
     <string name="voce_esta_pronto_agora_tirar_fotos">Jesteś gotowy! Teraz łatwa i przyjemna część, po prostu zrób niesamowite zdjęcia!</string>
-    <string name="wifi_upload_only">Przesyłanie tylko przez Wifi</string>
+    <string name="wifi_upload_only">Przesyłanie tylko przez WiFi</string>
     <string name="action_settings">Ustawienia</string>
     <string name="festa">Wydarzenie</string>
     <string name="reiniciar">Zacznij ponownie</string>

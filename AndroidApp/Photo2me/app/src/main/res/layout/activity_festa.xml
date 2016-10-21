@@ -105,6 +105,18 @@
         </TableRow>
     </TableLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginBottom="24dp"
+        android:text=""
+        android:id="@+id/txtStatus"
+        android:textStyle="bold"
+        android:textColor="@color/laranjaOficial"
+        android:layout_above="@+id/btnPausar" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,25 +131,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:id="@+id/btnParar"
         android:text="@string/parar"
         android:layout_marginBottom="30dp"
         android:background="@color/vermelho"
         android:textColor="@color/branco"
-        android:layout_above="@+id/txtStatus"
         android:onClick="pararClick"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:id="@+id/txtStatus"
-        android:textStyle="bold"
-        android:textColor="@color/laranjaOficial"
-        android:layout_column="1" />
 
 </RelativeLayout>

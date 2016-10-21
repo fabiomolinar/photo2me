@@ -84,6 +84,7 @@ public class ManagerService extends Service {
                                 for (File _file : listaFotos){
                                     for (Comparador _comparador : listaComparador){
                                         if (_comparador.entreInicioEFim(_file.lastModified())){
+                                            Log.d(TAG,"enviando ao intent service");
                                             //Enviar para o FotoSenderIntent
                                             LocalDateTime data = new LocalDateTime(_file.lastModified(), DateTimeZone.forID("America/Sao_Paulo"));
                                             Intent serviceIntent = new Intent(ManagerService.this,FotoSenderService.class);
@@ -99,7 +100,7 @@ public class ManagerService extends Service {
                             e.printStackTrace();
                         }
                         try {
-                            int minutosProximaTentativa = 1;
+                            int minutosProximaTentativa = 10;
                             Thread.sleep(minutosProximaTentativa * 60 * 1000);
                         } catch (InterruptedException e){
                             e.printStackTrace();

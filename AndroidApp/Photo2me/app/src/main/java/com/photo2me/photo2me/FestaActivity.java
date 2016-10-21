@@ -116,7 +116,6 @@ public class FestaActivity extends AppCompatActivity {
             mNota = new NotificationCompat.Builder(this);
             mNota.setSmallIcon(R.drawable.logo_contorno);
             mNota.setContentTitle(intentOriginador.getStringExtra(MainActivity.FESTA_NOME_EXTRA));
-            mNota.setContentText(getResources().getString(R.string.coletando));
             mNota.setOngoing(true);
             mNota.setColor(getResources().getColor(R.color.laranjaOficial));
             Intent notaIntent = new Intent(this, FestaActivity.class);
@@ -129,6 +128,7 @@ public class FestaActivity extends AppCompatActivity {
                     PendingIntent.FLAG_UPDATE_CURRENT);
             mNota.setContentIntent(pendingIntent);
             notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
         } catch (Exception e){
             e.printStackTrace();
             toastMessage(getResources().getString(R.string.ops_erro_tente_novamente_mais_tarde));
@@ -197,6 +197,8 @@ public class FestaActivity extends AppCompatActivity {
                 status.setText(getResources().getString(R.string.esperando_festa_comecar));
                 status.setTextColor(ContextCompat.getColor(contexto,R.color.laranjaOficial));
                 pausar.setVisibility(View.INVISIBLE);
+                mNota.setContentText(getResources().getString(R.string.esperando_festa_comecar));
+                notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
                 pausar.setEnabled(false);
             } else if (horaAtual.getMillis() - fim.getMillis() > 0){
                 status.setText(getResources().getString(R.string.festa_ja_acabou));
@@ -207,19 +209,22 @@ public class FestaActivity extends AppCompatActivity {
                 editor.apply();
                 notificationManager.cancel(getResources().getInteger(R.integer.notification_festa_status));
             } else {
-                notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
                 if (pausada){
                     status.setText(getResources().getString(R.string.festa_pausada));
-                    status.setTextColor(ContextCompat.getColor(contexto,R.color.azul));
+                    status.setTextColor(ContextCompat.getColor(contexto,R.color.cinza));
                     pausar.setVisibility(View.VISIBLE);
                     pausar.setEnabled(true);
                     pausar.setText(getResources().getString(R.string.reiniciar));
+                    mNota.setContentText(getResources().getString(R.string.pausado));
+                    notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
                 } else {
                     status.setText(getResources().getString(R.string.festa_ativa));
-                    status.setTextColor(ContextCompat.getColor(contexto,R.color.verde));
+                    status.setTextColor(ContextCompat.getColor(contexto,R.color.azul));
                     pausar.setVisibility(View.VISIBLE);
                     pausar.setEnabled(true);
                     pausar.setText(getResources().getString(R.string.pausar));
+                    mNota.setContentText(getResources().getString(R.string.coletando));
+                    notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
                 }
             }
         }
@@ -253,7 +258,7 @@ public class FestaActivity extends AppCompatActivity {
             notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
             //Atualizando TextBox do status
             status.setText(getResources().getString(R.string.festa_ativa));
-            status.setTextColor(getResources().getColor(R.color.verde));
+            status.setTextColor(getResources().getColor(R.color.azul));
         } else {
             //Pausar a atividade
             //Setando preferências
@@ -277,7 +282,7 @@ public class FestaActivity extends AppCompatActivity {
             notificationManager.notify(getResources().getInteger(R.integer.notification_festa_status),mNota.build());
             //Atualizando TextBox do status
             status.setText(getResources().getString(R.string.festa_pausada));
-            status.setTextColor(getResources().getColor(R.color.azul));
+            status.setTextColor(getResources().getColor(R.color.cinza));
         }
 
     }

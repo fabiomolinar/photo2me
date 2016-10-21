@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream("E:/Profissional/photo2me/keystore.properties"))
 android {
-    signingConfigs{
-        Photo2MeRelease{
+    signingConfigs {
+        Photo2MeRelease {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
@@ -18,8 +18,8 @@ android {
         applicationId "com.photo2me.photo2me"
         minSdkVersion 19
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "0.1.2"
     }
     buildTypes {
         release {

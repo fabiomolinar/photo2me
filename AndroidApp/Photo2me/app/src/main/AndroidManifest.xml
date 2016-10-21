@@ -9,7 +9,7 @@
     <application
         android:name="com.orm.SugarApp"
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -28,7 +28,7 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashBackground"
+            android:theme="@style/SplashBackgroundInvertido"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
