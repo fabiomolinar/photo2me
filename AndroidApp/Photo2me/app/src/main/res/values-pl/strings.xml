@@ -2,11 +2,11 @@
     <string name="logo">Logo</string>
     <string name="bem_vindo">Witam!</string>
     <string name="eu_aceito">Akceptuję</string>
-    <string name="necessario_aceitar_termos">Aby korzystać z aplikacji, najpierw trzeba zaakceptować warunki korzystania i polityka prywatności opisane poniżej.</string>
+    <string name="necessario_aceitar_termos">Aby korzystać z aplikacji musisz zaakceptować  warunki korzystania i politykę prywatności opisane  poniżej:</string>
 
-    <string name="main_chamada">Zapraszamy do nowego wydarzenia!\n\nNapisz kod wydarzenia poniżej i rozpocznij kolekcjonowanie chwil!</string>
+    <string name="main_chamada">Zapraszamy do nowego wydarzenia!\n\nWpisz kod wydarzenia poniżej i zacznij  kolekcjonowanie chwil!</string>
     <string name="identificador">kod</string>
-    <string name="buscar">szukać</string>
+    <string name="buscar">szukaj</string>
 
     <string name="precisa_estar_conectado">Musisz być podłączony do Internetu</string>
     <string name="problema_com_conexao">Ups, wystąpił problem z połączeniem</string>
@@ -17,9 +17,8 @@
     <string name="texto_apresentacao_1">Wydarzenia rozpoczyna się</string>
     <string name="texto_apresentacao_2">o godz.</string>
     <string name="texto_apresentacao_3">i skończy się</string>
-    <string name="texto_apresentacao_4">Tylko w tym czasie, wszystkie zdjęcia, które robisz zostaną wysłane do organizatora wydarzenia.</string>
-    <string name="texto_apresentacao_5">Można zatrzymać lub skonczyć wysyłanie zdjęć w dowolnym momencie.</string>
-    <string name="texto_apresentacao_6">Więc przejdźmy do niego! Gotowy, aby uchwycić niesamowite chwile?</string>
+    <string name="texto_apresentacao_4">Tylko w tym czasie wszystkie zdjęcia które zrobisz zostaną wysłane do organizatora wydarzenia.</string>
+    <string name="texto_apresentacao_6">Gotowy, aby uchwycić niesamowite chwile? Zaczynajmy!</string>
     <string name="pausar">zatrzymaj</string>
     <string name="parar">koniec</string>
     <string name="inicio">Początek</string>
@@ -42,17 +41,18 @@
     <string name="sim">Tak</string>
     <string name="nao">Nie</string>
     <string name="sobre">O nas</string>
-    <string name="sobre_txt1">Chciałbyś skorzystać z naszej aplikacji? Jesteśmy zawsze dostępni za pośrednictwem e-mail poniżej:</string>
+    <string name="sobre_txt1">Chcesz skorzystać z naszej aplikacji?  Jesteśmy zawsze dostępni za pośrednictwem  e-mail poniżej:</string>
     <string name="sobre_txt2">Dziękujemy za korzystanie z aplikacji!</string>
-    <string name="sobre_txt3">Na razie testujemy pre-beta wersje naszej aplikacji. To oznacza, że przez pewien czas testujemy aplikację. Mamy nadzieję, że polubisliście ją! Jeśli chcesz ją wykorzystać w przyszłości albo być na bieżąco, wyślij do nas e-mail!</string>
-    <string name="sobre_txt4">Jesteśmy do dyspozycji w razie wątpliwości lub uwag, zapraszamy do nawiązania kontaktu z nami w dowolnym momencie.</string>
-    <string name="sobre_txt5">Dziękujemy, drużyna photo2me! :)</string>
+    <string name="sobre_txt3">Na razie testujemy pre-beta aplikacji. Oznacza to,  że przez pewien czas aplikacja poddawana będzie  szczegółowej analizie naszego zespołu. Mamy  nadzieję, że polubiliście ją. Jeśli chcesz ją  wykorzystać w przyszłości albo być na bieżąco  napisz do nas!</string>
+    <string name="sobre_txt4">W razie wątpliwości lub uwag jesteśmy do  Państwa dyspozycji, zapraszamy do nawiązania  kontaktu w dowolnym momencie.</string>
+    <string name="sobre_txt5">Dziękujemy, zespół photo2me! :)</string>
     <string name="permissao_necessaria">Aby używać aplikacji, trzeba udzelić pozwolenia. Zawsze można cofnąć je później.</string>
     <string name="configuracoes">Ustawienia</string>
-    <string name="upload_only_with_wifi_on">Prześlij zdjęcia tylko po podłączeniu z siecą WiFi</string>
+    <string name="upload_only_with_wifi_on">Prześlij zdjęcia tylko po połączeniu się z siecią  WiFi</string>
     <string name="voce_esta_pronto_agora_tirar_fotos">Jesteś gotowy! Teraz łatwa i przyjemna część, po prostu zrób niesamowite zdjęcia!</string>
     <string name="wifi_upload_only">Przesyłanie tylko przez WiFi</string>
     <string name="action_settings">Ustawienia</string>
     <string name="festa">Wydarzenie</string>
     <string name="reiniciar">Zacznij ponownie</string>
+    <string name="texto_apresentacao_5">W dowolnym momencie można zatrzymać lub zakończyć wysyłanie zdjęć.</string>
 </resources>
