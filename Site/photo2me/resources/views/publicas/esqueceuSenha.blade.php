@@ -16,7 +16,7 @@
 @endsection
 
 @section('conteudo')
-  <div class="ui segment">
+  <div class="ui basic segment">
     <div class="ui container">
       <div id="esqueceu-senha-form-grid" class="ui middle aligned center aligned grid">
         <div class="center aligned column">

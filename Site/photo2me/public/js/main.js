@@ -7,6 +7,33 @@ var _FtmMaster = (function(){
   };
 })();
 
+var _FtmPrivadas = (function(){
+  var subMenu;
+  
+  var ajustarSubMenu = function(){
+    var tamanhoTela = $(window).width();
+    if (tamanhoTela > 767){
+      subMenu.removeClass('vertical');
+    } else {
+      subMenu.addClass('vertical');
+    }
+  };
+  var initEResize = function(){
+    ajustarSubMenu();
+  };
+  var init = function(){
+    subMenu = $('#sub-header-privadas')
+    initEResize();
+  };
+  var resize = function(){
+    initEResize();
+  };
+  return {
+    init: init,
+    resize: resize
+  };
+})();
+
 var _FtmCadastrar = (function(){
   var _formulario;
   var _formGrid;
@@ -270,7 +297,6 @@ var _FtmEsqueceuSenha = (function(){
   var init = function(){
     _inicializarVariaveis();
     _initEResize();
-    _setValidation();
   };
 
   return {
@@ -322,33 +348,6 @@ var _FtmHome = (function(){
     _initEResize();
   };
 
-  return {
-    init: init,
-    resize: resize
-  };
-})();
-
-var _FtmPrivadas = (function(){
-  var subMenu;
-  
-  var ajustarSubMenu = function(){
-    var tamanhoTela = $(window).width();
-    if (tamanhoTela > 767){
-      subMenu.removeClass('vertical');
-    } else {
-      subMenu.addClass('vertical');
-    }
-  };
-  var initEResize = function(){
-    ajustarSubMenu();
-  };
-  var init = function(){
-    subMenu = $('#sub-header-privadas')
-    initEResize();
-  };
-  var resize = function(){
-    initEResize();
-  };
   return {
     init: init,
     resize: resize

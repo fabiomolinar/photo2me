@@ -21,7 +21,6 @@ var _FtmEsqueceuSenha = (function(){
   var init = function(){
     _inicializarVariaveis();
     _initEResize();
-    _setValidation();
   };
 
   return {
