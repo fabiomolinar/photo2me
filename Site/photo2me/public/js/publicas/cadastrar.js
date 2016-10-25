@@ -1,8 +1,18 @@
 var _FtmCadastrar = (function(){
   var _formulario;
+  var _formGrid;
 
   var _inicializarVariaveis = function(){
     _formulario = $('.form');
+    _formGrid = $('#cadastrar-form-grid');
+  };
+  var _setarTamanhoForm = function(){
+    var larguraTela = $(window).width();
+    if (larguraTela > 767){
+      _formGrid.addClass('two column');
+    } else {
+      _formGrid.removeClass('two column');
+    }
   };
   var _setValidation = function(){
     _formulario.form({
@@ -33,6 +43,7 @@ var _FtmCadastrar = (function(){
     });
   };
   var _initEResize = function(){
+    _setarTamanhoForm();
   };
   var resize = function(){
     _initEResize();

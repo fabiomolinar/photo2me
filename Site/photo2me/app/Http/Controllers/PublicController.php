@@ -7,6 +7,8 @@ use Lang;
 
 use App\Http\Requests;
 use App\Http\Requests\ContatoRequest;
+use App\Lead;
+use Mail;
 
 class PublicController extends Controller
 {
@@ -38,7 +40,25 @@ class PublicController extends Controller
     *   a validação, o laravel retorna automaticamente um JSON junto
     *   com as mensagens de erro.
     */
-    //Caso contrário, retornar um json de sucesso
+    //Caso contrário, salvar dados de contato, enviar email e retornar um json de sucesso
+    if ($request->has('email')){
+      $lead = Lead::where('email',$request->input('email'))->first();
+      if (!$lead){
+        $novoLead = new Lead;
+        $novoLead->nome = $request->input('nome');
+        $novoLead->email = $request->input('email');
+        $novoLead->meio_primeiro_contato = "formulario contato do site";
+        $novoLead->save();
+        $lead = $novoLead;
+      }
+    }
+    $mensagem = $request->input('mensagem');
+    /*
+    Mail::send('emails.contatoFormSite', ['lead' => $lead, 'mensagem' => $mensagem], function($m){
+      $m->from('admin@photo2me.com','Photo2Me');
+      $m->to('photo2me.kontakt@gmail.com','Contato Photo2Me')->subject('Contato através formulário do site');
+    });
+    */
     return response()->json([
       'status' => 'sucesso'
     ], 200);

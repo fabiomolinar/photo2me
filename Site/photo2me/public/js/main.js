@@ -7,38 +7,21 @@ var _FtmMaster = (function(){
   };
 })();
 
-var _FtmPrivadas = (function(){
-  var subMenu;
-  
-  var ajustarSubMenu = function(){
-    var tamanhoTela = $(window).width();
-    if (tamanhoTela > 767){
-      subMenu.removeClass('vertical');
-    } else {
-      subMenu.addClass('vertical');
-    }
-  };
-  var initEResize = function(){
-    ajustarSubMenu();
-  };
-  var init = function(){
-    subMenu = $('#sub-header-privadas')
-    initEResize();
-  };
-  var resize = function(){
-    initEResize();
-  };
-  return {
-    init: init,
-    resize: resize
-  };
-})();
-
 var _FtmCadastrar = (function(){
   var _formulario;
+  var _formGrid;
 
   var _inicializarVariaveis = function(){
     _formulario = $('.form');
+    _formGrid = $('#cadastrar-form-grid');
+  };
+  var _setarTamanhoForm = function(){
+    var larguraTela = $(window).width();
+    if (larguraTela > 767){
+      _formGrid.addClass('two column');
+    } else {
+      _formGrid.removeClass('two column');
+    }
   };
   var _setValidation = function(){
     _formulario.form({
@@ -69,6 +52,7 @@ var _FtmCadastrar = (function(){
     });
   };
   var _initEResize = function(){
+    _setarTamanhoForm();
   };
   var resize = function(){
     _initEResize();
@@ -203,9 +187,19 @@ var _FtmContato = (function(){
 
 var _FtmEntrar = (function(){
   var _formulario;
+  var _formGrid;
 
   var _inicializarVariaveis = function(){
     _formulario = $('.form');
+    _formGrid = $('#entrar-form-grid');
+  };
+  var _setarTamanhoForm = function(){
+    var larguraTela = $(window).width();
+    if (larguraTela > 767){
+      _formGrid.addClass('two column');
+    } else {
+      _formGrid.removeClass('two column');
+    }
   };
   var _setValidation = function(){
     _formulario.form({
@@ -236,6 +230,7 @@ var _FtmEntrar = (function(){
     });
   };
   var _initEResize = function(){
+    _setarTamanhoForm();
   };
   var resize = function(){
     _initEResize();
@@ -295,6 +290,33 @@ var _FtmHome = (function(){
     _initEResize();
   };
 
+  return {
+    init: init,
+    resize: resize
+  };
+})();
+
+var _FtmPrivadas = (function(){
+  var subMenu;
+  
+  var ajustarSubMenu = function(){
+    var tamanhoTela = $(window).width();
+    if (tamanhoTela > 767){
+      subMenu.removeClass('vertical');
+    } else {
+      subMenu.addClass('vertical');
+    }
+  };
+  var initEResize = function(){
+    ajustarSubMenu();
+  };
+  var init = function(){
+    subMenu = $('#sub-header-privadas')
+    initEResize();
+  };
+  var resize = function(){
+    initEResize();
+  };
   return {
     init: init,
     resize: resize

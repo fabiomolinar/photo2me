@@ -18,7 +18,7 @@
 @section('conteudo')
   <div class="ui segment">
     <div class="ui container">
-      <div class="ui middle aligned center aligned grid">
+      <div id="entrar-form-grid" class="ui middle aligned center aligned grid">
         <div class="center aligned column">
           <h1 class="ui header">{{ trans('messages.bem-vindo-de-volta') }}</h1>
           <form class="ui large form">
