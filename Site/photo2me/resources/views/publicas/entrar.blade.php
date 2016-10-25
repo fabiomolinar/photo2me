@@ -35,7 +35,7 @@
                   <input type="password" name="password" placeholder="{{ trans('form.sua-senha') }}">
                 </div>
               </div>
-              <p><a href="">{{ trans('messages.esqueci-minha-senha') }}</a></p>
+              <p><a href="{{ URL::route('esqueceuSenha') }}">{{ trans('messages.esqueci-minha-senha') }}</a></p>
               <div class="inline field">
                 <div class="ui checkbox">
                   <input name="lembrar" type="checkbox" tabindex="0" class="hidden">

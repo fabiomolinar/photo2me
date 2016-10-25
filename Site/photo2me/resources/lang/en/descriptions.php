@@ -9,4 +9,5 @@ return [
   'painel' => 'Information summary',
   'criarEvento' => 'Create your event to start gathering photos',
   'detalhesEvento' => 'All information about your event',
+  'esqueci-senha' => 'Don\'t remember your password? No problems, recover it here.'
 ];

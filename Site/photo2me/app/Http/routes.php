@@ -18,6 +18,7 @@ Route::group([],function(){
   Route::get('/contato',function(){return view('publicas.contato');})->name('contato');
   Route::get('/cadastrar',function(){return view('publicas.cadastrar');})->name('cadastrar');
   Route::get('/entrar',function(){return view('publicas.entrar');})->name('entrar');
+  Route::get('/esqueci-senha',function(){return view('publicas.esqueceuSenha');})->name('esqueceuSenha');
   Route::post('/contato', ['uses' => 'PublicController@contato', 'as' => 'postContato']);
 });
 

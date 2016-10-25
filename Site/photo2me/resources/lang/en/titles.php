@@ -9,4 +9,5 @@ return [
   'painel' => 'Dashboard',
   'criarEvento' => 'Create Event',
   'detalhesEvento' => 'Event Details',
+  'esqueci-senha' => 'Recover your password'
 ];

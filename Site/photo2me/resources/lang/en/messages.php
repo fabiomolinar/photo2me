@@ -51,6 +51,8 @@ return [
   'crie-uma-senha' => 'Create a password',
   'ja-e-usuario' => 'Already a user?',
   'clique-aqui-para-entrar' => 'Click here to log in!',
+  //Esqueci a senha
+  'recuperar-senha' => 'Recover your password',
   //Header do dashboard
   'painel' => 'Dashboard',
   'criar-evento' => 'Create event',

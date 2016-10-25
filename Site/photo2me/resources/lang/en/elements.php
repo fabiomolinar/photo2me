@@ -16,5 +16,7 @@ return [
   //entrar
   'entrar-entrar' => 'Sign in',
   //cadastrar
-  'cadastrar-cadastrar' => 'Sign up'
+  'cadastrar-cadastrar' => 'Sign up',
+  //recuperar senha
+  'recuperar-recuperar' => 'Recover'
 ];

@@ -9,4 +9,5 @@ return [
   'painel' => 'dashboard, control, manage, create, event',
   'criarEvento' => 'create event, create, event',
   'detalhesEvento' => 'event details, details, event',
+  'esqueci-senha' => 'forgot password, forgotten password, forget, password'
 ];
