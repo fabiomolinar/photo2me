@@ -21,6 +21,8 @@ Route::group([],function(){
   Route::get('/esqueci-senha',function(){return view('publicas.esqueceuSenha');})->name('esqueceuSenha');
   Route::post('/contato', ['uses' => 'PublicController@contato', 'as' => 'postContato']);
 });
+//Rotas de autenticação
+Route::auth();
 
 //API
 Route::post('dadosFesta',['as' => 'dadosFesta', 'uses' => 'FestaController@dadosFesta']);
