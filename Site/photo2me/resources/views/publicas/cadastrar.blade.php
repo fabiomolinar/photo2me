@@ -21,7 +21,7 @@
       <div id="cadastrar-form-grid" class="ui middle aligned center aligned grid">
         <div class="center aligned column">
           <h1 class="ui header">{{ trans('messages.bem-vindo') }}</h1>
-          <form class="ui large form">
+          <form class="ui large form" method="POST" action="{{ url('/register') }}">
             <div class="ui stacked segment">
               <div class="required field">
                 <div class="ui left icon input">
@@ -32,13 +32,7 @@
               <div class="required field">
                 <div class="ui left icon input">
                   <i class="hashtag icon"></i>
-                  <input type="text" name="email" placeholder="{{ trans('form.crie-uma-senha') }}">
-                </div>
-              </div>
-              <div class="inline field">
-                <div class="ui checkbox">
-                  <input name="lembrar" type="checkbox" tabindex="0" class="hidden">
-                  <label>{{ trans('messages.manter-conectado') }}</label>
+                  <input type="text" name="password" placeholder="{{ trans('form.crie-uma-senha') }}">
                 </div>
               </div>
               <button class="ui button" type="submit">{{ trans('elements.cadastrar-cadastrar') }}</button>

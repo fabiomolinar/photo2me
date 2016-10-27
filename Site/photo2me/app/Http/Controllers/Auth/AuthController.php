@@ -28,7 +28,11 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/painel';
+    //Outras variáveis que tive que modificar para adaptar o controller as minhas necessidades
+    protected $loginView = 'publicas.entrar';
+    protected $redirectAfterLogout = '/';
+    protected $registerView = 'publicas.cadastrar';
 
     /**
      * Create a new authentication controller instance.

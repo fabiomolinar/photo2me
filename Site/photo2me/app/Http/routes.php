@@ -23,6 +23,10 @@ Route::group([],function(){
 });
 //Rotas de autenticação
 Route::auth();
+//Rotas privadas - usuário
+Route::group(['middleware' => 'auth'],function(){
+  Route::get('/painel',['uses' => 'PrivadasController@painel', 'as' => 'painel']);
+});
 
 //API
 Route::post('dadosFesta',['as' => 'dadosFesta', 'uses' => 'FestaController@dadosFesta']);

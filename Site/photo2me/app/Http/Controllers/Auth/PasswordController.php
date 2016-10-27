@@ -20,6 +20,10 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
+    //Outras variáveis que tive que modificar para adaptar o controller as minhas necessidades
+    protected $linkRequestView = 'publicas.esqueceuSenha';
+    protected $resetView = 'publicas.criarNovaSenha';
+
     /**
      * Create a new password controller instance.
      *

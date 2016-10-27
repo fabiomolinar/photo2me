@@ -21,7 +21,8 @@
       <div id="entrar-form-grid" class="ui middle aligned center aligned grid">
         <div class="center aligned column">
           <h1 class="ui header">{{ trans('messages.bem-vindo-de-volta') }}</h1>
-          <form class="ui large form">
+          <form class="ui large form" method="POST" action="{{ url('/login') }}">
+            {{ csrf_field() }}
             <div class="ui stacked segment">
               <div class="required field">
                 <div class="ui left icon input">
@@ -35,10 +36,10 @@
                   <input type="password" name="password" placeholder="{{ trans('form.sua-senha') }}">
                 </div>
               </div>
-              <p><a href="{{ URL::route('esqueceuSenha') }}">{{ trans('messages.esqueci-minha-senha') }}</a></p>
+              <p><a href="{{ url('/password/reset') }}">{{ trans('messages.esqueci-minha-senha') }}</a></p>
               <div class="inline field">
                 <div class="ui checkbox">
-                  <input name="lembrar" type="checkbox" tabindex="0" class="hidden">
+                  <input name="remember" type="checkbox" tabindex="0" class="hidden">
                   <label>{{ trans('messages.manter-conectado') }}</label>
                 </div>
               </div>
