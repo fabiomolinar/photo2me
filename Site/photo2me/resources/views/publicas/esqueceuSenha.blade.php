@@ -21,7 +21,7 @@
       <div id="esqueceu-senha-form-grid" class="ui middle aligned center aligned grid">
         <div class="center aligned column">
           <h1 class="ui header">{{ trans('messages.recuperar-senha') }}</h1>
-          <form class="ui large form">
+          <form class="ui large form" method="POST" action="{{ url('/password/email') }}">
             <div class="ui stacked segment">
               <div class="required field">
                 <div class="ui left icon input">
