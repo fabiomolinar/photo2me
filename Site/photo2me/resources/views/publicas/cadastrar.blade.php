@@ -22,6 +22,7 @@
         <div class="center aligned column">
           <h1 class="ui header">{{ trans('messages.bem-vindo') }}</h1>
           <form class="ui large form" method="POST" action="{{ url('/register') }}">
+            {{ csrf_field() }}
             <div class="ui stacked segment">
               <div class="required field">
                 <div class="ui left icon input">
@@ -32,7 +33,7 @@
               <div class="required field">
                 <div class="ui left icon input">
                   <i class="hashtag icon"></i>
-                  <input type="text" name="password" placeholder="{{ trans('form.crie-uma-senha') }}">
+                  <input type="password" name="password" placeholder="{{ trans('form.crie-uma-senha') }}">
                 </div>
               </div>
               <button class="ui button" type="submit">{{ trans('elements.cadastrar-cadastrar') }}</button>

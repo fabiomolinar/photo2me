@@ -7,6 +7,7 @@ return [
   'header-contato' => 'Contact us',
   'header-cadastrar' => 'Sign in',
   'header-entrar' => 'Log in',
+  'header-sair' => 'Log out',
   'header-menu' => 'Menu',
   //footer
   'footer-criar-comecar' => 'Do you want to create your event and start collecting photos?',
